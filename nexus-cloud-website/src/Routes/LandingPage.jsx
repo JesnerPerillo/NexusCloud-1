@@ -3,7 +3,7 @@ import { useState } from "react";
 import "tailwindcss";
 import Header from '../Components/Header.jsx';
 import ContentLadingPage from '../Components/ContentLandingPage.jsx';
-import BackgroundImg from '../Images/bg.jpg';
+import BackgroundImg from '../Images/bg.png';
 
 export default function LandingPage() {
     
@@ -11,8 +11,9 @@ export default function LandingPage() {
     return(
         <div>
             <Header className="position-fixed drop-shadow-xl"/>
-            <img src={BackgroundImg} className="w-full h-screen absolute"/>
-                <ContentLadingPage className="z-30"/>
+            <div className="w-full h-screen" style={{backgroundImage: `url(${BackgroundImg})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center"}} >
+                <ContentLadingPage />
+            </div>
         </div>
     )
 }
