@@ -1,11 +1,14 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import NexusLogo from "../Images/nexusLogo.png";
+import gsap from 'gsap';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const home = useRef(null);
+
+
 
     const homeScroll = () => {
         home.current.scrollIntoView({ behavior: "smooth", block: "start"});
@@ -25,11 +28,11 @@ export default function Header() {
 
                 {/* Menu - Desktop */}
                 <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">
-                    <Link to="/" className="hover:underline" onClick={homeScroll}>HOME</Link>
-                    <Link to="/about" className="hover:underline">ABOUT</Link>
-                    <Link to="/courses" className="hover:underline">COURSES</Link>
-                    <Link to="/packages" className="hover:underline">PACKAGES</Link>
-                    <Link to="/faqs" className="hover:underline">FAQs</Link>
+                    <Link to="/" className="hover:underline hover:text-white nav-items nav text-gray-400"  onClick={homeScroll}>HOME</Link>
+                    <Link to="/about" className="hover:underline  hover:text-white nav-items nav text-gray-400">ABOUT</Link>
+                    <Link to="/courses" className="hover:underline  hover:text-white nav-items text-gray-400">COURSES</Link>
+                    <Link to="/packages" className="hover:underline hover:text-white nav-items text-gray-400">PACKAGES</Link>
+                    <Link to="/faqs" className="hover:underline nav-items nav hover:text-white text-gray-400">FAQs</Link>
                 </nav>
 
                 {/* Mobile Menu Button */}

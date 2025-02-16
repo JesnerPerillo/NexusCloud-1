@@ -1,0 +1,14 @@
+.nav-items ::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    left: 0%;
+    bottom: -10px;
+    height: 3px;
+    background-color: #FF2D20;
+    transition: .5s ease-in-out;
+}
+
+.nav-items:hover::before {
+    width: 100%
+}

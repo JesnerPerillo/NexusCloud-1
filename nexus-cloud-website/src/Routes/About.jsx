@@ -1,9 +1,35 @@
 import OnlineImg from '../Images/online.jpg';
 import OnsiteImg from '../Images/onsite.jpg';
+import {ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+
+
+  useGSAP(() => {
+    gsap.fromTo(
+      '.about-container',
+      { y: 100 , opacity: 0},
+
+      {
+        y: 0,
+        opacity: 1,
+        // duration: 0.5,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: '.about-container',
+          start: 'top bottom', 
+          end: 'top center',
+          scrub: 1
+        }
+      }
+    );
+  });
+
   return(
-    <div className="bg-gradient-to-r from-purple-700 to-pink-700">
+    <div className="bg-gradient-to-r from-purple-700 to-pink-700 about-container">
       <div className="flex flex-col items-center">
         <h1 className="text-white text-4xl play-bold tracking-wide text-center">Discover the Future of Learning with NexusCloud IT Solutions</h1>
         <div className="w-1/2">

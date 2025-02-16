@@ -1,6 +1,12 @@
 import TeachImg from "../Images/tech.png";
+import gsap from 'gsap';
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function ContentLandingPage() {
+
+    
+
+    // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
     return (
     <div className="flex flex-col lg:flex-row items-center justify-between px-5 lg:px-20 py-10 mt-20">
         {/* Right Side */}
@@ -26,7 +32,7 @@ export default function ContentLandingPage() {
 
             {/* Left Side */}
         <div className="w-full lg:w-1/3 flex justify-center mt-10 lg:mt-0">
-            <img src={TeachImg} alt="Teaching Image" className="w-full sm:w-2/3 lg:w-full" />
+            <img src={TeachImg} alt="Teaching Image" className="w-full sm:w-2/3 lg:w-full img-logo" />
         </div>
     </div>
     );
