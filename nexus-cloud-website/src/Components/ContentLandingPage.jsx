@@ -17,7 +17,7 @@ export default function ContentLandingPage() {
                 <h2 className="text-white text-3xl sm:text-2xl lg:text-2xl mt-5">
                 No Experience Needed!
                 </h2>
-                <p className="text-white w-1/2 mt-2">{`Join us today and take the first step toward mastering the tech skills of tomorrow! Whether you're a beginner exploring the world of technology or a professional looking to enhance your expertise, our comprehensive seminars will equip you with the knowledge, hands-on experience, and industry insights needed to stay ahead in the ever-evolving digital landscape. Don't miss this opportunity to learn from expert instructors, engage with like-minded individuals, and unlock new career possibilities in the world of IT!`}</p>
+                <p className="text-white w-full mt-5 text-justify sm:w-1/2">{`Join us today and take the first step toward mastering the tech skills of tomorrow! Whether you're a beginner exploring the world of technology or a professional looking to enhance your expertise, our comprehensive seminars will equip you with the knowledge, hands-on experience, and industry insights needed to stay ahead in the ever-evolving digital landscape. Don't miss this opportunity to learn from expert instructors, engage with like-minded individuals, and unlock new career possibilities in the world of IT!`}</p>
                 <button className="w-full sm:w-80 py-3 border-2 rounded-xl bg-white border-white mt-10 sm:mt-20 text-xl sm:text-xl lg:text-2xl tracking-wide hover:cursor-pointer hover:bg-black border-white hover:text-white duration-600 ease-in-out">
                 Enroll Today!
                 </button>
