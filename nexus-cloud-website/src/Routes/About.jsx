@@ -11,12 +11,11 @@ export default function About() {
   useGSAP(() => {
     gsap.fromTo(
       '.about-container',
-      { y: 100 , opacity: 0},
+      { opacity: 0, y: 50},
 
       {
         y: 0,
         opacity: 1,
-        // duration: 0.5,
         ease: 'power2.inOut',
         scrollTrigger: {
           trigger: '.about-container',

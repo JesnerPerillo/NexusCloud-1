@@ -3,10 +3,25 @@ import { Link } from "react-router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import NexusLogo from "../Images/nexusLogo.png";
 import gsap from 'gsap';
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const home = useRef(null);
+
+    useGSAP(() => {
+
+        gsap.to('.nav-bar', {
+            ScrollTrigger: 'header',
+            position: 'sticky',
+            top: 0,
+            left: 0,
+
+        })
+    }
+)
 
 
 
@@ -17,7 +32,7 @@ export default function Header() {
 
     return (
         <header className="w-full bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
-            <div className="container w-full flex justify-around items-center p-4">
+            <div className="container w-full flex justify-around items-center p-4 nav-bar" >
                 {/* Logo */}
                 <div className="flex items-center">
                     <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
