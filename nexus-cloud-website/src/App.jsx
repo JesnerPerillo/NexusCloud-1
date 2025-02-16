@@ -1,4 +1,3 @@
-import React from "react";
 import "tailwindcss";
 import { HashRouter as Router, Routes, Route } from 'react-router';
 import LandingPage from "./Routes/LandingPage.jsx";
