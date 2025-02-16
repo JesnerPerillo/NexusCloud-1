@@ -1,8 +1,8 @@
-import TeachImg from "../Images/tech.png";
+import TeachImg from "../Images/tree.png";
 
 export default function ContentLandingPage() {
     return (
-    <div className="flex flex-col mt-0 lg:flex-row items-center justify-between px-5 lg:px-20 py-10">
+    <div className="flex flex-col mt-0 lg:flex-row items-center justify-between px-5 lg:px-20 py-10 overflow-hidden">
         {/* Right Side */}
         <div className="w-full text-left lg:w-3/4">
             <div className="rounded-xl p-5 lg:p-2 flex flex-col justify-center">
@@ -26,7 +26,7 @@ export default function ContentLandingPage() {
 
             {/* Left Side */}
         <div className="w-full lg:w-1/3 flex justify-center mt-10 lg:mt-0">
-            <img src={TeachImg} alt="Teaching Image" className="w-full sm:w-2/3 lg:w-full" />
+            <img src={TeachImg} alt="Teaching Image" className="w-full scale-100 sm:scale-200 sm:w-2/3 lg:w-full" />
         </div>
     </div>
     );
