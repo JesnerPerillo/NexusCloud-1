@@ -2,9 +2,9 @@ import TeachImg from "../Images/tech.png";
 
 export default function ContentLandingPage() {
     return (
-    <div className="flex flex-col lg:flex-row items-center justify-between px-5 lg:px-20 py-10 mt-20">
+    <div className="flex flex-col mt-0 lg:flex-row items-center justify-between px-5 lg:px-20 py-10">
         {/* Right Side */}
-        <div className="w-full lg:w-3/4 text-center lg:text-left">
+        <div className="w-full text-left lg:w-3/4">
             <div className="rounded-xl p-5 lg:p-2 flex flex-col justify-center">
                 <h2 className="text-yellow-500 font-semibold text-2xl sm:text-3xl lg:text-3xl tracking-wide">
                 Get Certified. Get Ahead. Stay Relevant.
