@@ -1,25 +1,50 @@
-import "tailwindcss";
-import { Link } from "react-router";
-import NexusLogo from '../Images/nexusLogo.png';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import NexusLogo from "../Images/nexusLogo.png";
 
 export default function Header() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <div>
-            <header className="w-full h-20 bg-black flex justify-around items-center position-fixed drop-shadow-xl border-b-2 border-white">
-                {/*Logo */}
-                <div className="w-1/2 h-fit flex items-center">
-                    <h1 className="text-white tracking-widest text-3xl">NexusCloud IT Solutions</h1>
-                    <img src={NexusLogo} alt="NexusCloud Logo" className="h-14 w-14 "/>
+        <header className="w-full bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
+            <div className="container w-full flex justify-around items-center p-4">
+                {/* Logo */}
+                <div className="flex items-center">
+                    <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
+                    <h1 className="text-white text-2xl md:text-3xl font-bold tracking-widest">
+                        NexusCloud IT Solutions
+                    </h1>
                 </div>
-                {/*Nav side */}
-                <div className="flex justify-evenly list-none w-1/3 text-xl text-white">
-                    <Link to="" class="relative text-lg font-semibold text-white after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"><li>HOME</li></Link>
-                    <Link to="" class="relative text-lg font-semibold text-white after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"><li>ABOUT</li></Link>
-                    <Link to="" class="relative text-lg font-semibold text-white after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"><li>COURSES</li></Link>
-                    <Link to="" class="relative text-lg font-semibold text-white after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"><li>PACKAGES</li></Link>
-                    <Link to="" class="relative text-lg font-semibold text-white after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"><li>FAQs</li></Link>
-                </div>
-            </header>
-        </div>
-    )
+
+                {/* Menu - Desktop */}
+                <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">
+                    <Link to="/" className="hover:underline">HOME</Link>
+                    <Link to="/about" className="hover:underline">ABOUT</Link>
+                    <Link to="/courses" className="hover:underline">COURSES</Link>
+                    <Link to="/packages" className="hover:underline">PACKAGES</Link>
+                    <Link to="/faqs" className="hover:underline">FAQs</Link>
+                </nav>
+
+                {/* Mobile Menu Button */}
+                <button 
+                    className="md:hidden text-white text-2xl"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? <FaTimes /> : <FaBars />}
+                </button>
+            </div>
+
+            {/* Mobile Menu - Responsive */}
+            {isOpen && (
+                <nav className="md:hidden bg-purple-800 text-white text-lg flex flex-col items-center py-4 space-y-4">
+                    <Link to="/" onClick={() => setIsOpen(false)}>HOME</Link>
+                    <Link to="/about" onClick={() => setIsOpen(false)}>ABOUT</Link>
+                    <Link to="/courses" onClick={() => setIsOpen(false)}>COURSES</Link>
+                    <Link to="/packages" onClick={() => setIsOpen(false)}>PACKAGES</Link>
+                    <Link to="/faqs" onClick={() => setIsOpen(false)}>FAQs</Link>
+                </nav>
+            )}
+        </header>
+    );
 }
