@@ -10,7 +10,7 @@ export default function ContentLandingPage() {
                 Get Certified. Get Ahead. Stay Relevant.
                 </h2>
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
-                    <h1 className="text-white font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center play-bold">
+                    <h1 className="text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center play-bold">
                         LAUNCH YOUR CAREER🚀
                     </h1>
                 </div>
