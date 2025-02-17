@@ -13,7 +13,7 @@ export default function Header() {
     }
 
     return (
-        <header className="w-full bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
+        <header className="w-full fixed z-20 bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
             <div className="container w-full flex justify-around items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
