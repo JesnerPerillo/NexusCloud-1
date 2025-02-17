@@ -1,10 +1,23 @@
-import TeachImg from "../Images/tech.png";
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TeachImg from "../Images/tree.png";
+import { SteppedEase } from 'gsap';
+// import { TimelineMax } from 'gsap/gsap-core';
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function ContentLandingPage() {
-
+useGSAP(() => {
+    const tl =  gsap.timeline({paused: true});
+    tl.fromTo('.type-writer', 8, 
+        {
+        width: 0
+    },{
+        width: "20.18em", /* same as CSS .line-1 width */
+        ease:  SteppedEase.config(37)
+      }, 0);
+      tl.play()
+})
     
 
     // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
@@ -17,7 +30,7 @@ export default function ContentLandingPage() {
                 Get Certified. Get Ahead. Stay Relevant.
                 </h2>
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
-                    <h1 className="text-white font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center play-bold">
+                    <h1 className="type-writer text-white font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center play-bold">
                         LAUNCH YOUR CAREER🚀
                     </h1>
                 </div>

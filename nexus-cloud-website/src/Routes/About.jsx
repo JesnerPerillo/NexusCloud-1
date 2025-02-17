@@ -28,17 +28,10 @@ export default function About() {
   });
 
   return(
-<<<<<<< HEAD
-    <div className="bg-gradient-to-r from-purple-700 to-pink-700 about-container">
-      <div className="flex flex-col items-center">
-        <h1 className="text-white text-4xl play-bold tracking-wide text-center">Discover the Future of Learning with NexusCloud IT Solutions</h1>
-        <div className="w-1/2">
-=======
-    <div className="bg-gradient-to-r from-purple-700 to-pink-700">
+    <div className="about-container bg-gradient-to-r from-purple-700 to-pink-700">
       <div className="flex flex-col items-center px-3 text-justify">
         <h1 className="text-white text-5xl play-bold tracking-wide text-center">Discover the Future of Learning with NexusCloud IT Solutions</h1>
         <div className="w-full sm:w-1/2 mt-5">
->>>>>>> c40c665dae068f01c25a6f413a3f571101bf3a1a
           <p className="text-justify text-white">At NexusCloud IT Solutions, we believe in empowering individuals with the skills needed to thrive in the ever-evolving tech industry. That’s why we offer both online and face-to-face seminars designed to help aspiring IT professionals, students, and career shifters gain hands-on knowledge in the most in-demand courses.</p>
         </div>
       </div>

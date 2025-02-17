@@ -23,9 +23,6 @@ export default function Header() {
     }
 )
 
-A8660FA1
-
-
 
 
     const homeScroll = () => {
