@@ -28,7 +28,7 @@ export default function About() {
   });
 
   return(
-    <div className="about-container bg-gradient-to-r from-purple-700 to-pink-700">
+    <div className="bg-gradient-to-r h-auto from-purple-700 to-pink-700">
       <div className="flex flex-col items-center px-3 text-justify">
         <h1 className="text-white text-5xl play-bold tracking-wide text-center">Discover the Future of Learning with NexusCloud IT Solutions</h1>
         <div className="w-full sm:w-1/2 mt-5">
