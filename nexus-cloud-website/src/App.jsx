@@ -10,7 +10,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function App(){
   return (
-    
+    // const [count, setCount] = useState(0)
     <>
     <Router>
       <Routes>
