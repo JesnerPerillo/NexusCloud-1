@@ -1,1 +1,3 @@
 *.sqlite*
+.sqlite
+database.sqlite
