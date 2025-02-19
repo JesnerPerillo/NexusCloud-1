@@ -43,7 +43,7 @@ export default function AboutNexus() {
           <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group group-hover:w-full sm:w-1/3" style={{ backgroundImage: `url(${ValuesImg})`}} onClick={handleToggle}>
             <div className={`absolute inset-0 bg-black transition-opacity group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
             <h1 className={`play-bold text-7xl tracking-wide z-20 text-yellow-500 group-hover:translate-y-[-13rem] duration-500 ${isActive ? "-translate-y-[13rem]" : ""}`}>VALUES</h1>
-            <p className={`absolute text-xs text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-[3rem] z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} sm:text-md`}>
+            <p className={`absolute text-xs text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-[3rem] z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} sm:text-[17px]`}>
             <u>High-Quality Training</u>: Our commitment to excellence is evident in our meticulously crafted training programs, facilitated by industry experts who provide practical and hands-on learning experiences.<br /><br />
 
             <u>Low-Cost Fees</u>: We are dedicated to providing quality training at affordable costs, ensuring accessibility for individuals and organizations with varying budgets.<br /><br />
