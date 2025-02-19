@@ -4,8 +4,6 @@ import {  TiSocialYoutubeCircular  } from "react-icons/ti";
 import { TfiInstagram } from "react-icons/tfi";
 import { FaTiktok } from "react-icons/fa";
 
-
-
 export default function Footer() {
     return(
         <div className="w-full h-80 drop-shadow-xl text-white">
