@@ -6,7 +6,7 @@ import { FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
     return(
-        <div className="w-full h-80 drop-shadow-xl text-white">
+        <div className="w-full bg-gradient-to-r text-white text-xs from-purple-900 to-pink-900 drop-shadow-xl sm:mt-40 sm:text-xl sm:w-full sm:h-1/5">
             <footer className="flex flex-col items-center justify-center">
                 {/*Top Footer */}
                 <div className="w-4/5 h-40 flex justify-around items-center border-b-1 border-white">

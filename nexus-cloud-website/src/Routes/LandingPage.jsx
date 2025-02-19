@@ -15,10 +15,10 @@ export default function LandingPage() {
                     <ContentLadingPage />
                 </div>
             </div>
-            <div className="w-full h-screen bg-gradient-to-r from-purple-700 to-pink-700 sm:mt-50 sm:h-screen">
+            <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 sm:mt-50 sm:h-auto">
                 <About />
             </div>
-            <div className="w-full bg-gradient-to-r from-purple-900 to-pink-900 drop-shadow-xl sm:mt-[500px] sm:w-full sm:h-1/5">
+            <div className="mt-40">
                 <Footer />
             </div>
         </div>

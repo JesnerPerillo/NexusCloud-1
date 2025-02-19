@@ -1,6 +1,7 @@
 import "tailwindcss";
 import { HashRouter as Router, Routes, Route } from 'react-router';
 import LandingPage from "./Routes/LandingPage.jsx";
+import AboutNexus from './Routes/AboutNexus.jsx';
 import gsap from "gsap";
 import { useGSAP} from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,6 +16,7 @@ export default function App(){
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/aboutnexus" element={<AboutNexus />} />
       </Routes>
     </Router>
     </>

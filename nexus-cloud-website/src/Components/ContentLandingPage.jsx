@@ -7,18 +7,18 @@ import { SteppedEase } from 'gsap';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function ContentLandingPage() {
-useGSAP(() => {
-    const tl =  gsap.timeline({paused: true});
-    tl.fromTo('.type-writer', 8, 
-        {
-        width: 0
-    },{
-        width: "20.18em", /* same as CSS .line-1 width */
-        ease:  SteppedEase.config(37)
-      }, 0);
-      tl.play()
-})
-    
+    useGSAP(() => {
+        const tl =  gsap.timeline({paused: true});
+        tl.fromTo('.type-writer', 8, 
+            {
+            width: 0
+        },{
+            width: "20.18em", /* same as CSS .line-1 width */
+            ease:  SteppedEase.config(37)
+        }, 0);
+        tl.play()
+    });
+        
 
     // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
     return (
@@ -65,11 +65,7 @@ useGSAP(() => {
 
             {/* Left Side */}
         <div className="w-full lg:w-1/3 flex justify-center mt-10 lg:mt-0">
-{/* <<<<<<< HEAD
-            <img src={TeachImg} alt="Teaching Image" className="w-full sm:w-2/3 lg:w-full img-logo" />
-======= */}
             <img src={TeachImg} alt="Teaching Image" className="w-full scale-100 sm:scale-200 sm:w-2/3 lg:w-full" />
-{/* >>>>>>> c40c665dae068f01c25a6f413a3f571101bf3a1a */}
         </div>
     </div>
     );

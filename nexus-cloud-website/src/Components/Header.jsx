@@ -31,7 +31,7 @@ export default function Header() {
     }
 
     return (
-        <header className="w-full fixed z-20 bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
+        <header className="w-full fixed z-30 bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
             <div className="container w-full flex justify-around items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
@@ -44,7 +44,7 @@ export default function Header() {
                 {/* Menu - Desktop */}
                 <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">
                     <Link to="/" className="hover:underline hover:text-white nav-items nav text-gray-400"  onClick={homeScroll}>HOME</Link>
-                    <Link to="/about" className="hover:underline  hover:text-white nav-items nav text-gray-400">ABOUT</Link>
+                    <Link to="/aboutnexus" className="hover:underline  hover:text-white nav-items nav text-gray-400">ABOUT</Link>
                     <Link to="/courses" className="hover:underline  hover:text-white nav-items text-gray-400">COURSES</Link>
                     <Link to="/packages" className="hover:underline hover:text-white nav-items text-gray-400">PACKAGES</Link>
                     <Link to="/faqs" className="hover:underline nav-items nav hover:text-white text-gray-400">FAQs</Link>
