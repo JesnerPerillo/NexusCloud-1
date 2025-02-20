@@ -63,7 +63,7 @@ export default function Header() {
             {isOpen && (
                 <nav className="md:hidden bg-purple-800 text-white text-lg flex flex-col items-center py-4 space-y-4">
                     <Link to="/" onClick={() => setIsOpen(false)}>HOME</Link>
-                    <Link to="/about" onClick={() => setIsOpen(false)}>ABOUT</Link>
+                    <Link to="/aboutnexus" onClick={() => setIsOpen(false)}>ABOUT</Link>
                     <Link to="/courses" onClick={() => setIsOpen(false)}>COURSES</Link>
                     <Link to="/packages" onClick={() => setIsOpen(false)}>PACKAGES</Link>
                     <Link to="/faqs" onClick={() => setIsOpen(false)}>FAQs</Link>

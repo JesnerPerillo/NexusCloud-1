@@ -4,6 +4,7 @@ import VisionImg from '../Images/meeting.jpg';
 import MissionImg from '../Images/meeting2.jpg';
 import ValuesImg from '../Images/meeting1.webp';
 import Footer from '../Components/Footer.jsx';
+import Contact from '../Components/Contact.jsx';
 
 export default function AboutNexus() {
   const [isActive, setIsActive] = useState(false);
@@ -55,6 +56,9 @@ export default function AboutNexus() {
             Nexuscloud IT Solution aims to equip individuals and organizations with the necessary knowledge and skills to thrive in the rapidly evolving IT landscape.</p>
           </div>
         </div>
+      </div>
+      <div>
+        <Contact />
       </div>
       <div>
         <Footer />
