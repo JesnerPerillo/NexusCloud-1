@@ -5,14 +5,60 @@ import MissionImg from '../Images/meeting2.jpg';
 import ValuesImg from '../Images/meeting1.webp';
 import Footer from '../Components/Footer.jsx';
 import Contact from '../Components/Contact.jsx';
+import WhoWeAreImg from '../Images/whoweare.jpg';
+import WhoWeAre1Img from '../Images/whoweare1.jpg';
+import WhoWeAre2Img from '../Images/whoweare2.jpg';
+import WhoWeAre3Img from '../Images/whoweare3.jpg';
+import WhoWeAre4Img from '../Images/whoweare4.jpg';
+import WhatWeDoImg from '../Images/whatwedo.jpg';
+import WhatWeDo1Img from '../Images/whatwedo1.jpg';
+import WhatWeDo2Img from '../Images/whatwedo2.jpg';
+import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 
 export default function AboutNexus() {
   const [isActive, setIsActive] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [weAreIndex, setWeAreIndex] = useState(0);
+  
+    const slides = [
+      WhatWeDoImg,
+      WhatWeDo1Img,
+      WhatWeDo2Img,
+    ];
+
+    const weAreSlides = [
+      WhoWeAreImg,
+      WhoWeAre1Img,
+      WhoWeAre2Img,
+      WhoWeAre3Img,
+      WhoWeAre4Img
+    ]
+  
+    const nextSlide = () => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    };
+  
+    const prevSlide = () => {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+    }
 
   const handleToggle = () => {
     if (isMobile) setIsActive((prev) => !prev);
   };
+
+  const weAreSlide = () => {
+    setWeAreIndex((prevIndex) => (prevIndex + 1) % weAreSlides.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(weAreSlide, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleThumbnailClick = (index) => {
+    setWeAreIndex(index);
+  }
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
@@ -24,12 +70,93 @@ export default function AboutNexus() {
   }, []);
 
   return(
-    <div className="bg-gradient-to-r from-purple-700 to-pink-700 w-full h-auto sm:w-full h-auto">
+    <div className="bg-gradient-to-r overflow-x-hidden from-purple-700 to-pink-700 w-full h-auto sm:w-full h-auto">
       <div>
         <Header />
       </div>
+
+      {/*Who We Are Container */}
+      <div className="w-full h-auto flex flex-col items-center justify-between sm:w-full sm:h-screen sm:flex-row">
+        <div className="w-auto mt-30 h-auto flex flex-col items-center sm:w-1/2 sm:h-auto">
+          <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-7">
+            <div className="relative w-full h-full overflow-hidden">
+              <img
+                src={weAreSlides[weAreIndex]}
+                alt={`Slide ${weAreIndex + 1}`}
+                className="w-full h-[35rem] object-cover rounded-xl"
+              />
+            </div>
+          </div>
+          {/* Mini images (thumbnails) */}
+        <div className="mt-10 w-full bg-white/30 backdrop-blur-lg shadow-lg p-5 rounded-2xl flex items-center justify-around sm:w-2/3">
+          {weAreSlides.map((slide, index) => (
+            <img
+              key={index}
+              src={slide}
+              alt={`Thumbnail ${index + 1}`}
+              className={`h-20 w-16 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 ${index === weAreIndex ? 'border-4 border-white' : 'opacity-70'}`}
+              onClick={() => handleThumbnailClick(index)}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="w-full text-center mt-20 p-0 text-white pr-0 sm:w-1/2 sm:p-10 sm:pr-40 sm:text-right mt-0">
+        <h1 className="text-[4rem] oswald-bold sm:text-[8rem]">WHO <span className="text-[#f4ca4f] oswald-bold">WE</span> ARE</h1>
+        <p className="text-lg px-5 text-justify leading-10 montserrat-semibold sm:text-2xl">We are a team of dedicated <span className="text-[#f4ca4f]">IT professionals and educators</span> committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /> <br />
+
+        Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with <span className="text-[#f4ca4f]">over 20 years of experience</span> in finance, retail, managed services, and government sectors. We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers.<br /> <br/>
+
+        At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence
+        .</p>
+      </div>
+    </div>
+
+    {/* What We Do Container */}  
+        <div className="w-full h-auto flex flex-col justify-between relative px-5 p-0 sm:w-full sm:h-auto sm:flex-row sm:px-50 p-5">
+          <div className="absolute inset-0 bg-black opacity-30 mx-0 rounded-xl sm:mx-40"></div>
+          <div className="w-full text-white z-20 sm:w-1/2">
+            <h1 className="text-[4rem] text-center oswald-bold text-[#f4ca4f] sm:text-[7rem]">WHAT <span className="text-white oswald-bold">WE</span> DO</h1>
+            <p className="text-xl text-justify">We are a team of dedicated IT professionals and educators committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
+
+            Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with over 20 years of experience in finance, retail, managed services, and government sectors. <br /><br />
+
+            We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers. At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence .
+            </p>
+          </div>
+          <div className="relative mt-20 z-20 w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-2 sm:p-10 sm:w-1/2 sm:mt-0">
+            <div className="relative w-full h-full overflow-hidden">
+              <img
+                src={slides[currentIndex]}
+                alt={`Slide ${currentIndex + 1}`}
+                className="w-full h-[35rem] object-cover rounded-xl"
+              />
+            </div>
+            
+            {/* Prev Button */}
+            <GrCaretPrevious
+              onClick={prevSlide}
+              className="absolute w-20 h-8 top-1/2 left-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:-translate-x-[-5px] sm:w-20 sm:h-20 sm:left-[-50px]"
+            />
+
+            {/* Next Button */}
+            <GrCaretNext
+              onClick={nextSlide}
+              className="absolute w-20 h-8 top-1/2 right-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:-translate-x-[5px] sm:w-20 sm:h-20 sm:right-[-50px]"
+            />
+
+            {/* Indicator */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {slides.map((_, index) => (
+                <span
+                  key={index}
+                  className={`h-2 w-2 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'}`}
+                ></span>
+              ))}
+            </div>
+          </div>
+        </div>
       <div className="w-full bg-gradient-to-r from-purple-700 to-pink-700 pt-40 flex flex-col items-center text-white">
-        <h1 className="text-5xl play-bold sm:text-7xl">CORE PRINCIPLES</h1>
+        <h1 className="text-4xl play-bold sm:text-7xl">CORE PRINCIPLES</h1>
         <div className="flex w-full items-center flex-col justify-center p-5 mt-10 gap-5 sm:flex-row sm:gap-0">
           <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group sm:w-1/3" style={{ backgroundImage: `url(${VisionImg})`}} onClick={handleToggle}>
             <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${isActive ? "opacity-70" : "opacity-40"} group-hover:opacity-70`}></div>
@@ -60,7 +187,7 @@ export default function AboutNexus() {
       <div>
         <Contact />
       </div>
-      <div>
+      <div className="mt-5">
         <Footer />
       </div>
     </div>

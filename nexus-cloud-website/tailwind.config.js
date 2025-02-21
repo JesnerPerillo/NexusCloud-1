@@ -3,7 +3,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        play: ['Play', 'sans-serif'], // Custom font
+        montserrat: ['Montserrat', 'sans-serif'],
+        oswald: ["Oswald", 'sans-serif']
       },
     },
   },

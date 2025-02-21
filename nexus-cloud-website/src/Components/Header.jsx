@@ -32,7 +32,7 @@ export default function Header() {
 
     return (
         <header className="w-full fixed z-30 bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
-            <div className="container w-full flex justify-around items-center p-4">
+            <div className="container w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
                     <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
