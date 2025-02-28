@@ -4,9 +4,6 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TeachImg from "../Images/tree.png";
 import { SteppedEase } from 'gsap';
-import { CiLight, CiDark  } from "react-icons/ci";
-import DarkMode from '../Components/DarkMode.jsx';
-// import { TimelineMax } from 'gsap/gsap-core';
 
 export default function ContentLandingPage() {
     const [themeToggle, setThemeToggle] = useState(false);

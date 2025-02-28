@@ -15,7 +15,7 @@ export default function LandingPage() {
                     <ContentLadingPage />
                 </div>
             </div>
-            <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 sm:mt-50 sm:h-auto">
+            <div className="w-full h-auto sm:mt-50 sm:h-auto">
                 <About />
             </div>
             <div className="mt-40">
