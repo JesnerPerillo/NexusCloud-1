@@ -32,12 +32,12 @@ export default function Header() {
     }
 
     return (
-    <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors">
+    <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors con">
             <div className=" w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
                     <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
-                    <h1 className="text-black dark:text-white text-xl md:text-3xl font-bold tracking-widest">
+                    <h1 className="text-black dark:text-white text-xl md:text-3xl font-bold tracking-widest text">
                         NexusCloud IT Solutions
                     </h1>
                 </div>
@@ -66,7 +66,7 @@ export default function Header() {
 
             {/* Mobile Menu - Responsive */}
             {isOpen && (
-                <nav className="md:hidden bg-purple-800 text-white text-lg flex flex-col items-center py-4 space-y-4">
+                <nav className="md:hidden text-black text-lg flex flex-col items-center py-4 space-y-4">
                     <Link to="/" onClick={() => setIsOpen(false)}>HOME</Link>
                     <Link to="/aboutnexus" onClick={() => setIsOpen(false)}>ABOUT</Link>
                     <Link to="/courses" onClick={() => setIsOpen(false)}>COURSES</Link>

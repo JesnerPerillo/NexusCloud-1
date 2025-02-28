@@ -8,8 +8,8 @@ export default function LandingPage() {
     
 
     return(
-        <div className="w-full h-auto bg-black relative">
-            <div className="w-full h-auto bg-black sm:h-screen">
+        <div className="w-full h-auto bg-black relative con">
+            <div className="w-full h-auto con bg-black sm:h-screen">
                 <Header className="position-fixed drop-shadow-xl"/>
                 <div>
                     <ContentLadingPage />
@@ -18,7 +18,7 @@ export default function LandingPage() {
             <div className="w-full h-auto sm:mt-50 sm:h-auto">
                 <About />
             </div>
-            <div className="mt-40">
+            <div className="mt-40 drop-shadow-2xl">
                 <Footer />
             </div>
         </div>

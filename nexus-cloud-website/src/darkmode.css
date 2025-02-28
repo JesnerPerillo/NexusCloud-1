@@ -14,18 +14,18 @@
     --button-text: #f3f4f6;  /* Light button text */
   }
   
-  div {
+  .con {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: 2s;
+    transition: 1s;
   }
   
-  button {
+  .button {
     background-color: var(--button-bg);
     color: var(--button-text);
   }
 
-  p, h1 {
+  .text {
     color: var(--button-text);
   }
   
