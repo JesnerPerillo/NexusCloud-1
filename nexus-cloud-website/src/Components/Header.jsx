@@ -5,6 +5,7 @@ import NexusLogo from "../Images/nexusLogo.png";
 import gsap from 'gsap';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import DarkMode from '../Components/DarkMode.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 export default function Header() {
@@ -31,15 +32,16 @@ export default function Header() {
     }
 
     return (
-        <header className="w-full fixed z-30 bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
+    <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors">
             <div className="container w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
                     <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
-                    <h1 className="text-white text-xl md:text-3xl font-bold tracking-widest">
+                    <h1 className="text-black dark:text-white text-xl md:text-3xl font-bold tracking-widest">
                         NexusCloud IT Solutions
                     </h1>
                 </div>
+                <DarkMode />
 
                 {/* Menu - Desktop */}
                 <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">

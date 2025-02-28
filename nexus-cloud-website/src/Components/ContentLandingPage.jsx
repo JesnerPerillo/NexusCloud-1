@@ -1,12 +1,17 @@
 import gsap from 'gsap';
+import { useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TeachImg from "../Images/tree.png";
 import { SteppedEase } from 'gsap';
+import { CiLight, CiDark  } from "react-icons/ci";
+import DarkMode from '../Components/DarkMode.jsx';
 // import { TimelineMax } from 'gsap/gsap-core';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function ContentLandingPage() {
+    const [themeToggle, setThemeToggle] = useState(false);
+
+    gsap.registerPlugin(ScrollTrigger, useGSAP);
     useGSAP(() => {
         const tl =  gsap.timeline({paused: true});
         tl.fromTo('.type-writer', 8, 
@@ -18,6 +23,11 @@ export default function ContentLandingPage() {
         }, 0);
         tl.play()
     });
+
+    const handleThemeToggle = () => {
+        setThemeToggle(!themeToggle);
+        document.body.classList.toggle("dark");
+    }
         
 
     // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
@@ -27,10 +37,11 @@ export default function ContentLandingPage() {
         <div className="w-full mt-20 text-left lg:w-3/4">
             <div className="rounded-xl p-5 lg:p-2 flex flex-col justify-center">
                 <h2 className="text-yellow-500 font-semibold text-2xl sm:text-3xl lg:text-3xl tracking-wide">
-                Get Certified. Get Ahead. Stay Relevant.
+                    Get Certified. Get Ahead. Stay Relevant.
                 </h2>
+                
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
-                    <h1 className="text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center play-bold">
+                    <h1 className="text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center montserrat-bold">
                         LAUNCH YOUR CAREER🚀
                     </h1>
                 </div>

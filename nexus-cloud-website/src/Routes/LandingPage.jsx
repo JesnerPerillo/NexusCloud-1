@@ -8,8 +8,8 @@ export default function LandingPage() {
     
 
     return(
-        <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 relative">
-            <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 sm:h-screen">
+        <div className="w-full h-auto bg-black relative">
+            <div className="w-full h-auto bg-black sm:h-screen">
                 <Header className="position-fixed drop-shadow-xl"/>
                 <div>
                     <ContentLadingPage />
