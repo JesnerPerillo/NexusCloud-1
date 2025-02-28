@@ -17,6 +17,7 @@
   div {
     background-color: var(--bg-color);
     color: var(--text-color);
+    transition: 2s;
   }
   
   button {

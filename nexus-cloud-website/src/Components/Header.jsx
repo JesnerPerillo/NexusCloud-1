@@ -42,7 +42,8 @@ export default function Header() {
                     </h1>
                 </div>
 
-                {/* Menu - Desktop */}
+                <div className="flex space-x-10 items-center">
+                    {/* Menu - Desktop */}
                 <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">
                     <Link to="/" className="hover:underline hover:text-white nav-items nav text-gray-400"  onClick={homeScroll}>HOME</Link>
                     <Link to="/aboutnexus" className="hover:underline  hover:text-white nav-items nav text-gray-400">ABOUT</Link>
@@ -50,6 +51,8 @@ export default function Header() {
                     <Link to="/packages" className="hover:underline hover:text-white nav-items text-gray-400">PACKAGES</Link>
                     <Link to="/faqs" className="hover:underline nav-items nav hover:text-white text-gray-400">FAQs</Link>
                 </nav>
+                <DarkMode />
+                </div>
 
                 {/* Mobile Menu Button */}
                 <button 
@@ -59,7 +62,6 @@ export default function Header() {
                     {isOpen ? <FaTimes /> : <FaBars />}
                 </button>
 
-                <DarkMode />
             </div>
 
             {/* Mobile Menu - Responsive */}
