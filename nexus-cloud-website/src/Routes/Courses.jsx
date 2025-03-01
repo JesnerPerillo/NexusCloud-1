@@ -227,10 +227,10 @@ export default function Courses() {
             </div>
             <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
               <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
-                <img src={AzureSolutionArchitect} alt="Microsoft Certified: Azure Solutions Architect Expert (AZ-305)"/>
+                <img src={AzureSolutionArchitect} alt="Microsoft Certified: Azure Solutions Architect Expert (AZ-305)" className="w-full h-full object-cover"/>
               </div>
               <div className="h-1/3 relative p-2">
-                <h1 className="card-text">CompTIA Security+ (SY0-701)</h1>
+                <h1 className="card-text">Microsoft Certified: Azure Solutions Architect Expert (AZ-305)</h1>
                 <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P93,000</span> P37,000.00</p>
               </div>
             </div>
