@@ -1,29 +1,34 @@
-/* Default light mode styles */
+
 :root {
-    --bg-color: #f9fafb;    /* Light background */
-    --text-color: #000000;   /* Dark text color */
-    --button-bg: #f3f4f6;    /* Light button background */
-    --button-text: #000000;   /* Dark button text */
-    --nav-color: #000000; /* Dark Nav*/
+    --bg-color: #f9fafb;    
+    --text-color: #000000;   
+    --button-bg: #f3f4f6;    
+    --button-text: #000000;   
+    --nav-color: #000000;
     --blur-color: #000000;
+    --nav: #000000; 
     --footer-color: #d1d1d1; 
     --card-color: #222020;
     --cardtext-color: #ffffff;
     --drop-shadow: 15px 15px 25px rgba(0, 0, 0, 0.3);
   }
   
-  /* Dark mode styles */
   html.dark {
-    --bg-color: #000000;    /* Dark background */
-    --text-color: #f9fafb;   /* Light text color */
-    --button-bg: #4b5563;    /* Dark button background */
-    --button-text: #f3f4f6;  /* Light button text */
-    --nav-color: #f9fafb; /* Light Nav*/
+    --bg-color: #000000;    
+    --text-color: #f9fafb;   
+    --button-bg: #4b5563;   
+    --button-text: #f3f4f6; 
+    --nav-color: #f9fafb; 
     --blur-color: #ffffff;
+    --nav: #ffffff; 
     --footer-color: #222222;
     --card-color: #ffffff;
     --cardtext-color: #000000;
     --drop-shadow: 15px 15px 25px rgba(255, 255, 255, 0.3);
+  }
+
+  .nav {
+    color: var(--nav);
   }
   
   .con {

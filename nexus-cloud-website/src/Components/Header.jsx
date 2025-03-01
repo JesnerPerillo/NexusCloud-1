@@ -57,7 +57,7 @@ export default function Header() {
 
                 {/* Mobile Menu Button */}
                 <button 
-                    className="md:hidden text-white text-2xl"
+                    className="md:hidden nav text-2xl"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <FaTimes /> : <FaBars />}
