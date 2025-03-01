@@ -13,6 +13,8 @@ import WhoWeAre4Img from '../Images/whoweare4.jpg';
 import WhatWeDoImg from '../Images/whatwedo.jpg';
 import WhatWeDo1Img from '../Images/whatwedo1.jpg';
 import WhatWeDo2Img from '../Images/whatwedo2.jpg';
+import WhatWeDo3Img from '../Images/whatwedo3.jpg';
+import WhatWeDo4Img from '../Images/whatwedo4.jpg';
 import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 
 export default function AboutNexus() {
@@ -25,6 +27,8 @@ export default function AboutNexus() {
       WhatWeDoImg,
       WhatWeDo1Img,
       WhatWeDo2Img,
+      WhatWeDo3Img,
+      WhatWeDo4Img
     ];
 
     const weAreSlides = [
@@ -149,7 +153,7 @@ export default function AboutNexus() {
               {slides.map((_, index) => (
                 <span
                   key={index}
-                  className={`h-2 w-2 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'}`}
+                  className={`h-2 w-2 rounded-full ${index === currentIndex ? 'bg-gray-400' : 'bg-gray-600'}`}
                 ></span>
               ))}
             </div>
