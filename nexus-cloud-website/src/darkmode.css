@@ -5,6 +5,8 @@
     --button-bg: #f3f4f6;    /* Light button background */
     --button-text: #000000;   /* Dark button text */
     --nav-color: #000000; /* Dark Nav*/
+    --blur-color: #000000;
+    --footer-color: #d1d1d1; 
   }
   
   /* Dark mode styles */
@@ -14,6 +16,8 @@
     --button-bg: #4b5563;    /* Dark button background */
     --button-text: #f3f4f6;  /* Light button text */
     --nav-color: #f9fafb; /* Light Nav*/
+    --blur-color: #ffffff;
+    --footer-color: #222222;
   }
   
   .con {
@@ -48,4 +52,14 @@
       width: 100%;
       left: 0;
     }
+  }
+
+  .blur {
+    background-color: var(--blur-color);
+    opacity: 1;
+    box-shadow: 5px 10px 8px #888888;
+  }
+
+  .footer {
+    background-color: var(--footer-color);
   }

@@ -70,14 +70,14 @@ export default function AboutNexus() {
   }, []);
 
   return(
-    <div className="bg-gradient-to-r overflow-x-hidden from-purple-700 to-pink-700 w-full h-auto sm:w-full h-auto">
+    <div className="con overflow-x-hidden w-full h-auto sm:w-full h-auto">
       <div>
         <Header />
       </div>
 
       {/*Who We Are Container */}
       <div className="w-full h-auto flex flex-col items-center justify-between sm:w-full sm:h-screen sm:flex-row">
-        <div className="w-auto mt-30 h-auto flex flex-col items-center sm:w-1/2 sm:h-auto">
+        <div className="w-auto mt-50 h-auto flex flex-col items-center sm:w-1/2 sm:h-auto">
           <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-7">
             <div className="relative w-full h-full overflow-hidden">
               <img
@@ -100,9 +100,9 @@ export default function AboutNexus() {
           ))}
         </div>
       </div>
-      <div className="w-full text-center mt-20 p-0 text-white pr-0 sm:w-1/2 sm:p-10 sm:pr-40 sm:text-right mt-0">
-        <h1 className="text-[4rem] oswald-bold sm:text-[8rem]">WHO <span className="text-[#f4ca4f] oswald-bold">WE</span> ARE</h1>
-        <p className="text-lg px-5 text-justify leading-10 montserrat-semibold sm:text-2xl">We are a team of dedicated <span className="text-[#f4ca4f]">IT professionals and educators</span> committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /> <br />
+      <div className="w-full text-center mt-20 p-0 text-white pr-0 sm:w-1/2 sm:p-10 sm:pr-20 sm:text-right mt-10">
+        <h1 className="text-[4rem] oswald-bold sm:text-[5rem] text">WHO <span className="text-[#f4ca4f] oswald-bold">WE</span> ARE</h1>
+        <p className="text text-lg px-5 text-justify leading-7 montserrat-semibold sm:text-lg">We are a team of dedicated <span className="text-[#f4ca4f]">IT professionals and educators</span> committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /> <br />
 
         Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with <span className="text-[#f4ca4f]">over 20 years of experience</span> in finance, retail, managed services, and government sectors. We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers.<br /> <br/>
 
@@ -112,11 +112,11 @@ export default function AboutNexus() {
     </div>
 
     {/* What We Do Container */}  
-        <div className="w-full h-auto flex flex-col justify-between relative px-5 p-0 sm:w-full sm:h-auto sm:flex-row sm:px-50 p-5">
-          <div className="absolute inset-0 bg-black opacity-30 mx-0 rounded-xl sm:mx-40"></div>
+        <div className="w-full h-auto flex flex-col justify-between relative mt-0 px-5 p-0 sm:w-full sm:h-auto sm:flex-row sm:px-20 gap-20 p-5 mt-50">
+          <div className="absolute flex blur drop-shadow-2xl mx-0 rounded-xl sm:mx-10"></div>
           <div className="w-full text-white z-20 sm:w-1/2">
-            <h1 className="text-[4rem] text-center oswald-bold text-[#f4ca4f] sm:text-[7rem]">WHAT <span className="text-white oswald-bold">WE</span> DO</h1>
-            <p className="text-xl text-justify">We are a team of dedicated IT professionals and educators committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
+            <h1 className="text-[4rem] text-center oswald-bold text-[#f4ca4f] sm:text-[5rem]">WHAT <span className="text oswald-bold">WE</span> DO</h1>
+            <p className="text-lg text-justify text montserrat-semibold">We are a team of dedicated IT professionals and educators committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
 
             Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with over 20 years of experience in finance, retail, managed services, and government sectors. <br /><br />
 
@@ -155,8 +155,8 @@ export default function AboutNexus() {
             </div>
           </div>
         </div>
-      <div className="w-full bg-gradient-to-r from-purple-700 to-pink-700 pt-40 flex flex-col items-center text-white">
-        <h1 className="text-4xl play-bold sm:text-7xl">CORE PRINCIPLES</h1>
+      <div className="w-full con pt-40 flex flex-col items-center text-white">
+        <h1 className="text-4xl text play-bold sm:text-7xl">CORE PRINCIPLES</h1>
         <div className="flex w-full items-center flex-col justify-center p-5 mt-10 gap-5 sm:flex-row sm:gap-0">
           <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group sm:w-1/3" style={{ backgroundImage: `url(${VisionImg})`}} onClick={handleToggle}>
             <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${isActive ? "opacity-70" : "opacity-40"} group-hover:opacity-70`}></div>
@@ -171,7 +171,7 @@ export default function AboutNexus() {
           <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group group-hover:w-full sm:w-1/3" style={{ backgroundImage: `url(${ValuesImg})`}} onClick={handleToggle}>
             <div className={`absolute inset-0 bg-black transition-opacity group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
             <h1 className={`play-bold text-7xl tracking-wide z-20 text-yellow-500 group-hover:translate-y-[-13rem] duration-500 ${isActive ? "-translate-y-[13rem]" : ""}`}>VALUES</h1>
-            <p className={`absolute text-xs text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-[3rem] z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} sm:text-[17px]`}>
+            <p className={`absolute text-xs text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-[3rem] z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} sm:text-[14px]`}>
             <u>High-Quality Training</u>: Our commitment to excellence is evident in our meticulously crafted training programs, facilitated by industry experts who provide practical and hands-on learning experiences.<br /><br />
 
             <u>Low-Cost Fees</u>: We are dedicated to providing quality training at affordable costs, ensuring accessibility for individuals and organizations with varying budgets.<br /><br />

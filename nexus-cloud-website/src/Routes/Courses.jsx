@@ -11,44 +11,44 @@ export default function Courses() {
 
 
   return(
-    <div className="bg-gradient-to-r from-purple-700 to-pink-700 w-full h-auto sm:w-full h-auto">
+    <div className="con w-full h-auto sm:w-full h-auto">
       <div>
         <Header />
       </div>
       
-      <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 pt-20 flex flex-col items-center text-white">
-        <div className="w-full h-100 bg-red-800 flex justify-between px-30 items-center relative overflow-hidden">
+      <div className="w-full h-auto con pt-20 flex flex-col items-center text-white">
+        <div className="w-full h-100 bg-red-800 flex justify-between  items-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gray-800 opacity-30"></div>
           <div className="flex flex-col items-center h-full justify-around ">
-            <h1 className="text-8xl oswald-bold">
+            <h1 className="text-7xl text-white oswald-bold">
               CCNA <br /> CERTIFICATION
             </h1>
-            <div className="w-[50rem] bg-white flex items-center border rounded-3xl pl-2 gap-2 z-20">
+            <div className="w-[40rem] bg-white flex items-center border rounded-3xl pl-2 ml-10 gap-2 z-20">
               <PiMagnifyingGlass className=" w-5 h-5 text-violet-600 hover:cursor-pointer focus:outline-hidden "/>
               <input className="w-full pl-3 h-13 text-black w-full rounded-r-2xl z-20 focus:outline-none" placeholder="Search Course"/>
             </div>
           </div>
-          <div className="absolute right-100 scale-300 top-30">
+          <div className="absolute right-80 scale-300 top-30">
             <img src={CCNAImg} alt="CCNA Image" className="w-60 h-60 rounded-full opacity-80"/>
           </div>
         </div>
 
         <div className="flex w-full justify-between items-center ">
           <div className="w-1/2 ml-5 mt-2 border-l-15 border-yellow-500">
-            <h1 className="text-7xl play-bold pl-5 oswald-bold">CISCO CERTIFIED NETWORK ASSOCIATE (CCNA 200-301)</h1>
+            <h1 className="text-6xl play-bold pl-5 oswald-bold text">CISCO CERTIFIED NETWORK ASSOCIATE (CCNA 200-301)</h1>
           </div>
           <div className="flex bg-violet-500 rounded-xl mr-5 w-2/5 h-full mt-5 p-5 items-center justify-center">
             <div className="border-r-10 p-5 text-center border-yellow-500 w-1/3">
-              <p className="text-3xl text-yellow-400 play-bold">35 HOURS</p>
-              <p className="text-2xl">DURATION</p>
+              <p className="text-xl text-yellow-400 play-bold">35 HOURS</p>
+              <p className="text-xl">DURATION</p>
             </div>
             <div className="p-5 text-center p-5 w-1/3">
-              <p className="text-3xl text-yellow-400 play-bold">INTERMEDIATE</p>
-              <p className="text-2xl">LEVEL</p>
+              <p className="text-xl text-yellow-400 play-bold">INTERMEDIATE</p>
+              <p className="text-xl">LEVEL</p>
             </div>
             <div className="border-l-10 p-5 text-center border-yellow-500 w-1/3">
-              <p className="text-3xl text-yellow-400 play-bold">ON-SITE</p>
-              <p className="text-2xl">MODALITY</p>
+              <p className="text-xl text-yellow-400 play-bold">ON-SITE</p>
+              <p className="text-xl">MODALITY</p>
             </div>
           </div>
         </div>
