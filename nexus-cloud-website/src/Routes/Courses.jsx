@@ -12,6 +12,14 @@ import CyberSecEsImg from '../Images/cybersecurity-essentials.webp'
 import COMPTIASecImg from '../Images/comptia-security.webp';
 import SOAImg from '../Images/SOA.webp';
 import CyberArc from '../Images/CA.png';
+import AzureAdmin from '../Images/azureadmin.png';
+import AzureSolutionArchitect from '../Images/azure-sol-arc.jpg';
+import AzureIdentifyAccessAdmin from '../Images/Identify-access-admin.png';
+import ModernDesktopAdmin from '../Images/MDA.png';
+import EnterpriseAdmin from '../Images/enterprise-admin.png';
+import WSHA from '../Images/WSHA.png';
+import VMware from '../Images/vmware.png';
+import WindowsServer from '../Images/windows.png';
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -125,9 +133,9 @@ export default function Courses() {
           </div>
         </div>
         <div className="mt-20">
-          <h1 className="text text-7xl oswald-bold tracking-wide text-center mb-10">ALL COURSE</h1>
+          <h1 className="text text-[6rem] oswald-bold tracking-wide text-center mb-10">ALL COURSES</h1>
           {/*Card Container #1st Line*/}
-          <div className="p-2 px-5 gap-5 flex justify-around flex-col sm:flex-row">
+          <div className="p-2 px-5 gap-5 flex mb-10 justify-around flex-col sm:flex-row">
             <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
               <div className="h-3/5 rounded-t-3xl overflow-hidden">
                 <img src={CCNAImg} alt="CCNA Image" className="w-full h-full object-cover"/>
@@ -139,7 +147,7 @@ export default function Courses() {
             </div>
             <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
               <div className="h-3/5 bg-white rounded-t-3xl">
-                <img src={CCSTImg} alt="CCNA Image" className="w-full h-full object-cover"/>
+                <img src={CCSTImg} alt="CCNA Image" className="w-full h-full object-contain"/>
               </div>
               <div className="h-1/3 relative p-2">
                 <h1 className="card-text">Cisco Certified Support Technician (CCST) Networking 2025</h1>
@@ -148,7 +156,7 @@ export default function Courses() {
             </div>
             <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
               <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
-                <img src={EthicalHackingImg1} alt="CCNA Image" className="w-full h-full object-cover"/>
+                <img src={EthicalHackingImg1} alt="CCNA Image" className="w-full h-full object-contain"/>
               </div>
               <div className="h-1/3 relative p-2">
                 <h1 className="card-text">Ethical Hacking & Penetration Testing</h1>
@@ -157,7 +165,7 @@ export default function Courses() {
             </div>
             <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
               <div className="h-3/5 bg-white rounded-t-3xl">
-                <img src={COMPTIAImg} alt="CCNA Image" className="w-full h-full object-cover"/>
+                <img src={COMPTIAImg} alt="CCNA Image" className="w-full h-full object-contain"/>
               </div>
               <div className="h-1/3 relative p-2">
                 <h1 className="card-text">CompTIA CyberSecurity CySA+ 2025</h1>
@@ -167,7 +175,7 @@ export default function Courses() {
           </div>
 
           {/*Card Container #2nd Line*/}
-          <div className="p-2 flex flex-col gap-5 px-5 justify-around sm:flex-row">
+          <div className="p-2 flex flex-col gap-5 px-5 mb-10 justify-around sm:flex-row">
             <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
               <div className="h-3/5 bg-red-900 rounded-t-3xl overflow-hidden">
                 <img src={CyberSecEsImg} alt="CCNA Image" className="w-full h-full object-cover"/>
@@ -197,11 +205,91 @@ export default function Courses() {
             </div>
             <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
               <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
-                <img src={CyberArc} alt="CCNA Image" className="w-full h-full object-cover"/>
+                <img src={CyberArc} alt="CCNA Image" className="w-full h-full object-contain"/>
               </div>
               <div className="h-1/3 relative p-2">
                 <h1 className="card-text">Microsoft Certified: Cybersecurity Architect Expert (SC-100)</h1>
                 <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P71,000</span> P35,000.00</p>
+              </div>
+            </div>
+          </div>
+
+          {/*Card Container #3rd Line*/}
+          <div className="p-2 flex flex-col mb-10 gap-5 px-5 justify-around sm:flex-row">
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
+                <img src={AzureAdmin} alt="CCNA Image" className="w-full h-full object-contain"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">Microsoft Certified: Azure Administrator Associate (AZ-104)</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P95,000</span> P38,000.00</p>
+              </div>
+            </div>
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
+                <img src={AzureSolutionArchitect} alt="Microsoft Certified: Azure Solutions Architect Expert (AZ-305)"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">CompTIA Security+ (SY0-701)</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P93,000</span> P37,000.00</p>
+              </div>
+            </div>
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
+                <img src={AzureIdentifyAccessAdmin} alt="CCNA Image" className="w-full h-full object-contain"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">Microsoft Certified: Identity and Access Administrator Associate (SC-300)</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P179,000</span> P53,000.00</p>
+              </div>
+            </div>
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
+                <img src={ModernDesktopAdmin} alt="CCNA Image" className="w-full h-full object-contain"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">Microsoft 365 Endpoint Administrator Associate (MD-102)</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P89,000</span> P28,000.00</p>
+              </div>
+            </div>
+          </div>
+
+          {/*Card Container #4th Line*/}
+          <div className="p-2 flex flex-col gap-5 px-5 justify-around sm:flex-row">
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
+                <img src={EnterpriseAdmin} alt="CCNA Image" className="w-full h-full object-contain"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">Microsoft 365 Certified: Administrator Expert (MS-102)</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P71,000</span> P35,000.00</p>
+              </div>
+            </div>
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
+                <img src={WSHA} alt="CCNA Image" className="w-full h-full object-contain"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">Microsoft Certified: Windows Server 2022 & Azure Cloud Hybrid Administrator (AZ-800)</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P12,888</span> P5,500.00</p>
+              </div>
+            </div>
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bgwhite rounded-t-3xl overflow-hidden">
+                <img src={VMware} alt="CCNA Image" className="w-full h-full object-cover"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">VMware vSphere 7 Data Center Virtualization</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P10,000</span> P4,000.00</p>
+              </div>
+            </div>
+            <div className="w-full rounded-4xl h-[30rem] drop-shadow-3xl card sm:w-68 sm:h-80">
+              <div className="h-3/5 bg-white rounded-t-3xl overflow-hidden">
+                <img src={WindowsServer} alt="CCNA Image" className="w-full h-full object-cover"/>
+              </div>
+              <div className="h-1/3 relative p-2">
+                <h1 className="card-text">Microsoft Windows Server 2019 Administration Automation</h1>
+                <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">P10,000</span> P3,388.00</p>
               </div>
             </div>
           </div>

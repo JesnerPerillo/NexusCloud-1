@@ -38,14 +38,14 @@ export default function Header() {
                 {/* Logo */}
                 <div className="flex items-center">
                     <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
-                    <h1 className="text-black dark:text-white text-xl md:text-3xl font-bold tracking-widest text">
+                    <h1 className="text-black dark:text-white text-xl md:text-xl font-bold tracking-widest text">
                         NexusCloud IT Solutions
                     </h1>
                 </div>
 
                 <div className="flex space-x-10 items-center">
                     {/* Menu - Desktop */}
-                <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">
+                <nav className="hidden md:flex space-x-6 text-white text-sm font-semibold">
                     <Link to="/" className=" group relative inline-block text"  onClick={homeScroll}><span className="nav-items">HOME</span></Link>
                     <Link to="/aboutnexus" className=" group relative inline-block text"><span className="nav-items">ABOUT</span></Link>
                     <Link to="/courses" className=" group relative inline-block text"><span className="nav-items">COURSES</span></Link>
@@ -67,12 +67,12 @@ export default function Header() {
 
             {/* Mobile Menu - Responsive */}
             {isOpen && (
-                <nav className="md:hidden text-black text-lg flex flex-col items-center py-4 space-y-4">
-                    <Link to="/" onClick={() => setIsOpen(false)}>HOME</Link>
-                    <Link to="/aboutnexus" onClick={() => setIsOpen(false)}>ABOUT</Link>
-                    <Link to="/courses" onClick={() => setIsOpen(false)}>COURSES</Link>
-                    <Link to="/packages" onClick={() => setIsOpen(false)}>PACKAGES</Link>
-                    <Link to="/faqs" onClick={() => setIsOpen(false)}>FAQs</Link>
+                <nav className="md:hidden text-md flex flex-col items-center py-4 space-y-4">
+                    <Link to="/" onClick={() => setIsOpen(false)}><span className="text">HOME</span></Link>
+                    <Link to="/aboutnexus" onClick={() => setIsOpen(false)}><span className="text">ABOUT</span></Link>
+                    <Link to="/courses" onClick={() => setIsOpen(false)}><span className="text">COURSES</span></Link>
+                    <Link to="/packages" onClick={() => setIsOpen(false)}><span className="text">PACKAGES</span></Link>
+                    <Link to="/faqs" onClick={() => setIsOpen(false)}><span className="text">FAQs</span></Link>
                 </nav>
             )}
         </header>
