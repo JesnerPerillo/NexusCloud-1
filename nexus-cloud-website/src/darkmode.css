@@ -7,6 +7,9 @@
     --nav-color: #000000; /* Dark Nav*/
     --blur-color: #000000;
     --footer-color: #d1d1d1; 
+    --card-color: #222020;
+    --cardtext-color: #ffffff;
+    --drop-shadow: 15px 15px 25px rgba(0, 0, 0, 0.3);
   }
   
   /* Dark mode styles */
@@ -18,6 +21,9 @@
     --nav-color: #f9fafb; /* Light Nav*/
     --blur-color: #ffffff;
     --footer-color: #222222;
+    --card-color: #ffffff;
+    --cardtext-color: #000000;
+    --drop-shadow: 15px 15px 25px rgba(255, 255, 255, 0.3);
   }
   
   .con {
@@ -62,4 +68,16 @@
 
   .footer {
     background-color: var(--footer-color);
+  }
+
+  .card {
+    background-color: var(--card-color);
+  }
+
+  .card-text {
+    color: var(--cardtext-color);
+  }
+
+  .drop-shadow-3xl{
+    filter: drop-shadow(var(--drop-shadow));
   }
