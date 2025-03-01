@@ -1,12 +1,14 @@
 import gsap from 'gsap';
+import { useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TeachImg from "../Images/tree.png";
 import { SteppedEase } from 'gsap';
-// import { TimelineMax } from 'gsap/gsap-core';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function ContentLandingPage() {
+    const [themeToggle, setThemeToggle] = useState(false);
+
+    gsap.registerPlugin(ScrollTrigger, useGSAP);
     useGSAP(() => {
         const tl =  gsap.timeline({paused: true});
         tl.fromTo('.type-writer', 8, 
@@ -18,26 +20,32 @@ export default function ContentLandingPage() {
         }, 0);
         tl.play()
     });
+
+    const handleThemeToggle = () => {
+        setThemeToggle(!themeToggle);
+        document.body.classList.toggle("dark");
+    }
         
 
     // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
     return (
-    <div className="flex flex-col mt-0 lg:flex-row items-center justify-between px-5 lg:px-20 py-10 overflow-hidden">
+    <div className="flex flex-col con mt-0 lg:flex-row items-center justify-between px-5 lg:px-20 py-10 overflow-hidden">
         {/* Right Side */}
         <div className="w-full mt-20 text-left lg:w-3/4">
             <div className="rounded-xl p-5 lg:p-2 flex flex-col justify-center">
                 <h2 className="text-yellow-500 font-semibold text-2xl sm:text-3xl lg:text-3xl tracking-wide">
-                Get Certified. Get Ahead. Stay Relevant.
+                    Get Certified. Get Ahead. Stay Relevant.
                 </h2>
+                
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
-                    <h1 className="text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center play-bold">
+                    <h1 className="text text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center montserrat-bold">
                         LAUNCH YOUR CAREER🚀
                     </h1>
                 </div>
-                <h2 className="text-white text-3xl sm:text-2xl lg:text-2xl mt-5">
+                <h2 className="text text-white text-3xl sm:text-2xl lg:text-2xl mt-5">
                 No Experience Needed!
                 </h2>
-                <p className="text-white w-full mt-5 text-justify sm:w-1/2">{`Join us today and take the first step toward mastering the tech skills of tomorrow! Whether you're a beginner exploring the world of technology or a professional looking to enhance your expertise, our comprehensive seminars will equip you with the knowledge, hands-on experience, and industry insights needed to stay ahead in the ever-evolving digital landscape. Don't miss this opportunity to learn from expert instructors, engage with like-minded individuals, and unlock new career possibilities in the world of IT!`}</p>
+                <p className="text text-white w-full mt-5 text-justify sm:w-1/2">{`Join us today and take the first step toward mastering the tech skills of tomorrow! Whether you're a beginner exploring the world of technology or a professional looking to enhance your expertise, our comprehensive seminars will equip you with the knowledge, hands-on experience, and industry insights needed to stay ahead in the ever-evolving digital landscape. Don't miss this opportunity to learn from expert instructors, engage with like-minded individuals, and unlock new career possibilities in the world of IT!`}</p>
                 <button className="relative w-40 mt-10 flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group hover:cursor-pointer">
                 <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4">
                     <span

@@ -1,0 +1,31 @@
+/* Default light mode styles */
+:root {
+    --bg-color: #f9fafb;    /* Light background */
+    --text-color: #000000;   /* Dark text color */
+    --button-bg: #f3f4f6;    /* Light button background */
+    --button-text: #000000;   /* Dark button text */
+  }
+  
+  /* Dark mode styles */
+  html.dark {
+    --bg-color: #000000;    /* Dark background */
+    --text-color: #f9fafb;   /* Light text color */
+    --button-bg: #4b5563;    /* Dark button background */
+    --button-text: #f3f4f6;  /* Light button text */
+  }
+  
+  .con {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: 1s;
+  }
+  
+  .button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+  }
+
+  .text {
+    color: var(--button-text);
+  }
+  

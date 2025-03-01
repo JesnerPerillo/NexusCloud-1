@@ -8,17 +8,17 @@ export default function LandingPage() {
     
 
     return(
-        <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 relative">
-            <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 sm:h-screen">
+        <div className="w-full h-auto bg-black relative con">
+            <div className="w-full h-auto con bg-black sm:h-screen">
                 <Header className="position-fixed drop-shadow-xl"/>
                 <div>
                     <ContentLadingPage />
                 </div>
             </div>
-            <div className="w-full h-auto bg-gradient-to-r from-purple-700 to-pink-700 sm:mt-50 sm:h-auto">
+            <div className="w-full h-auto sm:mt-50 sm:h-auto">
                 <About />
             </div>
-            <div className="mt-40">
+            <div className="mt-40 drop-shadow-2xl">
                 <Footer />
             </div>
         </div>

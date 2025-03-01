@@ -5,6 +5,7 @@ import NexusLogo from "../Images/nexusLogo.png";
 import gsap from 'gsap';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import DarkMode from '../Components/DarkMode.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 export default function Header() {
@@ -31,17 +32,18 @@ export default function Header() {
     }
 
     return (
-        <header className="w-full fixed z-30 bg-gradient-to-r from-purple-700 to-pink-700 shadow-lg">
-            <div className="container w-full flex justify-between items-center p-4">
+    <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors con">
+            <div className=" w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
                     <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
-                    <h1 className="text-white text-xl md:text-3xl font-bold tracking-widest">
+                    <h1 className="text-black dark:text-white text-xl md:text-3xl font-bold tracking-widest text">
                         NexusCloud IT Solutions
                     </h1>
                 </div>
 
-                {/* Menu - Desktop */}
+                <div className="flex space-x-10 items-center">
+                    {/* Menu - Desktop */}
                 <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">
                     <Link to="/" className="hover:underline hover:text-white nav-items nav text-gray-400"  onClick={homeScroll}>HOME</Link>
                     <Link to="/aboutnexus" className="hover:underline  hover:text-white nav-items nav text-gray-400">ABOUT</Link>
@@ -49,6 +51,8 @@ export default function Header() {
                     <Link to="/packages" className="hover:underline hover:text-white nav-items text-gray-400">PACKAGES</Link>
                     <Link to="/faqs" className="hover:underline nav-items nav hover:text-white text-gray-400">FAQs</Link>
                 </nav>
+                <DarkMode />
+                </div>
 
                 {/* Mobile Menu Button */}
                 <button 
@@ -57,11 +61,12 @@ export default function Header() {
                 >
                     {isOpen ? <FaTimes /> : <FaBars />}
                 </button>
+
             </div>
 
             {/* Mobile Menu - Responsive */}
             {isOpen && (
-                <nav className="md:hidden bg-purple-800 text-white text-lg flex flex-col items-center py-4 space-y-4">
+                <nav className="md:hidden text-black text-lg flex flex-col items-center py-4 space-y-4">
                     <Link to="/" onClick={() => setIsOpen(false)}>HOME</Link>
                     <Link to="/aboutnexus" onClick={() => setIsOpen(false)}>ABOUT</Link>
                     <Link to="/courses" onClick={() => setIsOpen(false)}>COURSES</Link>
