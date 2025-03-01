@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DarkMode from '../Components/DarkMode.jsx';
+import '../darkmode.css';
 
 gsap.registerPlugin(ScrollTrigger);
 export default function Header() {
@@ -45,11 +46,11 @@ export default function Header() {
                 <div className="flex space-x-10 items-center">
                     {/* Menu - Desktop */}
                 <nav className="hidden md:flex space-x-6 text-white text-lg font-semibold">
-                    <Link to="/" className="hover:underline hover:text-white nav-items nav text-gray-400"  onClick={homeScroll}>HOME</Link>
-                    <Link to="/aboutnexus" className="hover:underline  hover:text-white nav-items nav text-gray-400">ABOUT</Link>
-                    <Link to="/courses" className="hover:underline  hover:text-white nav-items text-gray-400">COURSES</Link>
-                    <Link to="/packages" className="hover:underline hover:text-white nav-items text-gray-400">PACKAGES</Link>
-                    <Link to="/faqs" className="hover:underline nav-items nav hover:text-white text-gray-400">FAQs</Link>
+                    <Link to="/" className=" group relative inline-block text"  onClick={homeScroll}><span className="nav-items">HOME</span></Link>
+                    <Link to="/aboutnexus" className=" group relative inline-block text"><span className="nav-items">ABOUT</span></Link>
+                    <Link to="/courses" className=" group relative inline-block text"><span className="nav-items">COURSES</span></Link>
+                    <Link to="/packages" className=" group relative inline-block text"><span className="nav-items">PACKAGES</span></Link>
+                    <Link to="/faqs" className=" group relative inline-block text"><span className="nav-items">FAQs</span></Link>
                 </nav>
                 <DarkMode />
                 </div>

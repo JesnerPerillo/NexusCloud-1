@@ -1,12 +1,10 @@
 import gsap from 'gsap';
-import { useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TeachImg from "../Images/tree.png";
 import { SteppedEase } from 'gsap';
 
 export default function ContentLandingPage() {
-    const [themeToggle, setThemeToggle] = useState(false);
 
     gsap.registerPlugin(ScrollTrigger, useGSAP);
     useGSAP(() => {
@@ -21,11 +19,6 @@ export default function ContentLandingPage() {
         tl.play()
     });
 
-    const handleThemeToggle = () => {
-        setThemeToggle(!themeToggle);
-        document.body.classList.toggle("dark");
-    }
-        
 
     // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
     return (
@@ -38,7 +31,7 @@ export default function ContentLandingPage() {
                 </h2>
                 
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
-                    <h1 className="text text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[140px] mt-5 flex items-center montserrat-bold">
+                    <h1 className="text text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[100px] mt-5 flex items-center montserrat-bold xl:text-[140xl]">
                         LAUNCH YOUR CAREER🚀
                     </h1>
                 </div>
