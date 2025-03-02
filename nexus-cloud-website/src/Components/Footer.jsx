@@ -14,24 +14,24 @@ export default function Footer() {
                         <img src={NexusLogo} alt="NexusCloud IT Solutions Logo" className="w-20 h-20"/>
                         <p className="text">NexusCloud IT Solutions</p>
                     </div>
-                    <div className="text">
+                    <div className="text text-sm">
                         <p>Services</p>
                         <p>About</p>
                         <p>Courses</p>
                         <p>Offer</p>
                     </div>
-                    <div className="text">
+                    <div className="text text-sm">
                         <p>Contact</p>
                         <p>Online</p>
                         <p>On-site</p>
                     </div>
-                    <div className="text">
+                    <div className="text text-sm">
                         <p>Seminar</p>
                         <p>Activities</p>
                     </div>
                 </div>
                 {/*Bottom Footer */}
-                <div className="w-4/5 h-32 flex flex-col items-center justify-around">
+                <div className="w-4/5 h-32 flex text-sm flex-col items-center justify-around">
                     <div className="flex justify-center gap-5 items-center text">
                         <a href="https://web.facebook.com/nxs88"><LiaFacebook className="w-8 h-8"/></a>
                         <a href="https://www.instagram.com/nexuscloud_/?next=%2F"><TfiInstagram className="w-6 h-6"/></a>

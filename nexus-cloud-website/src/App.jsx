@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router';
 import LandingPage from "./Routes/LandingPage.jsx";
 import AboutNexus from './Routes/AboutNexus.jsx';
 import Courses from './Routes/Courses.jsx';
+import Packages from './Routes/Packages.jsx';
 import gsap from "gsap";
 import { useGSAP} from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -19,6 +20,7 @@ export default function App(){
         <Route path="/" element={<LandingPage />} />
         <Route path="/aboutnexus" element={<AboutNexus />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/packages" element={<Packages />} />
       </Routes>
     </Router>
     </>

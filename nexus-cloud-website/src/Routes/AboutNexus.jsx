@@ -80,8 +80,8 @@ export default function AboutNexus() {
       </div>
 
       {/*Who We Are Container */}
-      <div className="w-full h-auto flex flex-col items-center justify-between sm:w-full sm:h-screen sm:flex-row">
-        <div className="w-auto mt-50 h-auto flex flex-col items-center sm:w-1/2 sm:h-auto">
+      <div className="w-full h-auto flex flex-col items-center justify-around sm:w-full sm:h-screen sm:flex-row">
+        <div className="w-auto mt-30 h-auto flex flex-col items-center sm:w-1/3 sm:h-[40rem]">
           <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-7">
             <div className="relative w-full h-full overflow-hidden">
               <img
@@ -92,13 +92,13 @@ export default function AboutNexus() {
             </div>
           </div>
           {/* Mini images (thumbnails) */}
-        <div className="mt-10 w-full bg-white/30 backdrop-blur-lg shadow-lg p-5 rounded-2xl flex items-center justify-around sm:w-2/3">
+        <div className="mt-10 w-full bg-white/30 backdrop-blur-lg shadow-lg p-2 rounded-2xl flex items-center justify-around sm:w-[25rem]">
           {weAreSlides.map((slide, index) => (
             <img
               key={index}
               src={slide}
               alt={`Thumbnail ${index + 1}`}
-              className={`h-20 w-16 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 ${index === weAreIndex ? 'border-4 border-white' : 'opacity-70'}`}
+              className={`h-16 w-16 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 ${index === weAreIndex ? 'border-2 border-yellow-300' : 'opacity-70'}`}
               onClick={() => handleThumbnailClick(index)}
             />
           ))}

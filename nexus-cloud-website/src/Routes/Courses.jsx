@@ -20,7 +20,6 @@ import EnterpriseAdmin from '../Images/enterprise-admin.png';
 import WSHA from '../Images/WSHA.png';
 import VMware from '../Images/vmware.png';
 import WindowsServer from '../Images/windows.png';
-import { PiMagnifyingGlass } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -53,11 +52,18 @@ export default function Courses() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % courses.length);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [index]);
 
-  console.log("Current Image URL:", courses[index].image);
+  const nextSlide = () => {
+    setIndex((prevIndex) => (prevIndex + 1) % courses.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prevIndex) => (prevIndex - 1 + courses.length) % courses.length);
+  };
+
 
 
   return(
@@ -67,23 +73,7 @@ export default function Courses() {
       </div>
       
       <div className="w-full h-auto con pt-20 flex flex-col items-center text-white">
-        <div className="w-full h-100 bg-red-800 flex justify-between  items-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gray-800 opacity-30"></div>
-          <div className="flex flex-col items-center h-full justify-around ">
-            <h1 className="text-7xl text-white oswald-bold">
-              CCNA <br /> CERTIFICATION
-            </h1>
-            <div className="w-[40rem] bg-white flex items-center border rounded-3xl pl-2 ml-10 gap-2 z-20">
-              <PiMagnifyingGlass className=" w-5 h-5 text-violet-600 hover:cursor-pointer focus:outline-hidden "/>
-              <input className="w-full pl-3 h-13 text-black w-full rounded-r-2xl z-20 focus:outline-none" placeholder="Search Course"/>
-            </div>
-          </div>
-          <div className="absolute right-80 scale-300 top-30">
-            <img src={CCNAImg} alt="CCNA Image" className="w-60 h-60 rounded-full opacity-80"/>
-          </div>
-        </div>
-
-        <div className="flex w-full flex-col justify-between mt-10 mb-10 sm:mt-0 mb-0 sm:items-center sm:flex-row">
+        <div className="flex w-full flex-col justify-between mt-10 mb-10 sm:mt-10 mb-0 sm:items-center sm:flex-row">
           <div className="w-1/2 ml-5 mt-2 border-l-15 border-yellow-500">
             <h1 className="text-6xl play-bold pl-5 oswald-bold text">AVAILABLE COURSES</h1>
           </div>
@@ -92,17 +82,15 @@ export default function Courses() {
           </div>
         </div>
       </div>
-      <div className="w-full text-2xl mt-10 mb-50 relative">
+      <div className="w-full text-2xl mt-20 mb-50 relative">
           <div className="absolute h-20 flex items-center pr-2 right-0 border-r-10 border-yellow-500 mr-5">
             <h1 className="text-6xl pl-5 oswald-bold text">RECOMMENDED</h1>
           </div>
         </div>
         <div className="w-full h-5/6 flex items-center justify-center sm:w-full">
-          <div className="bg-gray-200 rounded-lg sm:p-2">
+          <div className="bg-gray-200 rounded-lg sm:p-2 relative">
             <div className="flex justify-center items-center h-auto">
               <div className="w-[420px] h-[500px] relative overflow-hidden bg-white shadow-lg rounded-lg sm:w-[1100px] sm:h-[500px]">
-                
-                {/* Motion div wrapper for image and text */}
                 <motion.div
                   key={courses[index].title}
                   initial={{ opacity: 0, x: 50 }}
@@ -111,25 +99,27 @@ export default function Courses() {
                   transition={{ duration: 1 }}
                   className="relative w-full h-full"
                 >
-                  {/* Image */}
                   <img
                     className="absolute w-full h-full object-cover"
                     src={courses[index].image}
                     alt={courses[index].title}
                   />
                   <div className="absolute inset-0 bg-black opacity-70"></div>
-                  {/* Text overlay */}
                   <div className="absolute z-20 w-full h-full p-15 text-white flex flex-col justify-center">
                     <h1 className="text-xl montserrat-bold sm:text-6xl">{courses[index].title}</h1>
                     <hr className="w-1/2 border-t-8 text-yellow-500 mt-2"></hr>
-                    <p className=" mt-2 w-full montserrat-semibold text-sm sm:max-w-md sm:text-sm">{courses[index].description}</p>
-                    <button className=" absolute right-30 bottom-0 px-6 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:cursor-pointer sm:bottom-10 sm:right-20">
+                    <p className="mt-2 w-full montserrat-semibold text-sm sm:max-w-md sm:text-sm">{courses[index].description}</p>
+                    <button className="absolute right-30 bottom-0 px-6 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:cursor-pointer sm:bottom-10 sm:right-20">
                       REGISTER NOW
                     </button>
                   </div>
                 </motion.div>
               </div>
             </div>
+
+            {/* Navigation Buttons */}
+            <button onClick={prevSlide} className="absolute left-4 top-1/2 transform z-20 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600">❮</button>
+            <button onClick={nextSlide} className="absolute right-4 top-1/2 transform z-20 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600">❯</button>
           </div>
         </div>
         <div className="mt-20">
