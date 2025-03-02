@@ -90,7 +90,7 @@ export default function Courses() {
         <div className="w-full h-5/6 flex items-center justify-center sm:w-full">
           <div className="bg-gray-200 rounded-lg sm:p-2 relative">
             <div className="flex w-full justify-center items-center h-auto">
-              <div className="w-[400px] h-[500px] relative overflow-hidden bg-white shadow-lg rounded-lg sm:w-[1100px] sm:h-[500px]">
+              <div className="w-[390px] h-[600px] relative overflow-hidden bg-white shadow-lg rounded-lg sm:w-[1100px] sm:h-[500px]">
                 <motion.div
                   key={courses[index].title}
                   initial={{ opacity: 0, x: 50 }}
