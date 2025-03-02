@@ -89,8 +89,8 @@ export default function Courses() {
         </div>
         <div className="w-full h-5/6 flex items-center justify-center sm:w-full">
           <div className="bg-gray-200 rounded-lg sm:p-2 relative">
-            <div className="flex justify-center items-center h-auto">
-              <div className="w-[420px] h-[500px] relative overflow-hidden bg-white shadow-lg rounded-lg sm:w-[1100px] sm:h-[500px]">
+            <div className="flex w-full justify-center items-center h-auto">
+              <div className="w-[400px] h-[500px] relative overflow-hidden bg-white shadow-lg rounded-lg sm:w-[1100px] sm:h-[500px]">
                 <motion.div
                   key={courses[index].title}
                   initial={{ opacity: 0, x: 50 }}
@@ -109,7 +109,7 @@ export default function Courses() {
                     <h1 className="text-xl montserrat-bold sm:text-6xl">{courses[index].title}</h1>
                     <hr className="w-1/2 border-t-8 text-yellow-500 mt-2"></hr>
                     <p className="mt-2 w-full montserrat-semibold text-sm sm:max-w-md sm:text-sm">{courses[index].description}</p>
-                    <button className="absolute right-30 bottom-0 px-6 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:cursor-pointer sm:bottom-10 sm:right-20">
+                    <button className="absolute right-32 bottom-2 px-6 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:cursor-pointer sm:bottom-10 sm:right-20">
                       REGISTER NOW
                     </button>
                   </div>
