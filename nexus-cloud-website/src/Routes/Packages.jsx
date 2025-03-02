@@ -21,8 +21,8 @@ export default function Packages() {
       </div>
 
       <div className="relative w-full h-auto con">
-        <h1 className="absolute z-20 text-[8rem] text-purple-500 bottom-0 left-20 oswald-bold">ZERO-TO-JOB-READY PACKAGES </h1>
-        <h1 className="absolute z-20 text-white text-[8rem] bottom-2 left-18 oswald-bold">ZERO-TO-JOB-READY PACKAGES </h1>
+        <h1 className="absolute z-20 text-7xl left-5 text-purple-500 bottom-20 sm:bottom-0 sm:left-20 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY PACKAGES </h1>
+        <h1 className="absolute z-20 text-white left-4 text-7xl bottom-22 sm:bottom-2 sm:left-18 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY PACKAGES </h1>
         <div className="flex justify-center items-center pt-22 relative opacity-70">
         {images.map((image, index) => (
           <div
