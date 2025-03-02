@@ -36,7 +36,7 @@ export default function Contact() {
         </div>
 
         {/* Social Media Section */}
-        <div className="bg-white rounded-xl shadow-xl p-8 flex flex-col items-start justify-between w-full sm:w-1/2 space-y-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
+        <div className="bg-white rounded-xl shadow-xl p-8 flex flex-col items-start justify-between w-full sm:w-1/2 sm:h-68 space-y-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
           <h1 className="text-3xl font-semibold text-gray-800 mb-4">SOCIALS</h1>
           <div className="space-y-4">
             {/* Facebook */}

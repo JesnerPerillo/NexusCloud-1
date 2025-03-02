@@ -82,8 +82,8 @@ export default function AboutNexus() {
       {/*Who We Are Container */}
       <div className="w-full h-auto flex flex-col items-center justify-around sm:w-full sm:h-screen sm:flex-row">
         <div className="w-auto mt-30 h-auto flex flex-col items-center sm:w-1/3 sm:h-[40rem]">
-          <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-7">
-            <div className="relative w-full h-full overflow-hidden">
+          <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl ">
+            <div className="relative w-full h-full overflow-hidden rounded-xl">
               <img
                 src={weAreSlides[weAreIndex]}
                 alt={`Slide ${weAreIndex + 1}`}
@@ -92,13 +92,13 @@ export default function AboutNexus() {
             </div>
           </div>
           {/* Mini images (thumbnails) */}
-        <div className="mt-10 w-full bg-white/30 backdrop-blur-lg shadow-lg p-2 rounded-2xl flex items-center justify-around sm:w-[25rem]">
+        <div className="mt-10 w-full bg-white/30 backdrop-blur-lg shadow-lg p-2 rounded-2xl flex items-center justify-around sm:w-[20rem]">
           {weAreSlides.map((slide, index) => (
             <img
               key={index}
               src={slide}
               alt={`Thumbnail ${index + 1}`}
-              className={`h-16 w-16 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 ${index === weAreIndex ? 'border-2 border-yellow-300' : 'opacity-70'}`}
+              className={`h-10 w-10 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 ${index === weAreIndex ? 'border-2 border-yellow-300' : 'opacity-70'}`}
               onClick={() => handleThumbnailClick(index)}
             />
           ))}
@@ -127,7 +127,7 @@ export default function AboutNexus() {
             We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers. At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence .
             </p>
           </div>
-          <div className="relative mt-20 z-20 w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-2 sm:p-10 sm:w-1/2 sm:mt-0">
+          <div className="relative mt-20 z-20 w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-2 sm:p-0 sm:w-1/2 sm:mt-0">
             <div className="relative w-full h-full overflow-hidden">
               <img
                 src={slides[currentIndex]}
@@ -160,7 +160,7 @@ export default function AboutNexus() {
           </div>
         </div>
       <div className="w-full con pt-40 flex flex-col items-center text-white">
-        <h1 className="text-4xl text play-bold sm:text-7xl">CORE PRINCIPLES</h1>
+        <h1 className="text-4xl text oswald-bold sm:text-[6rem]">CORE PRINCIPLES</h1>
         <div className="flex w-full items-center flex-col justify-center p-5 mt-10 gap-5 sm:flex-row sm:gap-0">
           <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group sm:w-1/3" style={{ backgroundImage: `url(${VisionImg})`}} onClick={handleToggle}>
             <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${isActive ? "opacity-70" : "opacity-40"} group-hover:opacity-70`}></div>

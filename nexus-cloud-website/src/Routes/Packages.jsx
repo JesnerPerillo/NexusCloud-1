@@ -3,6 +3,7 @@ import WhatWeDo3 from '../Images/whatwedo3.jpg';
 import WhatWeDo4 from '../Images/whatwedo4.jpg';
 import WhatWeDo2 from '../Images/whatwedo2.jpg';
 import PricingCards from '../Components/PricingPackage.jsx';
+import Footer from '../Components/Footer.jsx';
 
 export default function Packages() {
   const images = [
@@ -14,7 +15,7 @@ export default function Packages() {
 
 
   return(
-    <div>
+    <div className="con">
       <div>
         <Header />
       </div>
@@ -53,6 +54,10 @@ export default function Packages() {
 
       <div>
         <PricingCards />
+      </div>
+
+      <div>
+        <Footer />
       </div>
     </div>
   );
