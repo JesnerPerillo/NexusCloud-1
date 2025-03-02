@@ -83,8 +83,8 @@ export default function Courses() {
         </div>
       </div>
       <div className="w-full text-2xl mt-20 mb-50 relative">
-          <div className="absolute h-20 flex items-center pr-2 right-0 border-r-10 border-yellow-500 mr-5">
-            <h1 className="text-6xl pl-5 oswald-bold text">RECOMMENDED</h1>
+          <div className="absolute h-20 flex items-center pr-2 right-0 border-r-10 border-yellow-500 mr-1 sm:mr-5">
+            <h1 className="text-6xl pl-0 oswald-bold text sm:pl-5">RECOMMENDED</h1>
           </div>
         </div>
         <div className="w-full h-5/6 flex items-center justify-center sm:w-full">
