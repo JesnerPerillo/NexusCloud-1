@@ -12,23 +12,23 @@ export default function Contact() {
           <h1 className="text-3xl font-semibold text-gray-800 mb-4">CONTACT US</h1>
           <div className="space-y-4">
             {/* Address */}
-            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#8c52ff]">
+            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#f4ca4f]">
               <a href="https://www.google.com/maps/place/NEXUSCLOUD+IT+SOLUTIONS+INC/@14.5896052,121.0584803,17z/data=!3m1!4b1!4m6!3m5!1s0x3397c8170cbf03d9:0xcfe9a8f04e9cc91!8m2!3d14.5896052!4d121.0610552!16s%2Fg%2F11smm1k9bz?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoASAFQAw%3D%3D">
-                <PiMapPinLight className="h-8 w-8 text-[#8c52ff]" />
+                <PiMapPinLight className="h-8 w-8 text-[#f4ca4f]" />
               </a>
               <p className="hover:cursor-pointer">U1414 14TH FL. AIC BURGUNDY EMPIRE TOWER II, ADB AVE. ORTIGAS CENTER PASIG CITY</p>
             </div>
 
             {/* Phone Number */}
-            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#8c52ff]">
-              <BsTelephone className="w-8 h-8 text-[#8c52ff]" />
+            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#f4ca4f]">
+              <BsTelephone className="w-8 h-8 text-[#f4ca4f]" />
               <p className="hover:cursor-pointer">+63 912 345 6789</p>
             </div>
 
             {/* Email */}
-            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#8c52ff]">
+            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#f4ca4f]">
               <a href="mailto:kdoz@live.com">
-                <CiMail className="h-8 w-8 text-[#8c52ff]" />
+                <CiMail className="h-8 w-8 text-[#f4ca4f]" />
               </a>
               <p className="hover:cursor-pointer">kdoz@live.com</p>
             </div>
@@ -36,29 +36,29 @@ export default function Contact() {
         </div>
 
         {/* Social Media Section */}
-        <div className="bg-white rounded-xl shadow-xl p-8 flex flex-col items-start justify-between w-full sm:w-1/2 sm:h-68 space-y-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
+        <div className="bg-white rounded-xl shadow-xl p-8 flex flex-col items-start justify-around w-full sm:w-1/2 sm:h-68 space-y-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
           <h1 className="text-3xl font-semibold text-gray-800 mb-4">SOCIALS</h1>
           <div className="space-y-4">
             {/* Facebook */}
-            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#8c52ff]">
+            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#f4ca4f]">
               <a href="https://web.facebook.com/nxs88">
-                <BsFacebook className="w-8 h-8 text-[#8c52ff]" />
+                <BsFacebook className="w-8 h-8 text-[#f4ca4f]" />
               </a>
               <p className="hover:cursor-pointer">NexusCloud I.T. Solutions</p>
             </div>
 
             {/* TikTok */}
-            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#8c52ff]">
+            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#f4ca4f]">
               <a href="https://www.tiktok.com/@nexuscloud_">
-                <FaTiktok className="w-8 h-8 text-[#8c52ff]" />
+                <FaTiktok className="w-8 h-8 text-[#f4ca4f]" />
               </a>
               <p className="hover:cursor-pointer">nexuscloud_</p>
             </div>
 
             {/* YouTube */}
-            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#8c52ff]">
+            <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#f4ca4f]">
               <a href="https://www.youtube.com/@NexuscloudITSolutions">
-                <FaYoutube className="w-8 h-8 text-[#8c52ff]" />
+                <FaYoutube className="w-8 h-8 text-[#f4ca4f]" />
               </a>
               <p className="hover:cursor-pointer">NexusCloud I.T. Solutions</p>
             </div>

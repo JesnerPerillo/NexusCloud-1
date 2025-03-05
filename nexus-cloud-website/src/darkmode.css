@@ -1,27 +1,29 @@
 
 :root {
     --bg-color: #f9fafb;    
-    --text-color: #000000;   
+    --text-color: #000000;  
+    --color: #f1f1f1; 
     --button-bg: #f3f4f6;    
     --button-text: #000000;   
     --nav-color: #000000;
     --blur-color: #000000;
     --nav: #000000; 
-    --footer-color: #ececec; 
+    --footer-color: #1A1A1D; 
     --card-color: #000000;
     --cardtext-color: #ffffff;
     --drop-shadow: 15px 15px 25px rgba(0, 0, 0, 0.3);
   }
   
   html.dark {
-    --bg-color: #000000;    
-    --text-color: #f9fafb;   
+    --bg-color: #1A1A1D;    
+    --text-color: #f9fafb; 
+    --color: #353535;  
     --button-bg: #4b5563;   
     --button-text: #f3f4f6; 
     --nav-color: #f9fafb; 
     --blur-color: #ffffff;
     --nav: #ffffff; 
-    --footer-color: #131313;
+    --footer-color: #ebebeb;
     --card-color: #ffffff;
     --cardtext-color: #000000;
     --drop-shadow: 15px 15px 25px rgba(255, 255, 255, 0.3);
@@ -72,7 +74,8 @@
   }
 
   .footer {
-    background-color: var(--footer-color);
+    background-color: var(--footer-color); 
+    color: var(--color);
   }
 
   .card {
