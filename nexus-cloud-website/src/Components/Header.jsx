@@ -49,7 +49,7 @@ export default function Header() {
                     <Link to="/" className=" group relative inline-block text"  onClick={homeScroll}><span className="nav-items">HOME</span></Link>
                     <Link to="/aboutnexus" className=" group relative inline-block text"><span className="nav-items">ABOUT</span></Link>
                     <Link to="/courses" className=" group relative inline-block text"><span className="nav-items">COURSES</span></Link>
-                    <Link to="/packages" className=" group relative inline-block text"><span className="nav-items">PACKAGES</span></Link>
+                    <Link to="/process" className=" group relative inline-block text"><span className="nav-items">PROCESS</span></Link>
                     <Link to="/faqs" className=" group relative inline-block text"><span className="nav-items">FAQs</span></Link>
                 </nav>
                 <DarkMode />
@@ -71,7 +71,7 @@ export default function Header() {
                     <Link to="/" onClick={() => setIsOpen(false)}><span className="text">HOME</span></Link>
                     <Link to="/aboutnexus" onClick={() => setIsOpen(false)}><span className="text">ABOUT</span></Link>
                     <Link to="/courses" onClick={() => setIsOpen(false)}><span className="text">COURSES</span></Link>
-                    <Link to="/packages" onClick={() => setIsOpen(false)}><span className="text">PACKAGES</span></Link>
+                    <Link to="/process" onClick={() => setIsOpen(false)}><span className="text">PROCESS</span></Link>
                     <Link to="/faqs" onClick={() => setIsOpen(false)}><span className="text">FAQs</span></Link>
                 </nav>
             )}
