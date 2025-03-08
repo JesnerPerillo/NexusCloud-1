@@ -40,7 +40,7 @@ const Modal = ({ course, onClose }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-xl text font-bold">{course.title}</h2>
         <p className="mt-2 text">{course.description}</p>
-        <p className="mt-4 font-semibold text">Price: {course.price}</p>
+        <p className="mt-4 font-semibold text">Price: {course.discountedPrice}</p>
 
         <form className="flex flex-col space-y-2 bg-gray-400 p-2 rounded text-sm text-white mt-10">
           <div>
@@ -72,7 +72,7 @@ const Modal = ({ course, onClose }) => {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label className="">Select Date</label>
+            <label className="text-white">Select Date</label>
             <DatePicker
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
@@ -89,7 +89,7 @@ const Modal = ({ course, onClose }) => {
                     allowedDate.getDate() === date.getDate()
                   );
                 });
-                return isAllowed ? "bg-blue-500 text-white rounded-full" : "text-gray-400";
+                return isAllowed ? "bg-blue-500 text-white rounded-full" : "text-white";
               }}
             />
           </div>

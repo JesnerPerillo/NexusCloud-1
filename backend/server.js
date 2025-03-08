@@ -11,7 +11,8 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "courses_db",
+  database: "NexusCloudDB",
+
 });
 
 db.connect((err) => {
@@ -20,7 +21,7 @@ db.connect((err) => {
 });
 
 app.get("/api/courses", (req, res) => {
-  db.query("SELECT course_name, DATE_FORMAT(date, '%Y-%m-%d') AS date FROM course_dates", (err, result) => {
+  db.query("SELECT course_name, DATE_FORMAT(date, '%Y-%m-%d') AS date FROM courses", (err, result) => {
     if (err) throw err;
 
     const formattedResult = result.reduce((acc, curr) => {
@@ -39,7 +40,7 @@ app.get("/api/courses", (req, res) => {
 
 app.post("/api/courses", (req, res) => {
   const { courses, date } = req.body;
-  const sql = "UPDATE course_dates SET date = ? WHERE course_name = ?";
+  const sql = "UPDATE courses SET date = ? WHERE course_name = ?";
   db.query(sql, [date, courses], (err, result) => {
     if (err) throw err;
     res.json({ message: "Date updated successfully" });
