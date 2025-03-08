@@ -22,6 +22,7 @@ import VMware from '../Images/vmware.png';
 import WindowsServer from '../Images/windows.png';
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Test from '../Components/Test.jsx';
 
 
 
@@ -286,6 +287,9 @@ export default function Courses() {
         </div>
       <div>
         <Contact />
+      </div>
+      <div>
+        <Test />
       </div>
       <div>
         <Footer />
