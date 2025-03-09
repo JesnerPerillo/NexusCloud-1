@@ -37,7 +37,7 @@ const Modal = ({ course, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full m-2 relative sm:max-w-md">
         <h2 className="text-xl text-black font-bold">{course.title}</h2>
         <p className="mt-2 text-black">{course.description}</p>
         <p className="mt-4 font-semibold text-black">Price: {course.discountedPrice}</p>
@@ -106,12 +106,14 @@ const Modal = ({ course, onClose }) => {
 
 
         {/* Close Button */}
-        <button 
-          className="mt-4 p-2 absolute top-0 right-3 text-sm text-black rounded-full hover:cursor-pointer" 
-          onClick={onClose}
-        >
-          X
-        </button>
+        <div className="w-full flex justify-center">
+          <button 
+            className="mt-4 p-2 text-sm text-black rounded-full hover:cursor-pointer" 
+            onClick={onClose}
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
