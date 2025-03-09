@@ -9,7 +9,7 @@ const Card = ({ course, onClick }) => {
         </div>
         <div className="h-1/3 relative p-2">
           <h1 className="card-text">{course.title}</h1>
-          <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through">{course.originalPrice}</span>{course.discountedPrice}</p>
+          <p className="card-text absolute bottom-0 right-5"><span className="text-gray-400 line-through mr-2">{course.originalPrice}</span>{course.discountedPrice}</p>
         </div>
       </div>
     </div>
