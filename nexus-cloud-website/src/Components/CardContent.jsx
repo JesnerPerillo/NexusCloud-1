@@ -122,12 +122,10 @@ export default function CardContent() {
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   return (
-    <div className="p-2 px-5 gap-5  mb-10 justify-around grid grid-cols-4 sm:flex-row">
+    <div className="p-2 gap-5  mb-10 justify-around grid grid-cols-1 sm:grid-cols-4 sm:px-5 sm:flex-row">
       {courses.map((course) => (
         <Card key={course.id} course={course} onClick={() => setSelectedCourse(course)} />
       ))}
-
-      {/* Render Modal if a course is selected */}
       {selectedCourse && <Modal course={selectedCourse} onClose={() => setSelectedCourse(null)} />}
     </div>
   );
