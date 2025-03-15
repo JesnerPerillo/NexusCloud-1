@@ -4,6 +4,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from '../Images/qr.jpg';
+import { TfiClose } from "react-icons/tfi";
 
 const Modal = ({ course, onClose }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -129,12 +130,12 @@ const Modal = ({ course, onClose }) => {
                 <input
                   type="radio"
                   name="paymentMethod"
-                  value="Cash at the Office"
-                  checked={paymentMethod === "Cash at the Office"}
+                  value="Cash"
+                  checked={paymentMethod === "Cash"}
                   onChange={handlePaymentMethodChange}
                   className="form-radio"
                 />
-                <span>Cash at the Office</span>
+                <span>Cash at our Office</span>
               </label>
             </div>
           </div>
@@ -158,23 +159,31 @@ const Modal = ({ course, onClose }) => {
         </div>
       </div>
 
-      {/* QR Code Modal */}
-      {qrcodeModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-40">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h3 className="text-xl font-bold mb-4">Gcash Payment</h3>
-            <img src={QRCode} alt="Gcash QR Code" className="w-48 h-48 mx-auto mb-4" />
-            <p className="text-sm font-semibold text-left oswald-bold"><span>Name: </span>CHRISTOPHER BUENAVENTURA</p>
-            <p className="text-sm font-semibold text-left oswald-bold"><span>Gcash Number: </span>09958494428</p>
-            <button
-              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
-              onClick={() => setQrcodeModal(false)}
-            >
-              Close
-            </button>
-          </div>
+      {/* QR Code Modal - Slides in from the right */}
+      <div
+        className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+          qrcodeModal ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="p-6 flex flex-col items-center relative">
+          <h3 className="text-xl font-bold mb-4 mt-5">Gcash Payment</h3>
+          <img src={QRCode} alt="Gcash QR Code" className="w-48 h-48 mx-auto mb-4" />
+          <p className="text-sm font-semibold text-left oswald-bold">
+            <span>Name: </span>CHRISTOPHER BUENAVENTURA
+          </p>
+          <p className="text-sm font-semibold text-left oswald-bold">
+            <span>Gcash Number: </span>09958494428
+          </p>
+          <p className="text-xs mt-10">Note: You can scan the QR code above to make a GCash payment for the exact amount. After completing the payment, please take a screenshot of the receipt and send it to our facebook page <a href="https://www.facebook.com/nxs88" className="montserrat-semibold">NexusCloud IT Solutions.</a> Once verified, you will receive an email receipt, which you must present at the office on the day of the training.</p>
+
+          <button
+            className="absolute top-2 left-2 p-2 hover:bg-gray-100 rounded-full hover:cursor-pointer"
+            onClick={() => setQrcodeModal(false)}
+          >
+            <TfiClose className="text-lg" />
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 };
