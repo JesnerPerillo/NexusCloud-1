@@ -53,51 +53,56 @@ const Modal = ({ course, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full m-2 relative sm:max-w-md">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full m-2 relative sm:max-w-xl">
         <h2 className="text-xl text-black font-bold oswald-bold">{course.title}</h2>
+        <p>{course.modality}</p>
         <p className="mt-4 font-semibold text-black">Price: {course.discountedPrice}</p>
 
-        <hr className="text-black" />
+        <hr className="text-black mb-2" />
 
-        <form className="flex flex-col space-y-2 bg-gray-400 p-2 rounded text-sm text-white mt-10">
+        <form className="flex text-sm flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+          {/* Name Field */}
           <div>
-            <label className="block">Name</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
             <input
               type="text"
               placeholder="Full Name"
-              className="w-full border-b border-gray-300 focus:outline-none focus:border-blue-500 transition duration-200 p-1"
+              className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
 
+          {/* Email Field */}
           <div>
-            <label className="block">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
               type="email"
               placeholder="Email"
-              className="w-full border-b border-gray-300 focus:outline-none focus:border-blue-500 transition duration-200 p-1"
+              className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
 
+          {/* Course Field */}
           <div>
-            <label className="block text-white">Course</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Course</label>
             <input
               type="text"
               placeholder={course.title}
-              className="w-full border-b border-gray-300 p-1 text-white cursor-not-allowed"
+              className="w-full px-3 py-2 border border-gray-200 rounded-md bg-gray-50 text-gray-500 cursor-not-allowed"
               disabled
             />
           </div>
 
-          <div className="flex flex-col space-y-2">
-            <label className="text-white">Select Date</label>
+          {/* Date Picker */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
             <DatePicker
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
               includeDates={allowedDates}
               minDate={new Date()}
               dateFormat="yyyy-MM-dd"
-              placeholderText="Choose a future date"
-              className="w-full border-b border-gray-300 focus:outline-none focus:border-blue-500 transition duration-200 p-1"
+              placeholderText="Select schedule"
+              className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200 hover:cursor-pointer"
               dayClassName={(date) => {
                 const isAllowed = allowedDates.some(allowedDate => {
                   return (
@@ -106,46 +111,52 @@ const Modal = ({ course, onClose }) => {
                     allowedDate.getDate() === date.getDate()
                   );
                 });
-                return isAllowed ? "bg-blue-500 text-white rounded-full" : "text-white";
+                return isAllowed ? "bg-blue-500 text-white rounded-full" : "text-gray-700";
               }}
             />
           </div>
 
           {/* Mode of Payment Section */}
-          <div className="flex flex-col space-y-2">
-            <label className="text-white">Mode of Payment</label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Mode of Payment</label>
             <div className="flex flex-col space-y-2">
-              <label className="flex items-center space-x-2">
+              {/* Gcash Option */}
+              <label className="flex items-center p-3 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
                 <input
                   type="radio"
                   name="paymentMethod"
                   value="Gcash"
                   checked={paymentMethod === "Gcash"}
                   onChange={handlePaymentMethodChange}
-                  className="form-radio"
+                  className="form-radio h-4 w-4 text-blue-500 border-gray-300 focus:ring-blue-400"
                 />
-                <span>Gcash</span>
+                <span className="ml-3 text-gray-700">Gcash</span>
               </label>
-              <label className="flex items-center space-x-2">
+
+              {/* Cash at Office Option */}
+              <label className="flex items-center p-3 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
                 <input
                   type="radio"
                   name="paymentMethod"
                   value="Cash"
                   checked={paymentMethod === "Cash"}
                   onChange={handlePaymentMethodChange}
-                  className="form-radio"
+                  className="form-radio h-4 w-4 text-blue-500 border-gray-300 focus:ring-blue-400"
                 />
-                <span>Cash at our Office</span>
+                <span className="ml-3 text-gray-700">Cash at our Office</span>
               </label>
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="mt-4 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
-          >
-            Submit
-          </button>
+          {/* Submit Button */}
+          <div className="w-full flex justify-center">
+            <button
+              type="submit"
+              className="mt-6 w-1/2 bg-blue-500 text-white py-2.5 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200"
+            >
+              Submit
+            </button>
+          </div>
         </form>
 
         {/* Close Button */}
@@ -166,12 +177,12 @@ const Modal = ({ course, onClose }) => {
         }`}
       >
         <div className="p-6 flex flex-col items-center relative">
-          <h3 className="text-xl font-bold mb-4 mt-5">Gcash Payment</h3>
+          <h3 className="text-xl font-bold mb-4 mt-5 oswald-bold">Gcash Payment</h3>
           <img src={QRCode} alt="Gcash QR Code" className="w-48 h-48 mx-auto mb-4" />
-          <p className="text-sm font-semibold text-left oswald-bold">
+          <p className="text-xs font-semibold text-left oswald-bold">
             <span>Name: </span>CHRISTOPHER BUENAVENTURA
           </p>
-          <p className="text-sm font-semibold text-left oswald-bold">
+          <p className="text-xs font-semibold text-left oswald-bold">
             <span>Gcash Number: </span>09958494428
           </p>
           <p className="text-xs mt-10">Note: You can scan the QR code above to make a GCash payment for the exact amount. After completing the payment, please take a screenshot of the receipt and send it to our facebook page <a href="https://www.facebook.com/nxs88" className="montserrat-semibold">NexusCloud IT Solutions.</a> Once verified, you will receive an email receipt, which you must present at the office on the day of the training.</p>

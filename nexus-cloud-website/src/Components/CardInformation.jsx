@@ -6,7 +6,7 @@ const CardInformation = ({ course, onClose, onOpenModal }) => {
         <h1 className="text-xl font-bold oswald-bold">{course.title}</h1>
         <p className="text-sm mb-5">{course.modality}</p>
         <p className="montserrat-semibold">{course.description}</p>
-        <p className="mt-5">Discounted Price: {course.discountedPrice}</p>
+        <p className="mt-5">Price: {course.discountedPrice}</p>
 
         {/* Button to open the modal */}
         <button
