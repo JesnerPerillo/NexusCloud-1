@@ -11,7 +11,7 @@ const CardInformation = ({ course, onClose, onOpenModal }) => {
         {/*Button to open the modal */}
         <button
           onClick={onOpenModal}
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
+          className=" bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-700 hover:cursor-pointer transition duration-500"
         >
           Enroll Now
         </button>

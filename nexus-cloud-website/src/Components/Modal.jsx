@@ -87,7 +87,7 @@ const Modal = ({ course, onClose }) => {
             <input
               type="text"
               placeholder={course.title}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md bg-gray-50 text-gray-500 cursor-not-allowed"
+              className="w-full px-3 py-2 border border-gray-200 rounded-md cursor-not-allowed"
               disabled
             />
           </div>
