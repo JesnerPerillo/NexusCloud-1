@@ -161,7 +161,7 @@ const Modal = ({ course, onClose }) => {
 
       {/* QR Code Modal - Slides in from the right */}
       <div
-        className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-lg text-black transform transition-transform duration-300 ease-in-out ${
           qrcodeModal ? "translate-x-0" : "translate-x-full"
         }`}
       >
