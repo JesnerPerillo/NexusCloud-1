@@ -22,7 +22,7 @@ export default function Contact() {
             {/* Phone Number */}
             <div className="flex items-center text-lg text-gray-700 space-x-4 transition-all hover:text-[#f4ca4f]">
               <BsTelephone className="w-8 h-8 text-black" />
-              <p className="hover:cursor-pointer">+63 912 345 6789</p>
+              <p className="hover:cursor-pointer">+63 995 8494 428</p>
             </div>
 
             {/* Email */}
