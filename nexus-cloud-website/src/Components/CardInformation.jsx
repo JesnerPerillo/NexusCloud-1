@@ -8,7 +8,7 @@ const CardInformation = ({ course, onClose, onOpenModal }) => {
         <p className="montserrat-semibold">{course.description}</p>
         <p className="mt-5">Price: {course.discountedPrice}</p>
 
-        {/* Button to open the modal */}
+        {/*Button to open the modal */}
         <button
           onClick={onOpenModal}
           className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
@@ -16,7 +16,7 @@ const CardInformation = ({ course, onClose, onOpenModal }) => {
           Enroll Now
         </button>
 
-        {/* Close button */}
+        {/*Close button */}
         <button
           onClick={onClose}
           className="absolute top-0 right-2 p-2 text-sm text-black rounded-full hover:cursor-pointer"

@@ -10,8 +10,9 @@ const Modal = ({ course, onClose }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [allowedDates, setAllowedDates] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [qrcodeModal, setQrcodeModal] = useState(false); // State for QR code modal
+  const [qrcodeModal, setQrcodeModal] = useState(false); 
 
+  {/*API call for courses in the database */}
   useEffect(() => {
     if (course?.title) {
       axios.get("http://localhost:5000/api/courses")
@@ -38,12 +39,11 @@ const Modal = ({ course, onClose }) => {
     }
   }, [course]);
 
-  // Handle payment method change
+  {/*Just for popup modal */}
   const handlePaymentMethodChange = (e) => {
     const selectedPaymentMethod = e.target.value;
     setPaymentMethod(selectedPaymentMethod);
 
-    // Show QR code modal only if Gcash is selected
     if (selectedPaymentMethod === "Gcash") {
       setQrcodeModal(true);
     } else {
@@ -61,7 +61,7 @@ const Modal = ({ course, onClose }) => {
         <hr className="text-black mb-2" />
 
         <form className="flex text-sm flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          {/* Name Field */}
+          {/*Name Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
             <input
@@ -71,7 +71,7 @@ const Modal = ({ course, onClose }) => {
             />
           </div>
 
-          {/* Email Field */}
+          {/*Email Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
@@ -81,7 +81,7 @@ const Modal = ({ course, onClose }) => {
             />
           </div>
 
-          {/* Course Field */}
+          {/*Course Field (automatic)*/}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Course</label>
             <input
@@ -92,7 +92,7 @@ const Modal = ({ course, onClose }) => {
             />
           </div>
 
-          {/* Date Picker */}
+          {/*Date Picker */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
             <DatePicker
@@ -116,11 +116,11 @@ const Modal = ({ course, onClose }) => {
             />
           </div>
 
-          {/* Mode of Payment Section */}
+          {/*Mode of Payment Section */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Mode of Payment</label>
             <div className="flex flex-col space-y-2">
-              {/* Gcash Option */}
+              {/*Gcash Option */}
               <label className="flex items-center p-3 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
                 <input
                   type="radio"
@@ -133,7 +133,7 @@ const Modal = ({ course, onClose }) => {
                 <span className="ml-3 text-gray-700">Gcash</span>
               </label>
 
-              {/* Cash at Office Option */}
+              {/*Cash at our Office Option */}
               <label className="flex items-center p-3 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
                 <input
                   type="radio"
@@ -148,7 +148,7 @@ const Modal = ({ course, onClose }) => {
             </div>
           </div>
 
-          {/* Submit Button */}
+          {/*Submit Button */}
           <div className="w-full flex justify-center">
             <button
               type="submit"
@@ -159,7 +159,7 @@ const Modal = ({ course, onClose }) => {
           </div>
         </form>
 
-        {/* Close Button */}
+        {/*Close Button */}
         <div className="w-full flex justify-center">
           <button
             className="mt-4 p-2 text-sm text-black rounded-full hover:cursor-pointer"
@@ -170,7 +170,7 @@ const Modal = ({ course, onClose }) => {
         </div>
       </div>
 
-      {/* QR Code Modal - Slides in from the right */}
+      {/*QR code modal for Gcash*/}
       <div
         className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-lg text-black transform transition-transform duration-300 ease-in-out ${
           qrcodeModal ? "translate-x-0" : "translate-x-full"
