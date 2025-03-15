@@ -67,7 +67,7 @@ const Modal = ({ course, onClose }) => {
             <input
               type="text"
               placeholder="Full Name"
-              className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
+              className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
 
@@ -77,7 +77,7 @@ const Modal = ({ course, onClose }) => {
             <input
               type="email"
               placeholder="Email"
-              className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
+              className="w-full px-3 text-black py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
 
@@ -87,7 +87,7 @@ const Modal = ({ course, onClose }) => {
             <input
               type="text"
               placeholder={course.title}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md cursor-not-allowed"
+              className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md cursor-not-allowed"
               disabled
             />
           </div>
@@ -102,7 +102,7 @@ const Modal = ({ course, onClose }) => {
               minDate={new Date()}
               dateFormat="yyyy-MM-dd"
               placeholderText="Select schedule"
-              className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200 hover:cursor-pointer"
+              className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200 hover:cursor-pointer"
               dayClassName={(date) => {
                 const isAllowed = allowedDates.some(allowedDate => {
                   return (
