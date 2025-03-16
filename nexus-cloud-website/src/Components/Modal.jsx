@@ -10,7 +10,60 @@ const Modal = ({ course, onClose }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [allowedDates, setAllowedDates] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [qrcodeModal, setQrcodeModal] = useState(false); 
+  const [qrcodeModal, setQrcodeModal] = useState(false);
+  const [referenceNumberModal, setReferenceNumberModal] = useState(false); 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    course: course.title,
+    date: selectedDate,
+    paymentMethod: '',
+    referenceNumber: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handlePaymentMethodChange = (e) => {
+    const selectedPaymentMethod = e.target.value;
+    setPaymentMethod(selectedPaymentMethod);
+    setFormData((prevData) => ({
+      ...prevData,
+      paymentMethod: selectedPaymentMethod,
+    }));
+
+    if (selectedPaymentMethod === "Gcash") {
+      setQrcodeModal(true);
+      setReferenceNumberModal(true);
+    } else {
+      setQrcodeModal(false);
+      setReferenceNumberModal(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const updateFormData = {
+      ...formData,
+      data: selectedDate,
+    };
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/submit-form", updateFormData);
+      console.log("Form submitted successfully:", response.data);
+      alert("Form Submitted successfully!");
+      onClose();
+    } catch(error) {
+      console.error("Error submitting form:", error);
+      alert("Error submitting form. Please try again later.");
+    }
+  };
 
   {/*API call for courses in the database (abang lang to) */}
   useEffect(() => {
@@ -39,18 +92,6 @@ const Modal = ({ course, onClose }) => {
     }
   }, [course]);
 
-  {/*Just for popup modal */}
-  const handlePaymentMethodChange = (e) => {
-    const selectedPaymentMethod = e.target.value;
-    setPaymentMethod(selectedPaymentMethod);
-
-    if (selectedPaymentMethod === "Gcash") {
-      setQrcodeModal(true);
-    } else {
-      setQrcodeModal(false);
-    }
-  };
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full m-2 relative sm:max-w-xl">
@@ -60,13 +101,15 @@ const Modal = ({ course, onClose }) => {
 
         <hr className="text-black mb-2" />
 
-        <form className="flex text-xs flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <form onSubmit={handleSubmit} className="flex text-xs flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           {/*Name Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
             <input
               type="text"
               placeholder="Full Name"
+              onChange={handleChange}
+              value={formData.name}
               className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
@@ -77,6 +120,8 @@ const Modal = ({ course, onClose }) => {
             <input
               type="email"
               placeholder="Email"
+              onChange={handleChange}
+              value={formData.email}
               className="w-full px-3 text-black py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
@@ -86,6 +131,8 @@ const Modal = ({ course, onClose }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Course</label>
             <input
               type="text"
+              value={formData.course}
+              onChange={handleChange}
               placeholder={course.title}
               className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md cursor-not-allowed"
               disabled
@@ -100,6 +147,7 @@ const Modal = ({ course, onClose }) => {
               onChange={(date) => setSelectedDate(date)}
               includeDates={allowedDates}
               minDate={new Date()}
+              value={formData.date}
               dateFormat="yyyy-MM-dd"
               placeholderText="Select schedule"
               className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200 hover:cursor-pointer"
@@ -147,6 +195,19 @@ const Modal = ({ course, onClose }) => {
               </label>
             </div>
           </div>
+          {/*Reference Number Field (automatic)*/}
+          {referenceNumberModal && (
+            <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Reference Number</label>
+            <input
+              value={formData.referenceNumber}
+              type="text"
+              onChange={handleChange}
+              placeholder="Reference Number"
+              className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md"
+            />
+          </div>
+          )}
 
           {/*Submit Button */}
           <div className="w-full flex justify-center">
