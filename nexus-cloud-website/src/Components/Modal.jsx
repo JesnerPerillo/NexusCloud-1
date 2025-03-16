@@ -12,7 +12,7 @@ const Modal = ({ course, onClose }) => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [qrcodeModal, setQrcodeModal] = useState(false); 
 
-  {/*API call for courses in the database */}
+  {/*API call for courses in the database (abang lang to) */}
   useEffect(() => {
     if (course?.title) {
       axios.get("http://localhost:5000/api/courses")
@@ -60,7 +60,7 @@ const Modal = ({ course, onClose }) => {
 
         <hr className="text-black mb-2" />
 
-        <form className="flex text-sm flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <form className="flex text-xs flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           {/*Name Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -152,7 +152,7 @@ const Modal = ({ course, onClose }) => {
           <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="mt-6 w-1/2 bg-blue-500 text-white py-2.5 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200"
+              className="mt-6 w-1/2 bg-black text-white py-2.5 rounded-md hover:bg-[#1b1c1c] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200 hover:cursor-pointer duration-500"
             >
               Submit
             </button>
@@ -170,7 +170,7 @@ const Modal = ({ course, onClose }) => {
         </div>
       </div>
 
-      {/*QR code modal for Gcash*/}
+      {/*QR code modal for Gcash */}
       <div
         className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-lg text-black transform transition-transform duration-300 ease-in-out ${
           qrcodeModal ? "translate-x-0" : "translate-x-full"
