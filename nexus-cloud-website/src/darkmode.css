@@ -14,14 +14,14 @@
   }
   
   html.dark {
-    --bg-color: #000000;    
+    --bg-color: #141414;    
     --text-color: #f9fafb;   
     --button-bg: #4b5563;   
     --button-text: #f3f4f6; 
     --nav-color: #f9fafb; 
     --blur-color: #ffffff;
     --nav: #ffffff; 
-    --footer-color: #131313;
+    --footer-color: #0f0f0f;
     --card-color: #ffffff;
     --cardtext-color: #000000;
   }

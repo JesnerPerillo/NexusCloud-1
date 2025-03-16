@@ -33,7 +33,7 @@ export default function Header() {
     }
 
     return (
-    <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors con">
+    <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors footer">
             <div className=" w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
