@@ -59,10 +59,10 @@ export default function Courses() {
       
       <div className="w-full h-auto con pt-20 flex flex-col items-center text-white">
         <div className="flex w-full flex-col justify-between mt-10 mb-10 sm:mt-10 mb-0 sm:items-center sm:flex-row">
-          <div className="w-1/2 ml-5 mt-2 border-l-15 border-yellow-500">
+          <div className="w-40 ml-5 mt-2 border-l-15 border-yellow-500">
             <h1 className="text-6xl play-bold pl-5 oswald-bold text">AVAILABLE COURSES</h1>
           </div>
-          <div className="text text-2xl text-justify px-10 pr-5 mt-5 sm:mt-0 sm:text-right sm:px-0">
+          <div className="text w-3/5 text-2xl text-justify px-10 pr-5 mt-5 sm:mt-0 sm:text-right sm:pr-5">
             <h1>Our available courses are designed to equip learners with essential IT skills for career advancement. With a focus on practical knowledge and industry-recognized certifications, our programs provide hands-on training in cutting-edge technologies. </h1>
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function Courses() {
                   />
                   <div className="absolute inset-0 bg-black opacity-70"></div>
                   <div className="absolute z-20 w-full h-full p-15 text-white flex flex-col justify-center">
-                    <h1 className="text-xl montserrat-bold sm:text-6xl">{courses[index].title}</h1>
+                    <h1 className="text-xl oswald-bold sm:text-6xl">{courses[index].title}</h1>
                     <hr className="w-1/2 border-t-8 text-yellow-500 mt-2"></hr>
                     <p className="mt-2 w-full montserrat-semibold text-sm sm:max-w-md sm:text-sm">{courses[index].description}</p>
                   </div>
