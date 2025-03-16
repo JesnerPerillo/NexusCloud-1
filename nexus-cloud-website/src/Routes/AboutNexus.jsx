@@ -80,7 +80,7 @@ export default function AboutNexus() {
       </div>
 
       {/*Who We Are Container */}
-      <div className="w-full h-auto flex flex-col items-center justify-around sm:w-full sm:h-screen sm:flex-row">
+      <div className="w-full h-auto flex flex-col items-center justify-around sm:w-full sm:h-screen sm:flex-row hover:cursor-pointer">
         <div className="w-auto mt-30 h-auto flex flex-col items-center sm:w-1/3 sm:h-[40rem]">
           <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl ">
             <div className="relative w-full h-full overflow-hidden rounded-xl">
@@ -98,7 +98,7 @@ export default function AboutNexus() {
               key={index}
               src={slide}
               alt={`Thumbnail ${index + 1}`}
-              className={`h-10 w-10 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 ${index === weAreIndex ? 'border-2 border-yellow-300' : 'opacity-70'}`}
+              className={`h-10 w-10 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 hover:scale-130 ${index === weAreIndex ? 'border-2 border-yellow-300' : 'opacity-70'}`}
               onClick={() => handleThumbnailClick(index)}
             />
           ))}

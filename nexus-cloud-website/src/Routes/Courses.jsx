@@ -105,7 +105,11 @@ export default function Courses() {
           </div>
         </div>
         <div className="mt-20">
-          <h1 className="text text-[6rem] oswald-bold tracking-wide text-center mb-10">ALL COURSES</h1>
+          <div className="flex items-center w-full mb-10">
+            <div className="hidden border-t border sm:flex-1 sm:block"></div>
+              <span className="px-10 tracking-widest text-5xl oswald-bold text-[#f4ca4f] sm:text-7xl">ALL COURSES</span>
+            <div className="hidden border-t border sm:flex-1 sm:block"></div>
+          </div>
           {/*Card Container #1st Line*/}
           <Test />
         </div>

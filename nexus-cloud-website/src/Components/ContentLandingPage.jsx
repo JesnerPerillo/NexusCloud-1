@@ -26,12 +26,12 @@ export default function ContentLandingPage() {
         {/* Right Side */}
         <div className="w-full mt-20 text-left lg:w-3/4">
             <div className="rounded-xl p-5 lg:p-2 flex flex-col justify-center">
-                <h2 className="text-yellow-500 font-semibold text-2xl sm:text-3xl lg:text-3xl tracking-wide">
+                <h2 className="text-yellow-500 oswald-bold text-2xl sm:text-3xl lg:text-3xl tracking-wide">
                     Get Certified. Get Ahead. Stay Relevant.
                 </h2>
                 
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
-                    <h1 className="text text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[100px] mt-5 flex items-center montserrat-bold xl:text-[140xl]">
+                    <h1 className="text text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[100px] mt-5 flex items-center oswald-bold xl:text-[75px]">
                         LAUNCH YOUR CAREER🚀
                     </h1>
                 </div>

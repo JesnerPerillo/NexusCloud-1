@@ -11,6 +11,7 @@
     --card-color: #000000;
     --cardtext-color: #ffffff;
     --drop-shadow: 15px 15px 25px rgba(0, 0, 0, 0.3);
+    --border: #000000;
   }
   
   html.dark {
@@ -24,10 +25,12 @@
     --footer-color: #0f0f0f;
     --card-color: #ffffff;
     --cardtext-color: #000000;
+    --border: #ffffff;
   }
 
   .nav {
     color: var(--nav);
+    transition: 1s;
   }
   
   .con {
@@ -72,6 +75,7 @@
 
   .footer {
     background-color: var(--footer-color);
+    transition: 1s;
   }
 
   .card {

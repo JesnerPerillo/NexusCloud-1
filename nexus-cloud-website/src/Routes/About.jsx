@@ -30,8 +30,8 @@ export default function About() {
   return(
     <div className=" h-auto con">
       <div className="flex flex-col items-center px-3 text-justify">
-        <h1 className="text-white text-5xl play-bold tracking-wide text-center text">Discover the Future of Learning with NexusCloud IT Solutions</h1>
-        <div className="w-full sm:w-1/2 mt-5">
+        <h1 className="text-white text-5xl oswald-bold tracking-wide text-center text">Discover the Future of Learning with NexusCloud IT Solutions</h1>
+        <div className="w-full sm:w-5/6 mt-5">
           <p className="text-justify text-white text">At NexusCloud IT Solutions, we believe in empowering individuals with the skills needed to thrive in the ever-evolving tech industry. That’s why we offer both online and face-to-face seminars designed to help aspiring IT professionals, students, and career shifters gain hands-on knowledge in the most in-demand courses.</p>
         </div>
       </div>
@@ -61,7 +61,7 @@ export default function About() {
         </div>
       </div>
       <div className="flex justify-center mt-16">
-        <h1 className="w-full px-5 sm:w-4/6 text-2xl text-white text-justify text">Both options provide valuable learning experiences tailored to different preferences and lifestyles. Whether you choose the flexibility of online seminars or the immersive nature of face-to-face training, NexusCloud IT Solutions ensures top-tier education to help you excel in your tech journey! 🚀</h1>
+        <h1 className="w-full px-5 sm:w-5/6 text-2xl text-white text-justify text">Both options provide valuable learning experiences tailored to different preferences and lifestyles. Whether you choose the flexibility of online seminars or the immersive nature of face-to-face training, NexusCloud IT Solutions ensures top-tier education to help you excel in your tech journey! 🚀</h1>
       </div>
     </div>
   );

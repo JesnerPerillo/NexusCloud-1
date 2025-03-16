@@ -38,7 +38,7 @@ export default function Header() {
                 {/* Logo */}
                 <div className="flex items-center">
                     <img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" />
-                    <h1 className="text-black dark:text-white text-xl md:text-xl font-bold tracking-widest text">
+                    <h1 className="text-black dark:text-white text-xl md:text-xl oswald-bold tracking-widest text">
                         NexusCloud IT Solutions
                     </h1>
                 </div>
