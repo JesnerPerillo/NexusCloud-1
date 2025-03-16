@@ -96,14 +96,14 @@ const Modal = ({ course, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
-      <div className="bg-white p-5 rounded-lg shadow-lg w-full m-2 relative sm:max-w-[40rem]">
+      <div className="bg-white p-5 rounded-lg shadow-lg w-full mx-2 relative sm:max-w-[40rem]">
         <h2 className="text-xl text-black font-bold oswald-bold">{course.title}</h2>
         <p>{course.modality}</p>
         <p className="mt-4 font-semibold text-black">Price: {course.discountedPrice}</p>
 
         <hr className="text-black mb-2" />
 
-        <form onSubmit={handleSubmit} className="flex text-xs flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <form onSubmit={handleSubmit} className="flex text-xs flex-col space-y-2 bg-white p-3 rounded-lg shadow-sm border border-gray-100">
           {/*Name Field */}
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-1">Name</label>
@@ -187,7 +187,7 @@ const Modal = ({ course, onClose }) => {
             <label className="block text-xs font-medium text-gray-700 mb-2">Mode of Payment</label>
             <div className="flex flex-col space-y-2">
               {/*Gcash Option */}
-              <label className="flex items-center p-3 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
+              <label className="flex items-center p-2 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
                 <input
                   type="radio"
                   name="paymentMethod"
@@ -200,7 +200,7 @@ const Modal = ({ course, onClose }) => {
               </label>
 
               {/*Cash at our Office Option */}
-              <label className="flex items-center p-3 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
+              <label className="flex items-center p-2 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
                 <input
                   type="radio"
                   name="paymentMethod"

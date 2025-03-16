@@ -62,7 +62,7 @@ export default function Courses() {
           <div className="w-40 ml-5 mt-2 border-l-15 border-yellow-500">
             <h1 className="text-6xl play-bold pl-5 oswald-bold text">AVAILABLE COURSES</h1>
           </div>
-          <div className="text w-3/5 text-2xl text-justify px-10 pr-5 mt-5 sm:mt-0 sm:text-right sm:pr-5">
+          <div className="text w-full text-2xl text-justify px-10 mt-5 sm:mt-0 sm:text-right sm:pr-5 sm:w-3/5">
             <h1>Our available courses are designed to equip learners with essential IT skills for career advancement. With a focus on practical knowledge and industry-recognized certifications, our programs provide hands-on training in cutting-edge technologies. </h1>
           </div>
         </div>
