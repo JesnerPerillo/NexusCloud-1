@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 
-// ✅ Create database connection
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -8,13 +7,11 @@ const db = mysql.createConnection({
   database: "NexusCloudDB",
 });
 
-// ✅ Connect to MySQL
 db.connect((err) => {
   if (err) throw err;
   console.log("MySQL Connected...");
 });
 
-// ✅ Function to fetch courses with prices
 const getCourses = (callback) => {
   const sql = `
     SELECT 
@@ -32,7 +29,6 @@ const getCourses = (callback) => {
       return;
     }
 
-    // ✅ Structure data properly
     const formattedResult = result.reduce((acc, curr) => {
       let existingCourse = acc.find((c) => c.course_name === curr.course_name);
       if (existingCourse) {
@@ -52,5 +48,4 @@ const getCourses = (callback) => {
   });
 };
 
-// ✅ Export functions
 module.exports = { getCourses };

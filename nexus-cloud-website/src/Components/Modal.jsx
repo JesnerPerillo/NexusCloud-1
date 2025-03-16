@@ -49,21 +49,23 @@ const Modal = ({ course, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     const updateFormData = {
       ...formData,
-      data: selectedDate,
+      date: selectedDate ? selectedDate.toISOString().split("T")[0] : null, // Ensure proper date format
     };
-
+  
     try {
-      const response = await axios.post("http://localhost:5000/api/submit-form", updateFormData);
+      const response = await axios.post("http://localhost:5000/api/enrollees", updateFormData);
       console.log("Form submitted successfully:", response.data);
       alert("Form Submitted successfully!");
       onClose();
-    } catch(error) {
-      console.error("Error submitting form:", error);
-      alert("Error submitting form. Please try again later.");
+    } catch (error) {
+      console.error("Error submitting form:", error.response?.data || error.message);
+      alert(`Error submitting form: ${error.response?.data?.error || "Please try again later."}`);
     }
   };
+  
 
   {/*API call for courses in the database (abang lang to) */}
   useEffect(() => {
@@ -94,7 +96,7 @@ const Modal = ({ course, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full m-2 relative sm:max-w-xl">
+      <div className="bg-white p-5 rounded-lg shadow-lg w-full m-2 relative sm:max-w-[40rem]">
         <h2 className="text-xl text-black font-bold oswald-bold">{course.title}</h2>
         <p>{course.modality}</p>
         <p className="mt-4 font-semibold text-black">Price: {course.discountedPrice}</p>
@@ -104,9 +106,10 @@ const Modal = ({ course, onClose }) => {
         <form onSubmit={handleSubmit} className="flex text-xs flex-col space-y-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           {/*Name Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Name</label>
             <input
               type="text"
+              name="name"
               placeholder="Full Name"
               onChange={handleChange}
               value={formData.name}
@@ -116,21 +119,35 @@ const Modal = ({ course, onClose }) => {
 
           {/*Email Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Email</label>
             <input
               type="email"
+              name="email"
               placeholder="Email"
               onChange={handleChange}
               value={formData.email}
               className="w-full px-3 text-black py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Phone Number</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              onChange={handleChange}
+              value={formData.phoneNumber}
+              maxLength={11}
+              className="w-full px-3 text-black py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
+            />
+          </div>
 
           {/*Course Field (automatic)*/}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Course</label>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Course</label>
             <input
               type="text"
+              name="course"
               value={formData.course}
               onChange={handleChange}
               placeholder={course.title}
@@ -141,12 +158,13 @@ const Modal = ({ course, onClose }) => {
 
           {/*Date Picker */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Select Date</label>
             <DatePicker
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
               includeDates={allowedDates}
               minDate={new Date()}
+              name="date"
               value={formData.date}
               dateFormat="yyyy-MM-dd"
               placeholderText="Select schedule"
@@ -166,7 +184,7 @@ const Modal = ({ course, onClose }) => {
 
           {/*Mode of Payment Section */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Mode of Payment</label>
+            <label className="block text-xs font-medium text-gray-700 mb-2">Mode of Payment</label>
             <div className="flex flex-col space-y-2">
               {/*Gcash Option */}
               <label className="flex items-center p-3 rounded-md border border-gray-200 hover:border-blue-400 transition-all duration-200 cursor-pointer">
@@ -202,7 +220,9 @@ const Modal = ({ course, onClose }) => {
             <input
               value={formData.referenceNumber}
               type="text"
+              name="referenceNumber"
               onChange={handleChange}
+              maxLength={13}
               placeholder="Reference Number"
               className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md"
             />

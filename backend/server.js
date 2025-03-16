@@ -1,10 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { getCourses } = require("./fetchdata"); // ✅ Import database functions
+const { getCourses } = require("./fetchdata"); 
 const mysql = require("mysql");
 
-// ✅ Create database connection
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -12,18 +11,20 @@ const db = mysql.createConnection({
   database: "NexusCloudDB",
 });
 
-// ✅ Connect to MySQL
 db.connect((err) => {
   if (err) throw err;
   console.log("MySQL Connected...");
 });
 
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// ✅ GET Route: Fetch Courses
+//For enrollment API POST only
+const enrollmentRoutes = require("./enrollment")(db);
+app.use("/api", enrollmentRoutes); 
+
+//For courses API
 app.get("/api/courses", (req, res) => {
   getCourses((err, courses) => {
     if (err) {
