@@ -94,9 +94,6 @@ export default function Courses() {
                     <h1 className="text-xl montserrat-bold sm:text-6xl">{courses[index].title}</h1>
                     <hr className="w-1/2 border-t-8 text-yellow-500 mt-2"></hr>
                     <p className="mt-2 w-full montserrat-semibold text-sm sm:max-w-md sm:text-sm">{courses[index].description}</p>
-                    <button className="absolute right-30 bottom-2 px-6 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:cursor-pointer sm:bottom-10 sm:right-20">
-                      REGISTER NOW
-                    </button>
                   </div>
                 </motion.div>
               </div>
