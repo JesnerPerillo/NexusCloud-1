@@ -27,7 +27,13 @@ enrolleeRouter.post('/create', [check('email').isEmail(),
 
     
  ], async (req, res) => {
-    const { name, email, course, mop, date, modality } = req.body;
+    const { name, email, course, mop, date, modality } = req.body;  
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     conn.promise().query(
         "INSERT INTO enrollee (name, email, course, mop, date, modality) VALUES (?, ?, ?, ?, ?, ?)", 
         [name, email, course, mop, date, modality]

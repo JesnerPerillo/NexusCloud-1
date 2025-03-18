@@ -9,6 +9,7 @@ import DarkMode from '../Components/DarkMode.jsx';
 import '../darkmode.css';
 
 gsap.registerPlugin(ScrollTrigger);
+
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const home = useRef(null);
@@ -33,7 +34,7 @@ export default function Header() {
     }
 
     return (
-    <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors con">
+    <header className="nav-bar w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors con">
             <div className=" w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
