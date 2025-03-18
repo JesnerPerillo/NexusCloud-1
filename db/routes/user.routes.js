@@ -2,11 +2,17 @@ import express from 'express';
 import conn from '../config/db.setup.js';
 import bcrypt from 'bcrypt';
 import sendEmail from '../utils.js';
+import { check, validationResult } from 'express-validator';
 const saltRounds = 10;
 export const userRouter = express.Router();
 
 
-userRouter.post('/create', async (req, res) => {
+userRouter.post('/create', [
+    check('name').not().isEmpty(),
+    check('password').isLength({ min: 6 }),
+    check('email').isEmail(),
+    // check('email').is
+],async (req, res) => {
     const { name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 

@@ -15,9 +15,9 @@ const transport = createTransport({
     const pendingEmail = (name, course) => {
         return `
         <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #f9f9f9; border-radius: 10px;">
-            <h1 style="color: #007bff;">Hello, ${name},!</h1>
-            <p style="font-size: 16px;">You have been successfully enrolled in <strong style="color: #28a745;">${course}</strong>.</p>
-            <p>But we have to wait for approval to start the class.</p>
+            <h1 style="color: #007bff;">Hello, ${name}!</h1>
+            <p style="font-size: 16px;">You transaction is currently being proccessed for<strong style="color: #28a745;">${course}</strong>.</p>
+            <p>The admin is cusrrently looking t o verify your transaction. We will get back to you as soon as possible If you have any questions, feel free to reach out.</p>
             <hr style="border: 0; height: 1px; background: #ddd;">
             <p style="font-size: 14px; color: #777;">Best regards,<br> NexusCloud IT Solutions</p>
         </div>`;
@@ -37,11 +37,11 @@ const transport = createTransport({
 
 function sendEmail(to, name, course) {
     
-const htmlemail = generateEmail(name, course);
+const htmlemail = pendingEmail(name, course);
     transport.sendMail({
         from: process.env.EMAIL_USER,
         to, 
-        subject: `Enrollment into ${course} is successfull`,
+        subject: `Enrollment Confirmation`,
         html: htmlemail
     }, (err, info) => {
         if (err) {

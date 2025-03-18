@@ -5,7 +5,28 @@ import conn from '../config/db.setup.js';
 import sendEmail from '../utils.js';
 const enrolleeRouter = express.Router();
 
-enrolleeRouter.post('/create', [check('email').isEmail(), ], async (req, res) => {
+enrolleeRouter.get('/', (req, res) => {
+    const sortby = req.body.sortby || 'date';
+    const order = req.body.order || 'asc';
+    const validColumns = ['name', 'email', 'course', 'mop', 'date', 'modality'];
+
+    if (!validColumns.includes(sortby)) {
+        return res.status(400).json({ error: 'Invalid sort by column' });
+    }
+    conn.promise().query(`SELECT * FROM enrollee ORDER BY ${sortby} ${order}`).then(([rows]) => {
+        res.send(rows)
+    })
+})
+
+enrolleeRouter.post('/create', [check('email').isEmail(),
+    check('name').not().isEmpty(),
+    check('course').not().isEmpty(),
+    check('mop').not().isEmpty(),
+    check('date').not().isEmpty(),
+    check('modality').not().isEmpty()
+
+    
+ ], async (req, res) => {
     const { name, email, course, mop, date, modality } = req.body;
     conn.promise().query(
         "INSERT INTO enrollee (name, email, course, mop, date, modality) VALUES (?, ?, ?, ?, ?, ?)", 

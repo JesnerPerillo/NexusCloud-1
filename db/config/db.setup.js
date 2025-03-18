@@ -6,8 +6,8 @@ const conn = mysql2.createPool({
     user: "root",
     password: "",
     database: "nexus",
-    connectionLimit: 10
-
+    connectionLimit: 10,
+    port: 3306
 })
 
 export default conn;
