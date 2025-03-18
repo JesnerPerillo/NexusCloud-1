@@ -13,8 +13,8 @@ enrolleeRouter.get('/', (req, res) => {
     if (!validColumns.includes(sortby)) {
         return res.status(400).json({ error: 'Invalid sort by column' });
     }
-    conn.promise().query(`SELECT * FROM enrollee ORDER BY ${sortby} ${order}`).then(([rows]) => {
-        res.send(rows)
+    conn.promise().query(`SELECT * FROM enrollee ORDER BY ??${order}`, [sortby]).then(([rows]) => {
+        res.status(200).send(rows);
     })
 })
 
