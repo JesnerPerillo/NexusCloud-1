@@ -3,6 +3,7 @@ import axios from "axios";
 import AdminHeader from "./Components/AdminHeader";
 import SideBar from "./Components/Sidebar";
 import { PiUserListThin } from "react-icons/pi";
+import { MdEdit, MdDelete  } from "react-icons/md";
 
 export default function Enrollees() {
   const [enrollees, setEnrollees] = useState([]);
@@ -62,8 +63,10 @@ export default function Enrollees() {
                   <th className="px-4 py-3 font-medium">Phone Number</th>
                   <th className="px-4 py-3 font-medium">Course</th>
                   <th className="px-4 py-3 font-medium">Date</th>
+                  <th className="px-4 py-3 font-medium">Modality</th>
                   <th className="px-4 py-3 font-medium">Payment Method</th>
                   <th className="px-4 py-3 font-medium">Reference Number</th>
+                  <th className="px-4 py-3 font-medium">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,8 +83,10 @@ export default function Enrollees() {
                     <td className="px-4 py-3">{enrollee.phone_number}</td>
                     <td className="px-4 py-3">{enrollee.course}</td>
                     <td className="px-4 py-3">{enrollee.date}</td>
+                    <td className="px-4 py-3">{enrollee.modality}</td>
                     <td className="px-4 py-3">{enrollee.payment_method}</td>
                     <td className="px-4 py-3">{enrollee.reference_number || "NA"}</td>
+                    <td className="flex justify-evenly p-3 items-center"><MdEdit size={15} className="text-green-500"/><MdDelete size={15} className="text-red-600"/></td>
                   </tr>
                 ))}
               </tbody>

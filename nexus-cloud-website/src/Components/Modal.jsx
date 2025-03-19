@@ -20,11 +20,12 @@ const Modal = ({ course, onClose }) => {
     email: '',
     phoneNumber: '',
     course: course.title,
+    modality: '',
     date: selectedDate,
     paymentMethod: '',
     referenceNumber: '',
   });
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -32,7 +33,7 @@ const Modal = ({ course, onClose }) => {
       [name]: value,
     }));
   };
-
+  
   const handlePaymentMethodChange = (e) => {
     const selectedPaymentMethod = e.target.value;
     setPaymentMethod(selectedPaymentMethod);
@@ -40,7 +41,7 @@ const Modal = ({ course, onClose }) => {
       ...prevData,
       paymentMethod: selectedPaymentMethod,
     }));
-
+  
     if (selectedPaymentMethod === "Gcash") {
       setQrcodeModal(true);
       setReferenceNumberModal(true);
@@ -49,31 +50,25 @@ const Modal = ({ course, onClose }) => {
       setReferenceNumberModal(false);
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     const updateFormData = {
       ...formData,
-      date: selectedDate ? selectedDate.toISOString().split("T")[0] : null, // Ensure proper date format
+      date: selectedDate ? selectedDate.toISOString().split("T")[0] : null, // ✅ Ensure date format
     };
   
     try {
       const response = await axios.post("http://localhost:5000/api/enrollees", updateFormData);
       console.log("Form submitted successfully:", response.data);
-  
       setSuccess(true);
-  
-      setTimeout(() => {
-        onClose();
-      }, 20000);
   
     } catch (error) {
       console.error("Error submitting form:", error.response?.data || error.message);
       alert(`Error submitting form: ${error.response?.data?.error || "Please try again later."}`);
     }
   };
-  
   
 
   {/*API call for courses in the database (abang lang to) */}
@@ -164,6 +159,22 @@ const Modal = ({ course, onClose }) => {
               disabled
             />
           </div>
+
+          {/*Modality of choice */}
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Modality</label>
+            <select
+              name="modality"
+              value={formData.modality}
+              onChange={handleChange}
+              className="w-full px-3 text-black py-2 border border-gray-200 rounded-md"
+            >
+              <option value="modality" selected hidden>Select Modality</option>
+              <option value="online">Online (via Zoom)</option>
+              <option value="onsite">On-Site (At the office)</option> 
+            </select>
+          </div>
+
 
           {/*Date Picker */}
           <div>
@@ -309,10 +320,9 @@ const Modal = ({ course, onClose }) => {
             <h1 className="text-lg font-semibold text-gray-700 mt-4">
               Payment Successful!
             </h1>
-    
-            {/* Close Button */}
+            
             <button
-              onClick={() => setSuccess(false)}
+              onClick={() => {setSuccess(false); onClose();}}
               className="mt-10 px-6 py-2 bg-black text-white rounded-lg shadow-md hover:bg-gray-900 hover:cursor-pointer transition duration-200"
             >
               Close

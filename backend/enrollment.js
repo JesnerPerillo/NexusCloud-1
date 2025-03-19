@@ -5,16 +5,16 @@ module.exports = (db) => {
   router.post('/enrollees', (req, res) => {
     console.log("Received data:", req.body);
   
-    const { name, email, phoneNumber, course, date, paymentMethod, referenceNumber } = req.body;
+    const { name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber } = req.body;
   
-    if (!name || !email || !phoneNumber || !course || !date || !paymentMethod) {
+    if (!name || !email || !phoneNumber || !course || !modality || !date || !paymentMethod) {
       console.log("Validation failed");
       return res.status(400).json({ error: 'All fields are required.' });
     }
   
     const query = `
-      INSERT INTO enrollees (name, email, phone_number, course, date, payment_method, reference_number)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
   
     db.query(
@@ -24,9 +24,10 @@ module.exports = (db) => {
         email,
         phoneNumber,
         course,
+        modality,
         date, 
         paymentMethod,
-        referenceNumber || null, // Allow NULL for reference number
+        referenceNumber || null,
       ],
       (err, result) => {
         if (err) {
