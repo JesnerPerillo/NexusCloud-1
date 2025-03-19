@@ -8,18 +8,19 @@ const enrolleeRouter = express.Router();
 enrolleeRouter.get('/', (req, res) => {
     const sortby = req.body.sortby || 'date';
     const order = req.body.order || 'asc';
-    const validColumns = ['name', 'email', 'course', 'mop', 'date', 'modality'];
+    const validColumns = ['name', 'email', 'phoneNumber', 'course', 'mop', 'date', 'modality'];
 
     if (!validColumns.includes(sortby)) {
         return res.status(400).json({ error: 'Invalid sort by column' });
     }
-    conn.promise().query(`SELECT * FROM enrollee ORDER BY ??${order}`, [sortby]).then(([rows]) => {
+    conn.promise().query(`SELECT * FROM enrollees ORDER BY ??${order}`, [sortby]).then(([rows]) => {
         res.status(200).send(rows);
     })
 })
 
 enrolleeRouter.post('/create', [check('email').isEmail(),
     check('name').not().isEmpty(),
+    check('phoneNumber').not().isEmpty(),
     check('course').not().isEmpty(),
     check('mop').not().isEmpty(),
     check('date').not().isEmpty(),
@@ -27,7 +28,7 @@ enrolleeRouter.post('/create', [check('email').isEmail(),
 
     
  ], async (req, res) => {
-    const { name, email, course, mop, date, modality } = req.body;  
+    const { name, email, phoneNumber,  course, mop, date, modality } = req.body;  
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -35,8 +36,8 @@ enrolleeRouter.post('/create', [check('email').isEmail(),
     }
 
     conn.promise().query(
-        "INSERT INTO enrollee (name, email, course, mop, date, modality) VALUES (?, ?, ?, ?, ?, ?)", 
-        [name, email, course, mop, date, modality]
+        "INSERT INTO enrollees (name, email, phoneNumber, course, mop, date, modality) VALUES ( ?, ?, ?, ?, ?, ?, ?)", 
+        [name, email, phoneNumber, course, mop, date, modality]
     )
     .then(([rows]) => {
         console.log(rows);
