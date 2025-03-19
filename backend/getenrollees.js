@@ -4,7 +4,7 @@ const router = express.Router();
 module.exports = (db) => {
   // ✅ Get Enrollees with Pagination (Limit to 10)
   router.get('/', (req, res) => {
-    const limit = 10;
+    const limit = 12;
     const offset = parseInt(req.query.offset) || 0;
 
     const query = `SELECT * FROM enrollees LIMIT ? OFFSET ?`;

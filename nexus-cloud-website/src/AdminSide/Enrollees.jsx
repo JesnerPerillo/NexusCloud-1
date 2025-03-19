@@ -2,25 +2,41 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AdminHeader from "./Components/AdminHeader";
 import SideBar from "./Components/Sidebar";
+import { PiUserListThin } from "react-icons/pi";
 
 export default function Enrollees() {
   const [enrollees, setEnrollees] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const limit = 10; // Show 10 rows per page
+  const limit = 12;
+  const [hasMore, setHasMore] = useState(true);
 
-  // ✅ Fetch data from backend
+
   const fetchEnrollees = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/enrollees?limit=${limit}&offset=${currentPage * limit}`);
-      setEnrollees(response.data);
+      const response = await axios.get(
+        `http://localhost:5000/api/enrollees?limit=${limit}&offset=${currentPage * limit}`
+      );
+  
+      // ✅ Format the date before setting the state
+      const formattedData = response.data.map((enrollee) => ({
+        ...enrollee,
+        date: new Date(enrollee.date).toLocaleDateString("en-CA"), // Format to YYYY-MM-DD
+      }));
+  
+      setEnrollees(formattedData);
+  
+      // ✅ Check if there's more data
+      setHasMore(response.data.length === limit);
     } catch (error) {
       console.error("Error fetching enrollees:", error);
     }
   };
-
+  
   useEffect(() => {
     fetchEnrollees();
-  }, [currentPage]); // Refetch data when currentPage changes
+  }, [currentPage]);
+  
+  
 
   return(
     <div className="w-full h-screen overflow-hidden">
@@ -30,55 +46,69 @@ export default function Enrollees() {
       <div>
         <SideBar />
       </div>
-      <div className="w-full flex items-center justify-center">
-        <div className="p-6 w-5/6 bg-gray-200 h-screen">
-          <h2 className="text-2xl font-bold mb-6 text-black oswald-bold">Enrollees</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full border-collapse shadow-lg">
-              <thead>
-                <tr className="bg-black text-white">
-                  <th className="p-2 text-left font-semibold">ID</th>
-                  <th className="p-2 text-left font-semibold">Name</th>
-                  <th className="p-2 text-left font-semibold">Email</th>
-                  <th className="p-2 text-left font-semibold">Phone Number</th>
-                  <th className="p-2 text-left font-semibold">Course</th>
-                  <th className="p-2 text-left font-semibold">Date</th>
-                  <th className="p-2 text-left font-semibold">Payment Method</th>
-                  <th className="p-2 text-left font-semibold">Reference Number</th>
+      <div className="w-full flex items-center justify-center bg-gray-100">
+        <div className="p-6 ml-15 w-9/10 h-[calc(100vh-80px)] rounded-3xl bg-white shadow-xl relative">
+          <div className="flex items-center mb-6">
+            <h2 className="text-2xl mr-3 text-gray-800 tracking-tight">Enrollees</h2>
+            <PiUserListThin size={40}/>
+          </div>
+          <div className="overflow-y-auto max-h-[70vh] rounded-xl border border-gray-200 shadow-md">
+            <table className="w-full text-[10px] text-left text-gray-700">
+              <thead className="bg-gray-200 sticky top-0 text-gray-700 border-b border-gray-200">
+                <tr>
+                  <th className="px-4 py-3 font-medium">ID</th>
+                  <th className="px-4 py-3 font-medium">Name</th>
+                  <th className="px-4 py-3 font-medium">Email</th>
+                  <th className="px-4 py-3 font-medium">Phone Number</th>
+                  <th className="px-4 py-3 font-medium">Course</th>
+                  <th className="px-4 py-3 font-medium">Date</th>
+                  <th className="px-4 py-3 font-medium">Payment Method</th>
+                  <th className="px-4 py-3 font-medium">Reference Number</th>
                 </tr>
               </thead>
               <tbody>
-                {enrollees.map((enrollee) => (
+                {enrollees.map((enrollee, index) => (
                   <tr
                     key={enrollee.id}
-                    className="border-b hover:bg-gray-100"
+                    className={`hover:bg-gray-50 transition-colors ${
+                      index % 2 === 0 ? "bg-white" : "bg-gray-100"
+                    }`}
                   >
-                    <td className="p-2 text-gray-800">{enrollee.id}</td>
-                    <td className="p-2 text-gray-800">{enrollee.name}</td>
-                    <td className="p-2 text-gray-800">{enrollee.email}</td>
-                    <td className="p-2 text-gray-800">{enrollee.phone_number}</td>
-                    <td className="p-2 text-gray-800">{enrollee.course}</td>
-                    <td className="p-2 text-gray-800">{enrollee.date}</td>
-                    <td className="p-2 text-gray-800">{enrollee.payment_method}</td>
-                    <td className="p-2 text-gray-800">{enrollee.reference_number}</td>
+                    <td className="px-4 py-3">{enrollee.id}</td>
+                    <td className="px-4 py-3">{enrollee.name}</td>
+                    <td className="px-4 py-3">{enrollee.email}</td>
+                    <td className="px-4 py-3">{enrollee.phone_number}</td>
+                    <td className="px-4 py-3">{enrollee.course}</td>
+                    <td className="px-4 py-3">{enrollee.date}</td>
+                    <td className="px-4 py-3">{enrollee.payment_method}</td>
+                    <td className="px-4 py-3">{enrollee.reference_number || "NA"}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          {/* ✅ Pagination Controls */}
-          <div className="flex justify-between mt-4">
+          {/* ✅ Modern Pagination */}
+          <div className="flex absolute right-5 bottom-5 justify-end mt-6 space-x-2">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
               disabled={currentPage === 0}
-              className={`px-4 py-2 border rounded ${currentPage === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-black text-white'}`}
+              className={`px-5 py-2 rounded-full border ${
+                currentPage === 0
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-gray-800 text-white hover:bg-gray-900 transition hover:cursor-pointer"
+              }`}
             >
               Previous
             </button>
             <button
               onClick={() => setCurrentPage((prev) => prev + 1)}
-              className="px-4 py-2 border rounded bg-black text-white"
+              disabled={!hasMore}
+              className={`px-5 py-2 rounded-full border ${
+                hasMore
+                  ? "bg-gray-800 text-white hover:bg-gray-900 hover:cursor-pointer transition"
+                  : "bg-gray-100 text-gray-400 cursor-not-allowed"
+              }`}
             >
               Next
             </button>
