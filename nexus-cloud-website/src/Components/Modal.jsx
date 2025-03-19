@@ -5,12 +5,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from '../Images/qr.jpg';
 import { TfiClose } from "react-icons/tfi";
+import { motion } from 'framer-motion';
+import { CheckCircle } from 'lucide-react';
 
 const Modal = ({ course, onClose }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [allowedDates, setAllowedDates] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("");
   const [qrcodeModal, setQrcodeModal] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [referenceNumberModal, setReferenceNumberModal] = useState(false); 
   const [formData, setFormData] = useState({
     name: '',
@@ -58,13 +61,19 @@ const Modal = ({ course, onClose }) => {
     try {
       const response = await axios.post("http://localhost:4000/api/enrollee/create", updateFormData);
       console.log("Form submitted successfully:", response.data);
-      alert("Form Submitted successfully!");
-      onClose();
+  
+      setSuccess(true);
+  
+      setTimeout(() => {
+        onClose();
+      }, 20000);
+  
     } catch (error) {
       console.error("Error submitting form:", error.response?.data || error.message);
       alert(`Error submitting form: ${error.response?.data?.error || "Please try again later."}`);
     }
   };
+  
   
 
   {/*API call for courses in the database (abang lang to) */}
@@ -164,6 +173,7 @@ const Modal = ({ course, onClose }) => {
               onChange={(date) => setSelectedDate(date)}
               includeDates={allowedDates}
               minDate={new Date()}
+              autoComplete="off"
               name="date"
               value={formData.date}
               dateFormat="yyyy-MM-dd"
@@ -276,6 +286,40 @@ const Modal = ({ course, onClose }) => {
           </button>
         </div>
       </div>
+
+      {success && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-40">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="w-80 h-80 bg-white drop-shadow-2xl p-6 rounded-2xl flex flex-col items-center justify-center"
+          >
+            {/* Animated Checkmark */}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1, rotate: 360 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 10 }}
+              className="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center"
+            >
+              <CheckCircle className="text-white w-10 h-10" />
+            </motion.div>
+    
+            <h1 className="text-lg font-semibold text-gray-700 mt-4">
+              Payment Successful!
+            </h1>
+    
+            {/* Close Button */}
+            <button
+              onClick={() => setSuccess(false)}
+              className="mt-10 px-6 py-2 bg-black text-white rounded-lg shadow-md hover:bg-gray-900 hover:cursor-pointer transition duration-200"
+            >
+              Close
+            </button>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };

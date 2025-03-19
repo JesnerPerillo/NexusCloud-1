@@ -22,7 +22,7 @@ export default function Login() {
     console.log("Submitting login with:", formData);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', {
+      const response = await axios.post('http://localhost:5000/api/login', {
         username: formData.username,
         password: formData.password,
       });
