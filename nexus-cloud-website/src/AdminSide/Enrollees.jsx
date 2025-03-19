@@ -11,7 +11,7 @@ export default function Enrollees() {
   // ✅ Fetch data from backend
   const fetchEnrollees = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/enrollees?limit=${limit}&offset=${currentPage * limit}`);
+      const response = await axios.get(`http://localhost:5000/api/enrollees?limit=${limit}&offset=${currentPage * limit}`);
       setEnrollees(response.data);
     } catch (error) {
       console.error("Error fetching enrollees:", error);
