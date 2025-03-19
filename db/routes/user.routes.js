@@ -1,65 +1,115 @@
 import express from 'express';
 import conn from '../config/db.setup.js';
 import bcrypt from 'bcrypt';
-import sendEmail from '../utils.js';
 import { check, validationResult } from 'express-validator';
+
 const saltRounds = 10;
 export const userRouter = express.Router();
 
-
-userRouter.post('/create', [
-    check('name').not().isEmpty(),
-    check('password').isLength({ min: 6 }),
-    check('email').isEmail(),
-    // check('email').is
-],async (req, res) => {
-    const { name, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    conn.promise().query(
-        "INSERT INTO users (name, email, password) VALUES (?, ?, ?)", 
-        [name, email, hashedPassword]
-    )
-    .then(([rows]) => {
-        console.log(rows);
-        res.send("User created");
-    })
-    .catch(err => {
-        console.error(err);
-        res.status(500).send("Error creating user");
-    });
-});
-userRouter.post('/login',  async (req, res) => {
-    const {username, password} = req.body;
-    const rows = await conn.promise().query("SELECT * FROM users WHERE username = ?", [username]);
-    if (rows[0].length)  { 
-        const {dbusername,dbemail, dbpassword} = rows[0];
-        const isMatch = await bcrypt.compare(password, dbpassword);
-        if (isMatch) {
-            res.send("Login successful")
-        }else {
-            res.send({error: "Invalid fields"})
+userRouter.post(
+    '/create',
+    [
+        check('name').not().isEmpty(),
+        check('password').isLength({ min: 6 }),
+        check('email').isEmail(),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
-    }else {
-        res.send("User not found")
+
+        const { name, email, password } = req.body;
+
+        try {
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            await conn.promise().query(
+                "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+                [name, email, hashedPassword]
+            );
+            res.status(201).json({ message: "User created successfully" });
+        } catch (error) {
+            res.status(500).json({ error: "Error creating user" });
+        }
     }
-})
+);
 
-userRouter.patch("/update/:id", (req, res) =>{
-    const {id} = req.params;
-    const {name, email, password} = req.body;
-    const hashedPassword = bcrypt.hash(password);
-    conn.promise().query("UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?", [name, email, hashedPassword, id])
-    .then(([rows]) => {
-        console.log(rows)
-    })
-}
-)
+const x = 'asas'
 
-userRouter.delete('/delete/:id', (req, res) => {
-    const {id} = req.params;
-    conn.promise().query("DELETE FROM users WHERE id = ?", [id])
-    .then(([rows]) => {
-        res.send(rows)
-    })
-})
+userRouter.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const [rows] = await conn.promise().query(
+            "SELECT * FROM users WHERE username = ?",
+            [username]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const user = rows[0];
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({ error: "Invalid credentials" });
+        }
+
+        res.json({ message: "Login successful" });
+    } catch (error) {
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+userRouter.patch('/update/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, email, password } = req.body;
+
+    try {
+        const [existingUser] = await conn.promise().query(
+            "SELECT name, email, password FROM users WHERE id = ?",
+            [id]
+        );
+
+        if (existingUser.length === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const currentUser = existingUser[0];
+
+        const newName = name || currentUser.name;
+        const newEmail = email || currentUser.email;
+        const newPassword = password
+            ? await bcrypt.hash(password, saltRounds)
+            : currentUser.password;
+
+        await conn.promise().query(
+            "UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?",
+            [newName, newEmail, newPassword, id]
+        );
+
+        res.json({ message: "User updated successfully" });
+    } catch (error) {
+        res.status(500).json({ error: "Error updating user" });
+    }
+});
+
+userRouter.delete('/delete/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const [result] = await conn.promise().query(
+            "DELETE FROM users WHERE id = ?",
+            [id]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ error: "Error deleting user" });
+    }
+});
