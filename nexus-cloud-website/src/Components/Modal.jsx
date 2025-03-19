@@ -56,7 +56,7 @@ const Modal = ({ course, onClose }) => {
     };
   
     try {
-      const response = await axios.post("http://localhost:5000/api/enrollees", updateFormData);
+      const response = await axios.post("http://localhost:4000/api/enrollee/create", updateFormData);
       console.log("Form submitted successfully:", response.data);
       alert("Form Submitted successfully!");
       onClose();
@@ -70,7 +70,7 @@ const Modal = ({ course, onClose }) => {
   {/*API call for courses in the database (abang lang to) */}
   useEffect(() => {
     if (course?.title) {
-      axios.get("http://localhost:5000/api/courses")
+      axios.get("http://localhost4:000/api/courses/create")
         .then((res) => {
           console.log("API Response:", res.data);
 
