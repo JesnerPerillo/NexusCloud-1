@@ -31,7 +31,7 @@ export default function Header() {
             <div className=" w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link to="/admindashboard"><img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" /></Link>
+                    <Link to="/adminlogin"><img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" /></Link>
                     <h1 className="text-black dark:text-white text-xl md:text-xl oswald-bold tracking-widest text">
                         NexusCloud IT Solutions
                     </h1>

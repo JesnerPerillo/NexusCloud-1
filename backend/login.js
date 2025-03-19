@@ -3,12 +3,15 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const SECRET_KEY = 'nexuscloudsecretkey'; 
+
 module.exports = (db) => {
   const router = express.Router();
+  const bcrypt = require('bcrypt');
+  
 
-  // Admin Login Route
-  router.post('/admin/login', async (req, res) => {
+  router.post('/login', async (req, res) => {
     const { username, password } = req.body;
+    
   
     if (!username || !password) {
       return res.status(400).json({ error: 'All fields are required' });
@@ -23,23 +26,20 @@ module.exports = (db) => {
         }
   
         if (results.length === 0) {
-          console.log("No admin found with username:", username); // Log when no user is found
+          console.log("No admin found with username:", username);
           return res.status(401).json({ error: 'Invalid username or password' });
         }
   
         const admin = results[0];
-        console.log("Admin data from DB:", admin); // Log the found admin data
   
-        // Check the password hash directly from the DB (no need for manual replacement anymore)
+        // ✅ Check password using bcrypt.compare()
         const isMatch = await bcrypt.compare(password, admin.password);
-        console.log("Password Match Result:", isMatch); // Log the result of password comparison
-  
         if (!isMatch) {
           console.log("Password does not match");
           return res.status(401).json({ error: 'Invalid username or password' });
         }
   
-        // Generate JWT token
+        // ✅ Generate JWT token
         const token = jwt.sign(
           { id: admin.id, username: admin.username },
           SECRET_KEY,
@@ -54,6 +54,5 @@ module.exports = (db) => {
     }
   });
   
-
   return router;
 };

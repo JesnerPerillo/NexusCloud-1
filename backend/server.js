@@ -20,11 +20,17 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-//For enrollment API POST only
+// ✅ Import Routes
 const enrollmentRoutes = require("./enrollment")(db);
 app.use("/api", enrollmentRoutes); 
 
-//For courses API
+const getEnrolleesRoutes = require('./getenrollees')(db);
+app.use('/api/enrollees', getEnrolleesRoutes);
+
+const loginRoute = require('./login')(db);
+app.use('/api', loginRoute);
+
+// ✅ Courses API
 app.get("/api/courses", (req, res) => {
   getCourses((err, courses) => {
     if (err) {
@@ -33,10 +39,6 @@ app.get("/api/courses", (req, res) => {
     res.json(courses);
   });
 });
-
-
-const loginRoute = require('./login')(db);
-app.use('/api', loginRoute);
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
