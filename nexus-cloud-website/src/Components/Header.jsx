@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import NexusLogo from "../Images/nexusLogo.png";
@@ -11,7 +11,6 @@ import '../darkmode.css';
 gsap.registerPlugin(ScrollTrigger);
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
-    const home = useRef(null);
 
     useGSAP(() => {
 
@@ -27,17 +26,12 @@ export default function Header() {
 
 
 
-    const homeScroll = () => {
-        home.current.scrollIntoView({ behavior: "smooth", block: "start"});
-        setIsOpen(false);
-    }
-
     return (
     <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors footer">
             <div className=" w-full flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link to="/adminlogin"><img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" /></Link>
+                    <Link to="/admindashboard"><img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" /></Link>
                     <h1 className="text-black dark:text-white text-xl md:text-xl oswald-bold tracking-widest text">
                         NexusCloud IT Solutions
                     </h1>
@@ -46,7 +40,7 @@ export default function Header() {
                 <div className="flex space-x-10 items-center">
                     {/* Menu - Desktop */}
                 <nav className="hidden md:flex space-x-6 text-white text-sm font-semibold">
-                    <Link to="/" className=" group relative inline-block text"  onClick={homeScroll}><span className="nav-items">HOME</span></Link>
+                    <Link to="/" className=" group relative inline-block text"><span className="nav-items">HOME</span></Link>
                     <Link to="/aboutnexus" className=" group relative inline-block text"><span className="nav-items">ABOUT</span></Link>
                     <Link to="/courses" className=" group relative inline-block text"><span className="nav-items">COURSES</span></Link>
                     <Link to="/process" className=" group relative inline-block text"><span className="nav-items">PROCESS</span></Link>
