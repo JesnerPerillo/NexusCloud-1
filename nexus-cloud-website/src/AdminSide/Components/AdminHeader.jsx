@@ -21,7 +21,7 @@ export default function AdminHeader() {
     )
 
 return (
-  <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors footer">
+  <header className="w-full fixed text-black z-30 bg-white dark:bg-black shadow-lg transition-colors sidebar">
     <div className=" w-full flex justify-between items-center p-4">
       <div className="flex items-center">
         <Link to="/"><img src={NexusLogo} alt="NexusCloud Logo" className="h-12 w-12 mr-2" /></Link>

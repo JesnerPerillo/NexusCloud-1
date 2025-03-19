@@ -2,7 +2,7 @@
 :root {
     --bg-color: #f9fafb;    
     --text-color: #000000;   
-    --button-bg: #f3f4f6;    
+    --button-bg: #d8dbe0;    
     --button-text: #000000;   
     --nav-color: #000000;
     --blur-color: #000000;
@@ -12,6 +12,8 @@
     --cardtext-color: #ffffff;
     --drop-shadow: 15px 15px 25px rgba(0, 0, 0, 0.3);
     --border: #000000;
+    --sidebar: #ffffff;
+    --enroll-con: #ffffff;
   }
   
   html.dark {
@@ -26,6 +28,8 @@
     --card-color: #ffffff;
     --cardtext-color: #000000;
     --border: #ffffff;
+    --sidebar: #000000;
+    --enroll-con: #222222;
   }
 
   .nav {
@@ -88,4 +92,13 @@
 
   .drop-shadow-3xl{
     filter: drop-shadow(var(--drop-shadow));
+  }
+
+  .sidebar {
+    background-color: var(--sidebar);
+  }
+
+  .enroll {
+    background-color: var(--enroll-con);
+    color: var(--text-color);
   }

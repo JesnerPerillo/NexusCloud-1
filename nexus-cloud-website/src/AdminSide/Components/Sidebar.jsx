@@ -12,7 +12,7 @@ export default function SideBar() {
 
   return (
     <div 
-    className={`con drop-shadow-2xl fixed flex flex-col justify-between items-start p-4 transition-all duration-300 z-20 ${
+    className={`sidebar drop-shadow-2xl fixed flex flex-col justify-between items-start p-4 transition-all duration-300 z-20 ${
       isExpanded ? "w-48" : "w-16"}` } 
     style={{
       height: `calc(100vh - 5rem)`, 
@@ -26,7 +26,7 @@ export default function SideBar() {
           <FiMenu size={24} />
           {isExpanded && <span className="text-sm font-medium">Menu</span>}
         </button>
-        <Link to="/admindashboard"><button className="flex items-center space-x-2 texthover:text-black hover:cursor-pointer">
+        <Link to="/admindashboard"><button className="flex items-center space-x-2 text hover:text-black hover:cursor-pointer">
           <MdSpaceDashboard size={24} />
           {isExpanded && <span className="text-sm font-medium">Dashboard</span>}
         </button></Link>

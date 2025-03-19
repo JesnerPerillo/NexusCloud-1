@@ -47,15 +47,15 @@ export default function Enrollees() {
       <div>
         <SideBar />
       </div>
-      <div className="w-full flex items-center justify-center bg-gray-100">
-        <div className="p-6 ml-15 w-9/10 h-[calc(100vh-80px)] rounded-3xl bg-white shadow-xl relative">
+      <div className="w-full flex items-center justify-center con">
+        <div className="p-6 ml-15 w-9/10 h-[calc(100vh-80px)] rounded-3xl enroll shadow-xl relative">
           <div className="flex items-center mb-6">
-            <h2 className="text-2xl mr-3 text-gray-800 tracking-tight">Enrollees</h2>
+            <h2 className="text-2xl mr-3 text-gray-800 tracking-tight enroll">Enrollees</h2>
             <PiUserListThin size={40}/>
           </div>
           <div className="overflow-y-auto max-h-[70vh] rounded-xl border border-gray-200 shadow-md">
             <table className="w-full text-[10px] text-left text-gray-700">
-              <thead className="bg-gray-200 sticky top-0 text-gray-700 border-b border-gray-200">
+              <thead className="bg-gray-200 sticky top-0 con border-b border-gray-200">
                 <tr>
                   <th className="px-4 py-3 font-medium">ID</th>
                   <th className="px-4 py-3 font-medium">Name</th>
@@ -74,7 +74,7 @@ export default function Enrollees() {
                   <tr
                     key={enrollee.id}
                     className={`hover:bg-gray-50 transition-colors ${
-                      index % 2 === 0 ? "bg-white" : "bg-gray-100"
+                      index % 2 === 0 ? "con" : "enroll"
                     }`}
                   >
                     <td className="px-4 py-3">{enrollee.id}</td>

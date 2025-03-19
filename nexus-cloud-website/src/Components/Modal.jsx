@@ -170,8 +170,8 @@ const Modal = ({ course, onClose }) => {
               className="w-full px-3 text-black py-2 border border-gray-200 rounded-md"
             >
               <option value="modality" selected hidden>Select Modality</option>
-              <option value="online">Online (via Zoom)</option>
-              <option value="onsite">On-Site (At the office)</option> 
+              <option value="Online">Online (via Zoom)</option>
+              <option value="On-Site">On-Site (At the office)</option> 
             </select>
           </div>
 
@@ -320,7 +320,7 @@ const Modal = ({ course, onClose }) => {
             <h1 className="text-lg font-semibold text-gray-700 mt-4">
               Payment Successful!
             </h1>
-            
+
             <button
               onClick={() => {setSuccess(false); onClose();}}
               className="mt-10 px-6 py-2 bg-black text-white rounded-lg shadow-md hover:bg-gray-900 hover:cursor-pointer transition duration-200"
