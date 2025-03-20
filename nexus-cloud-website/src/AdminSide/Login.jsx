@@ -2,6 +2,7 @@ import { useState } from 'react';
 import NexusLogo from '../Images/nexusLogo.png';
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +10,8 @@ export default function Login() {
     username: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const togglePassword = () => setShowPassword(!showPassword);
 
@@ -22,19 +25,19 @@ export default function Login() {
     console.log("Submitting login with:", formData);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/login', {
+      const response = await axios.post('http://localhost:4000/api/users/login', {
         username: formData.username,
         password: formData.password,
       });
   
       console.log("Login response:", response.data);
       localStorage.setItem('token', response.data.token);
+      navigate('/admindashboard');
       alert('Login successful!');
-      window.location.href = '/dashboard';
   
     } catch (error) {
       console.error("Login error:", error);
-      console.log("Error response:", error.response);  
+      console.log("Error response:", error.response);
       alert(error.response?.data?.error || 'Login failed');
     }
   };

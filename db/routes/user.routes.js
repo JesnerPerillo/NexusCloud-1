@@ -6,6 +6,11 @@ import { check, validationResult } from 'express-validator';
 const saltRounds = 10;
 export const userRouter = express.Router();
 
+
+userRouter.get('/', async (req, res) => {
+    const [rows] = await conn.promise().query("SELECT * FROM users");
+    res.status(200).json(rows);
+})
 userRouter.post(
     '/create',
     [

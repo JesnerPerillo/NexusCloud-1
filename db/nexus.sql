@@ -75,6 +75,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 (1, 'chewy', 'jhay@gmail.com', '$2b$10$pVHjM/eS5waKP8AmFtyqtulWn3FtnM3dbzI0PJV.Jx2wGMIoLWkuC'),
 (2, 'jhay', 'rjhay1070@gmail.com', '$2b$10$ALOTmb5ezUpKqfVkJQCMZOTPoh2/khape1y1s5DPw6ueBr7R/avHa');
+(3, 'dar', 'dartomboy@gmail.com', '$2a$12$yA/woRuNq.7j/Q2wvcoo2eIefDCVYbVYHrk9bB4ISALHkZptHGmia');
 
 --
 -- Indexes for dumped tables

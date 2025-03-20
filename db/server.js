@@ -17,9 +17,7 @@ const limiter = rateLimit({
 })
 
 app.use(express.json())
-app.use(cors({
-    origin: ["http://localhost5173", "https://nexus-cloud.vercel.app/"]
-}))
+app.use(cors())
 app.use(helmet())
 app.use(limiter)
 
