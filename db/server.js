@@ -24,7 +24,7 @@ app.use(limiter)
 // app.get("/", (req, res) => {
 //     res.send("Hello World")
 // })
-app.use("/api/users", userRouter)
+app.use("/api/admin", userRouter)
 app.use("/api/courses",  courseRouter)
 app.use("/api/enrollee", enrolleeRouter)
 

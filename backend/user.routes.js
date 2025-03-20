@@ -2,25 +2,16 @@ import express from 'express';
 import conn from '../config/db.setup.js';
 import bcrypt from 'bcrypt';
 import { check, validationResult } from 'express-validator';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 
-dotenv.config();
 const saltRounds = 10;
-const secretKey = process.env.JWT_SECRET_KEY;
-
 export const userRouter = express.Router();
 
-
-userRouter.get('/', async (req, res) => {
-    const [rows] = await conn.promise().query("SELECT * FROM users");
-    res.status(200).json(rows);
-})
 userRouter.post(
     '/create',
     [
         check('username').not().isEmpty(),
         check('password').isLength({ min: 6 }),
+        check('email').isEmail(),
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -28,17 +19,17 @@ userRouter.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { username,  password } = req.body;
+        const { username, email, password } = req.body;
 
         try {
             const hashedPassword = await bcrypt.hash(password, saltRounds);
             await conn.promise().query(
-                "INSERT INTO admin (username,  password) VALUES ( ?, ?)",
-                [username,  hashedPassword]
+                "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+                [username, email, hashedPassword]
             );
             res.status(201).json({ message: "User created successfully" });
         } catch (error) {
-            res.status(500).json({ error: "Error creating user: " + error.message });
+            res.status(500).json({ error: "Error creating user" });
         }
     }
 );
@@ -50,7 +41,7 @@ userRouter.post('/login', async (req, res) => {
 
     try {
         const [rows] = await conn.promise().query(
-            "SELECT * FROM admin WHERE username = ?",
+            "SELECT * FROM users WHERE username = ?",
             [username]
         );
 
@@ -62,23 +53,22 @@ userRouter.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(401).json({ error: "Incorrect password" });
+            return res.status(401).json({ error: "Invalid credentials" });
         }
 
-        const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1h' });
-
-        res.json({ message: "Login successful", token });
+        res.json({ message: "Login successful" });
     } catch (error) {
         res.status(500).json({ error: "Server error: " + error.message });
     }
 });
+
 userRouter.patch('/update/:id', async (req, res) => {
     const { id } = req.params;
     const { username, email, password } = req.body;
 
     try {
         const [existingUser] = await conn.promise().query(
-            "SELECT username, email, password FROM admin WHERE id = ?",
+            "SELECT username, email, password FROM users WHERE id = ?",
             [id]
         );
 
@@ -95,7 +85,7 @@ userRouter.patch('/update/:id', async (req, res) => {
             : currentUser.password;
 
         await conn.promise().query(
-            "UPDATE admin SET username = ?, email = ?, password = ? WHERE id = ?",
+            "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?",
             [newName, newEmail, newPassword, id]
         );
 
@@ -110,7 +100,7 @@ userRouter.delete('/delete/:id', async (req, res) => {
 
     try {
         const [result] = await conn.promise().query(
-            "DELETE FROM admin WHERE id = ?",
+            "DELETE FROM users WHERE id = ?",
             [id]
         );
 
@@ -123,6 +113,3 @@ userRouter.delete('/delete/:id', async (req, res) => {
         res.status(500).json({ error: "Error deleting user" });
     }
 });
-
-
-

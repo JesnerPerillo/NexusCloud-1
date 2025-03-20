@@ -34,15 +34,13 @@ export default function Login() {
       localStorage.setItem('token', response.data.token);
       navigate('/admindashboard');
       alert('Login successful!');
-  
+
     } catch (error) {
       console.error("Login error:", error);
       console.log("Error response:", error.response);
       alert(error.response?.data?.error || 'Login failed');
     }
   };
-  
-  
 
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gray-300">
