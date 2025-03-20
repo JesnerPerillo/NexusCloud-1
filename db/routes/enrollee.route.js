@@ -18,17 +18,18 @@ enrolleeRouter.get('/', (req, res) => {
     })
 })
 
-enrolleeRouter.post('/create', [check('email').isEmail(),
+enrolleeRouter.post('/create', [
     check('name').not().isEmpty(),
+    check('email').isEmail(),
     check('phoneNumber').not().isEmpty(),
     check('course').not().isEmpty(),
-    check('mop').not().isEmpty(),
     check('date').not().isEmpty(),
-    check('modality').not().isEmpty()
+    check('payment_method').not().isEmpty(),
+    check('reference_number').not().isEmpty()
 
     
  ], async (req, res) => {
-    const { name, email, phoneNumber,  course, mop, date, modality } = req.body;  
+    const { name, email, phoneNumber, course, date, payment_method, reference_number } = req.body;  
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -36,8 +37,8 @@ enrolleeRouter.post('/create', [check('email').isEmail(),
     }
 
     conn.promise().query(
-        "INSERT INTO enrollees (name, email, phoneNumber, course, mop, date, modality) VALUES ( ?, ?, ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber, course, mop, date, modality]
+        "INSERT INTO enrollees (name, email, phone_number, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?)", 
+        [name, email, phoneNumber, date, payment_method, reference_number]
     )
     .then(([rows]) => {
         console.log(rows);

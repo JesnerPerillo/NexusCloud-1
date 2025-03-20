@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { getCourses } = require("./fetchdata"); 
+
 const mysql = require("mysql");
 
 const db = mysql.createConnection({

@@ -10,7 +10,7 @@ const courseRouter = express.Router();
 courseRouter.get('/', async (req, res) => {
     const sortby = req.body.sortby || 'date';
     const order = req.body.order || 'asc';
-    const validColumns = ['name', 'email', 'course', 'mop', 'date', 'modality'];
+    const validColumns = ['couser_name', 'date', 'original_price',  'discounted_price', 'online', 'onsite'];
     
     if(!validColumns.includes(sortby)){
         return res.status(400).json({error: 'Invalid sort by column'});
@@ -27,21 +27,20 @@ courseRouter.post('/create', [
     check('date').not().isEmpty(),
     check('original_price').isNumeric(),
     check('discounted_price').isNumeric(),
-    check('modality').not().isEmpty(),
-    check('slots').isInt(),
-    check('duration').not().isEmpty()
+    check('online').not().isEmpty(),
+    check('onsite').isEmpty(),
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { course_name, date, original_price, discounted_price, modality, slots, duration } = req.body;
+    const { course_name, date, original_price, discounted_price, online, onSite} = req.body;
 
     try {
         const [result] = await conn.promise().query(
-            "INSERT INTO courses (course_name, date, original_price, discounted_price, modality, slots, duration) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            [course_name, date, original_price, discounted_price, modality, slots, duration]
+            "INSERT INTO courses (course_name, date, original_price, discounted_price, online, onsite ) VALUES (?, ?, ?, ?, ?, ?)",
+            [course_name, date, original_price, discounted_price, online, onSite]
         );
 
         res.status(201).json({ message: "Course created successfully", courseId: result.insertId });
@@ -67,7 +66,7 @@ courseRouter.delete('/delete/:id', (req, res) => {
 
 courseRouter.put('/update/:id', async (req, res) => {
     const {id} = req.params;
-    const  {course_name, date, original_price, discounted_price, modality, slots, duration} = req.body
+    const  {course_name, date, original_price, discounted_price, online, onSite} = req.body
 
     try {
 
@@ -81,18 +80,16 @@ courseRouter.put('/update/:id', async (req, res) => {
     const newDate = date || currentCourse.date;
     const newOriginalPrice = original_price || currentCourse.original_price;
     const newDiscountedPrice = discounted_price || currentCourse.discounted_price;
-    const newModality = modality || currentCourse.modality;
-    const newSlots = slots || currentCourse.slots;
-    const newDuration = duration || currentCourse.duration;
+    const newOnline = online || currentCourse.online
+    const newOnSite = onSite || currentCourse.onSite
 
-    await conn.promise().query(`UPDATE courses SET course_name=?, date=?, original_price=?, discounted_price=?, modality=?, slots=?, duration=? WHERE id=?`, [
-        newCourseName, 
+    await conn.promise().query(`UPDATE courses SET course_name=?, date=?, original_price=?, discounted_price=?, online=?, onSite=? WHERE id=?`, [
+        newCourseName,
         newDate,
         newOriginalPrice,
-          newDiscountedPrice,
-           newModality,
-            newSlots,
-             newDuration,
+        newDiscountedPrice,
+        newOnline,
+        newOnSite,
               id]);
 
               res.send("Course updated")

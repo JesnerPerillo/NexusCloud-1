@@ -19,27 +19,20 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting login with:", formData);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/login', {
-        username: formData.username,
-        password: formData.password,
-      });
-  
+      const response = await axios.post('http://localhost:4000/api/admin/login', formData);
       console.log("Login response:", response.data);
-      localStorage.setItem('token', response.data.token);
+
+      localStorage.setItem('token', response.data.token); // Assuming backend returns a token
       alert('Login successful!');
       window.location.href = '/dashboard';
-  
+
     } catch (error) {
-      console.error("Login error:", error);
-      console.log("Error response:", error.response);  
+      console.error("Login error:", error.response?.data || error.message);
       alert(error.response?.data?.error || 'Login failed');
     }
   };
-  
-  
 
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gray-300">
@@ -51,7 +44,7 @@ export default function Login() {
             <label className="text-sm font-semibold block mb-1">Username</label>
             <input
               type="text"
-              name="username"
+              name="username" // Fixed this from 'name' to 'username'
               value={formData.username}
               onChange={handleChange}
               placeholder="Enter your username"
