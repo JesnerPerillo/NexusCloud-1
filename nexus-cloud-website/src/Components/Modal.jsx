@@ -263,6 +263,7 @@ const confirmSubmission = async () => {
           )}
 
         {/* Submit Button */}
+        <div className="flex justify-center">
         <motion.button
           type="submit"
           whileHover={{ scale: 1.05 }}
@@ -277,9 +278,11 @@ const confirmSubmission = async () => {
         >
           Submit
         </motion.button>
+        </div>
       </form>
 
       {/* Close Button */}
+      <div className="flex justify-center">
       <motion.button
         onClick={onClose}
         whileHover={{ scale: 1.1 }}
@@ -294,6 +297,7 @@ const confirmSubmission = async () => {
       >
         Close
       </motion.button>
+      </div>
     </motion.div>
 
       {/*QR code modal for Gcash */}

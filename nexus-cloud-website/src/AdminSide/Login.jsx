@@ -25,15 +25,15 @@ export default function Login() {
     console.log("Submitting login with:", formData);
 
     try {
-      const response = await axios.post('http://localhost:4000/api/users/login', {
+      const response = await axios.post('http://localhost:4000/api/admin/login', {
         username: formData.username,
         password: formData.password,
       });
   
       console.log("Login response:", response.data);
       localStorage.setItem('token', response.data.token);
-      navigate('/admindashboard');
       alert('Login successful!');
+      navigate('/admindashboard');
 
     } catch (error) {
       console.error("Login error:", error);
