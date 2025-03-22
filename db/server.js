@@ -26,7 +26,7 @@ app.use(limiter)
 // })
 app.use("/api/admin", userRouter)
 app.use("/api/courses",  courseRouter)
-app.use("/api/enrollee", enrolleeRouter)
+app.use("/api/enrollees", enrolleeRouter)
 
 app.listen(4000, 
     console.log("Server Connected at port 4000")

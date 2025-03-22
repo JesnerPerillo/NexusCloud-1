@@ -49,16 +49,16 @@ courseRouter.post('/create', [
         res.status(500).json({ error: "Database error" });
     }
 });
-courseRouter.get('/:id', (req, res) => {
+courseRouter.get('/:id', async (req, res) => {
     const {id} = req.params;
-    conn.promise().query("SELECT * FROM course WHERE id = ?", [id])
+    await conn.promise().query("SELECT * FROM course WHERE id = ?", [id])
     .then(([rows]) => {
         res.send(rows)
     })
 })
-courseRouter.delete('/delete/:id', (req, res) => {
+courseRouter.delete('/delete/:id', async (req, res) => {
     const {id} = req.params;
-    conn.promise().query("DELETE FROM courses WHERE id = ?", [id])
+    await conn.promise().query("DELETE FROM courses WHERE id = ?", [id])
     .then(([rows]) => {
         res.send(rows)
     })

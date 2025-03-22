@@ -22,7 +22,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting login with:", formData);
+    // console.log("Submitting login with:", formData);
 
     try {
       const response = await axios.post('http://localhost:4000/api/admin/login', {
@@ -38,7 +38,7 @@ export default function Login() {
     } catch (error) {
       console.error("Login error:", error);
       console.log("Error response:", error.response);
-      alert(error.response?.data?.error || 'Login failed');
+      alert(error.response?.data?.error || 'Login failed' + error);
     }
   };
 

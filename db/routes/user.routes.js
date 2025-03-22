@@ -55,6 +55,7 @@ userRouter.post('/login', async (req, res) => {
         );
 
         if (rows.length === 0) {
+            console.log('no user that name ')
             return res.status(404).json({ error: "User not found" });
         }
 
@@ -62,6 +63,7 @@ userRouter.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
+            console.log('password do not match')
             return res.status(401).json({ error: "Incorrect password" });
         }
 
@@ -69,6 +71,7 @@ userRouter.post('/login', async (req, res) => {
 
         res.json({ message: "Login successful", token });
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: "Server error: " + error.message });
     }
 });
