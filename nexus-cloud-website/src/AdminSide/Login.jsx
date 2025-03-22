@@ -2,6 +2,7 @@ import { useState } from 'react';
 import NexusLogo from '../Images/nexusLogo.png';
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +10,8 @@ export default function Login() {
     username: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const togglePassword = () => setShowPassword(!showPassword);
 
@@ -19,17 +22,22 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Submitting login with:", formData);
 
     try {
-      const response = await axios.post('http://localhost:4000/api/admin/login', formData);
+      const response = await axios.post('http://localhost:4000/api/admin/login', {
+        username: formData.username,
+        password: formData.password,
+      });
+  
       console.log("Login response:", response.data);
-
-      localStorage.setItem('token', response.data.token); // Assuming backend returns a token
+      localStorage.setItem('token', response.data.token);
       alert('Login successful!');
-      window.location.href = '/dashboard';
+      navigate('/admindashboard');
 
     } catch (error) {
-      console.error("Login error:", error.response?.data || error.message);
+      console.error("Login error:", error);
+      console.log("Error response:", error.response);
       alert(error.response?.data?.error || 'Login failed');
     }
   };
@@ -44,7 +52,7 @@ export default function Login() {
             <label className="text-sm font-semibold block mb-1">Username</label>
             <input
               type="text"
-              name="username" // Fixed this from 'name' to 'username'
+              name="username"
               value={formData.username}
               onChange={handleChange}
               placeholder="Enter your username"

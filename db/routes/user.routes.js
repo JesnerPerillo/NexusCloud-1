@@ -7,10 +7,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const saltRounds = 10;
-const secretKey = process.env.JWT_SECRET_KEY;
+const secretKey = 'jennefer';
 
 export const userRouter = express.Router();
 
+
+userRouter.get('/', async (req, res) => {
+    const [rows] = await conn.promise().query("SELECT * FROM users");
+    res.status(200).json(rows);
+})
 userRouter.post(
     '/create',
     [
