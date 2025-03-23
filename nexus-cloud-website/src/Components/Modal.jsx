@@ -230,8 +230,8 @@ const confirmSubmission = async () => {
         {/* Payment Options */}
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-2">Mode of Payment</label>
-          <div className="flex flex-col space-y-2">
-            <label className="flex items-center p-2 rounded-md border border-gray-200 hover:border-blue-400 cursor-pointer">
+          <div className="flex space-x-2">
+            <label className="flex items-center p-2 rounded-md border border-gray-200 hover:border-blue-400 cursor-pointer w-1/2">
               <input
                 type="radio"
                 name="paymentMethod"
@@ -241,7 +241,7 @@ const confirmSubmission = async () => {
               />
               <span className="ml-3 text-gray-700">Gcash</span>
             </label>
-            <label className="flex items-center p-2 rounded-md border border-gray-200 hover:border-blue-400 cursor-pointer">
+            <label className="flex items-center p-2 rounded-md border border-gray-200 hover:border-blue-400 cursor-pointer w-1/2">
               <input
                 type="radio"
                 name="paymentMethod"
