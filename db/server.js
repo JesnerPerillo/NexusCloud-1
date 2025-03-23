@@ -28,8 +28,8 @@ app.use("/api/admin", userRouter)
 app.use("/api/courses",  courseRouter)
 app.use("/api/enrollees", enrolleeRouter)
 
-app.listen(4000, 
-    console.log("Server Connected at port 4000")
+app.listen(5000, 
+    console.log("Server Connected at port 5000")
 )
 
 // conn.promise().query("SELECT * FROM users").then(([rows]) => console.log(rows)).catch(console.log)  
