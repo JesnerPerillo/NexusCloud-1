@@ -34,21 +34,21 @@ enrolleeRouter.post('/create', [
     check('phoneNumber').not().isEmpty(),
     check('course').not().isEmpty(),
     check('date').not().isEmpty(),
-    check('payment_method').not().isEmpty(),
-    check('reference_number').not().isEmpty()
-
+   check('paymentMethod').not().isEmpty(),
+// 
     
  ], async (req, res) => {
-    const { name, email, phoneNumber, course, date, payment_method, reference_number } = req.body;  
+    const { name, email, phoneNumber, course, date, paymentMethod, reference_number } = req.body;  
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
+        console.log(errors);
         return res.status(400).json({ errors: errors.array() });
     }
 
     conn.promise().query(
         "INSERT INTO enrollees (name, email, phone_number, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber, date, payment_method, reference_number]
+        [name, email, phoneNumber, date, paymentMethod, reference_number]
     )
     .then(([rows]) => {
         console.log(rows);
@@ -77,10 +77,10 @@ enrolleeRouter.put('/update/:id',  async (req, res) => {
         const newPhoneNumber = phoneNumber || existingEnrollee.phoneNumber
         const newCourse = course || existingEnrollee.course
         const newDate = date || existingEnrollee.date
-        const newPaymentMethod = paymentMethod || paymentMethod
+        const newPaymentMethod = paymentMethod || existingEnrollee.payment_method
         const newReferenceNumber =referenceNumber || referenceNumber
 
-        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, date=?, paymentMethod=?, referenceNumber=?", [
+        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, date=?, payment_method=?, referenceNumber=?", [
             newName, newEmail, newPhoneNumber, newCourse, newDate, newPaymentMethod, newReferenceNumber, id
         ])
 

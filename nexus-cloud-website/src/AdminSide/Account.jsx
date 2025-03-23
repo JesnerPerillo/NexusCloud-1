@@ -11,7 +11,9 @@ export default function Account() {
         <SideBar />
       </div>
       <div>
-        <h1>Hellow</h1>
+        <h1>Account
+          
+        </h1>
       </div>
     </div>
   );
