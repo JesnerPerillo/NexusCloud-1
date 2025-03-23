@@ -14,6 +14,7 @@
     --border: #000000;
     --sidebar: #ffffff;
     --enroll-con: #ffffff;
+    --report: #ffffff;
   }
   
   html.dark {
@@ -30,6 +31,7 @@
     --border: #ffffff;
     --sidebar: #000000;
     --enroll-con: #222222;
+    --report: #0f0f0f;
   }
 
   .nav {
@@ -100,5 +102,10 @@
 
   .enroll {
     background-color: var(--enroll-con);
+    color: var(--text-color);
+  }
+
+  .report {
+    background-color: var(--report);
     color: var(--text-color);
   }
