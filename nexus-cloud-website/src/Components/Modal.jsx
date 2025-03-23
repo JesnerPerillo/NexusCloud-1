@@ -377,9 +377,6 @@ const confirmSubmission = async () => {
         >
           Okay, Got It!
         </motion.button>
-
-        <div className="absolute -bottom-10 w-40 h-40 bg-blue-500/30 blur-3xl rounded-full opacity-20"></div>
-        <div className="absolute top-0 right-0 w-20 h-20 bg-blue-400/20 blur-3xl rounded-full opacity-30"></div>
       </motion.div>
 
 
