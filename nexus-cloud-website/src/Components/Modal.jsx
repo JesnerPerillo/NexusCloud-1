@@ -351,7 +351,7 @@ const confirmSubmission = async () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6 text-xs text-gray-700 w-11/12 bg-gray-100/80 border-l-4 border-blue-600 p-3 rounded-lg shadow-sm"
+          className="mt-6 text-xs text-gray-700 w-11/12 bg-gray-100/80 border-l-4 border-black p-3 rounded-lg shadow-sm"
         >
           <p className="leading-relaxed">
             Scan the QR code above to make a GCash payment for the exact amount. After completing the
@@ -371,7 +371,7 @@ const confirmSubmission = async () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setQrcodeModal(false)}
-          className="mt-6 w-11/12 py-3 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition hover:from-blue-700 hover:to-blue-500 hover:cursor-pointer"
+          className="mt-6 w-11/12 py-3 bg-gradient-to-r from-black to-gray-400 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition hover:from-gray-700 hover:to-black hover:cursor-pointer"
         >
           Okay, Got It!
         </motion.button>
