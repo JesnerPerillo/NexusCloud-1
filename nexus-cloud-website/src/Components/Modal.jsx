@@ -74,14 +74,15 @@ const confirmSubmission = async () => {
   };
 
   try {
-    const response = await axios.post("http://localhost:5000/api/enrollees", updateFormData);
+    const response = await axios.post("http://localhost:4000/api/enrollees/create", updateFormData);
     console.log("Form submitted successfully:", response.data);
 
     setSuccess(true);
     setShowConfirmation(false);
   } catch (error) {
+    console.log(selectedDate,)
     console.error("Error submitting form:", error.response?.data || error.message);
-    alert(`Error submitting form: ${error.response?.data?.error || "Please try again later."}`);
+    alert(`Error submitting form: ${error.response?.data?.error || "Please try again later. Error: " + error.message}`);
   }
 };
   
@@ -90,12 +91,13 @@ const confirmSubmission = async () => {
   {/*API call for courses in the database (abang lang to) */}
   useEffect(() => {
     if (course?.title) {
-      axios.get("http://localhost:5000/api/courses")
+      axios.get("http://localhost:4000/api/courses")
         .then((res) => {
           console.log("API Response:", res.data);
 
           const courseData = res.data.find(c => c.course_name === course.title);
           if (courseData && courseData.dates.length > 0) {
+            console.log("Course Data:", courseData.date);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
@@ -110,9 +112,10 @@ const confirmSubmission = async () => {
             setAllowedDates(formattedDates);
           }
         })
-        .catch((err) => console.error("Error fetching courses:", err));
+        .catch((err) => console.error("Error fetching courses:", err.message));
     }
   }, [course]);
+  console.log(selectedDate)
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
