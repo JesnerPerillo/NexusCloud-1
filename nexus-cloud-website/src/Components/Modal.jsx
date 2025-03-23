@@ -480,12 +480,12 @@ const confirmSubmission = async () => {
       )}
 
       {policyPopup && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-3">
           <motion.div 
             initial={{ scale: 0.5, opacity: 0 }} 
             animate={{ scale: [1.1, 0.9, 1], opacity: 1 }} 
             transition={{ duration: 0.5, ease: "easeInOut" }} 
-            className="w-1/4 h-1/2 bg-red-200 rounded-xl p-5 flex flex-col justify-between items-center shadow-lg"
+            className="w-full h-1/2 bg-red-200 rounded-xl p-5 flex flex-col justify-between items-center shadow-lg sm:w-1/4 sm:h-1/2 text-black"
           >
             {/* 🚨 Animated Warning Icon */}
             <motion.div
