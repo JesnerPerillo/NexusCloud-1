@@ -262,7 +262,7 @@ export default function FAQs() {
       <div className="w-full h-full con py-16 pt-30 sm:h-screen">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text">Here are some of the frequently asked questions about NexusCloud IT Solutions.</p>
+          <p className="text px-3">Here are some of the frequently asked questions about NexusCloud IT Solutions.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
@@ -280,7 +280,7 @@ export default function FAQs() {
       <div className="w-full h-full con py-16 sm:h-screen">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text">Here are some of the frequently asked questions about Courses</p>
+          <p className="text px-3">Here are some of the frequently asked questions about Courses</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
@@ -298,7 +298,7 @@ export default function FAQs() {
       <div className="w-full h-full con py-16 ">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text">Here are some of the frequently asked questions about Courses</p>
+          <p className="text px-3">Here are some of the frequently asked questions about Courses</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
@@ -316,7 +316,7 @@ export default function FAQs() {
       <div className="w-full h-full con py-16 ">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text">Here are some of the frequently asked questions about Instructor & Teaching Style
+          <p className="text px-3">Here are some of the frequently asked questions about Instructor & Teaching Style
           .</p>
         </div>
 
@@ -335,7 +335,7 @@ export default function FAQs() {
       <div className="w-full h-full con py-16 ">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text">Here are some of the frequently asked questions about Certification & Career Opportunities.</p>
+          <p className="text px-3">Here are some of the frequently asked questions about Certification & Career Opportunities.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
@@ -353,7 +353,7 @@ export default function FAQs() {
       <div className="w-full h-full con py-16 ">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text">Here are some of the frequently asked questions about Course Rescheduling & Cancellations.</p>
+          <p className="text px-3">Here are some of the frequently asked questions about Course Rescheduling & Cancellations.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
@@ -371,7 +371,7 @@ export default function FAQs() {
       <div className="w-full h-full con py-16 ">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text">Here are some of the frequently asked questions for Additional Information.</p>
+          <p className="text px-3">Here are some of the frequently asked questions for Additional Information.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
