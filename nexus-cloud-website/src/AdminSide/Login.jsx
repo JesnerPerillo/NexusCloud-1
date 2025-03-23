@@ -44,9 +44,9 @@ export default function Login() {
 
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gray-300">
-      <div className="w-2/5 h-3/4 bg-white rounded-xl drop-shadow-xl flex flex-col items-center p-8">
+      <div className=" bg-white rounded-xl drop-shadow-xl flex flex-col items-center p-8">
         <img src={NexusLogo} alt="NexusCloud Logo" className="h-20 w-20 mb-4" />
-        <h1 className="text-2xl font-bold tracking-wide text-gray-800 mb-8">WELCOME ADMIN</h1>
+        <h1 className="text-2xl oswald-bold tracking-wide text-gray-800 mb-8">WELCOME ADMIN</h1>
         <form onSubmit={handleSubmit} className="w-80 flex flex-col items-center">
           <div className="w-full mb-4">
             <label className="text-sm font-semibold block mb-1">Username</label>
@@ -69,7 +69,7 @@ export default function Login() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
-                className="border border-gray-300 p-2 rounded-l-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="border border-gray-300 p-2 rounded-l-lg w-full focus:outline-none"
                 required
               />
               <button

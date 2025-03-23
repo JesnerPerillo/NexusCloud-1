@@ -132,8 +132,8 @@ const confirmSubmission = async () => {
       className="bg-white p-5 rounded-lg shadow-lg w-full mx-2 relative sm:max-w-[40rem]"
     >
       <h2 className="text-xl text-black font-bold oswald-bold">{course.title}</h2>
-      <p>{course.modality}</p>
-      <p className="mt-4 font-semibold text-black">Price: {course.discountedPrice}</p>
+      <p className="text-xs">{course.modality}</p>
+      <p className="mt-4 text-sm text-black">Price: {course.discountedPrice}</p>
 
       <hr className="text-black mb-2" />
 
@@ -307,30 +307,79 @@ const confirmSubmission = async () => {
     </motion.div>
 
       {/*QR code modal for Gcash */}
-      <div
-        className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-lg text-black transform transition-transform duration-300 ease-in-out ${
-          qrcodeModal ? "translate-x-0" : "translate-x-full"
-        }`}
+      <motion.div
+        initial={{ x: "100%", opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: "100%", opacity: 0 }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white/70 backdrop-blur-2xl shadow-2xl text-gray-900 transform transition-all duration-300 ease-in-out rounded-l-2xl flex flex-col justify-center items-center border border-gray-200 ${
+                qrcodeModal ? "translate-x-0" : "translate-x-full"
+              }`}
       >
-        <div className="p-6 flex flex-col items-center relative">
-          <h3 className="text-xl font-bold mb-4 mt-5 oswald-bold">Gcash Payment</h3>
-          <img src={QRCode} alt="Gcash QR Code" className="w-48 h-48 mx-auto mb-4" />
-          <p className="text-xs font-semibold text-left oswald-bold">
-            <span>Name: </span>CHRISTOPHER BUENAVENTURA
-          </p>
-          <p className="text-xs font-semibold text-left oswald-bold">
-            <span>Gcash Number: </span>09958494428
-          </p>
-          <p className="text-xs mt-10">Note: You can scan the QR code above to make a GCash payment for the exact amount. After completing the payment, please take a screenshot of the receipt and send it to our facebook page <a href="https://www.facebook.com/nxs88" className="montserrat-semibold">NexusCloud IT Solutions.</a> Once verified, you will receive an email receipt, which you must present at the office on the day of the training.</p>
+        <button
+          className="absolute top-4 left-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-full transition shadow-md hover:cursor-pointer"
+          onClick={() => setQrcodeModal(false)}
+        >
+          <TfiClose className="text-lg" />
+        </button>
 
-          <button
-            className="absolute top-2 left-2 p-2 hover:bg-gray-100 rounded-full hover:cursor-pointer"
-            onClick={() => setQrcodeModal(false)}
-          >
-            <TfiClose className="text-lg" />
-          </button>
+        <h3 className="text-2xl oswald-bold mt-5 tracking-wide text-gray-800">GCASH PAYMENT</h3>
+
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+          className="bg-white p-5 rounded-2xl shadow-xl mt-4 relative"
+        >
+          <img src={QRCode} alt="Gcash QR Code" className="w-48 h-48 mx-auto rounded-lg drop-shadow-3xl" />
+          {/* Glow Effect */}
+          <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-xl opacity-30"></div>
+        </motion.div>
+
+        <div className="mt-6 text-sm w-full px-6 text-gray-700">
+          <p className="flex items-center space-x-2">
+            <span className="font-medium text-gray-600">👤 Name:</span>
+            <span className="font-semibold">CHRISTOPHER BUENAVENTURA</span>
+          </p>
+          <p className="flex items-center space-x-2 mt-1">
+            <span className="font-medium text-gray-600">📞 Gcash Number:</span>
+            <span className="font-semibold">09958494428</span>
+          </p>
         </div>
-      </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-6 text-xs text-gray-700 w-11/12 bg-gray-100/80 border-l-4 border-black p-3 rounded-lg shadow-sm"
+        >
+          <p className="leading-relaxed">
+            Scan the QR code above to make a GCash payment for the exact amount. After completing the
+            payment, take a screenshot of the receipt and send it to our Facebook page{" "}
+            <a
+              href="https://www.facebook.com/nxs88"
+              className="font-semibold text-blue-600 hover:underline"
+            >
+              NexusCloud IT Solutions.
+            </a>{" "}
+            Once verified, you will receive an email receipt, which you must present at the office on the
+            day of the training.
+          </p>
+        </motion.div>
+
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setQrcodeModal(false)}
+          className="mt-6 w-11/12 py-3 bg-gradient-to-r from-black to-gray-400 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition hover:from-gray-700 hover:to-black hover:cursor-pointer"
+        >
+          Okay, Got It!
+        </motion.button>
+
+        <div className="absolute -bottom-10 w-40 h-40 bg-blue-500/30 blur-3xl rounded-full opacity-20"></div>
+        <div className="absolute top-0 right-0 w-20 h-20 bg-blue-400/20 blur-3xl rounded-full opacity-30"></div>
+      </motion.div>
+
 
       {success && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-40">
@@ -434,7 +483,7 @@ const confirmSubmission = async () => {
             initial={{ scale: 0.5, opacity: 0 }} 
             animate={{ scale: [1.1, 0.9, 1], opacity: 1 }} 
             transition={{ duration: 0.5, ease: "easeInOut" }} 
-            className="w-1/4 h-1/2 bg-white rounded-xl p-5 flex flex-col justify-between items-center shadow-lg"
+            className="w-1/4 h-1/2 bg-red-200 rounded-xl p-5 flex flex-col justify-between items-center shadow-lg"
           >
             {/* 🚨 Animated Warning Icon */}
             <motion.div
