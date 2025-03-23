@@ -7,6 +7,7 @@ import QRCode from '../Images/qr.jpg';
 import { TfiClose } from "react-icons/tfi";
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
+import { TiWarning } from "react-icons/ti";
 
 const Modal = ({ course, onClose }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -17,6 +18,7 @@ const Modal = ({ course, onClose }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [referenceNumberModal, setReferenceNumberModal] = useState(false); 
+  const [policyPopup, setPolicyPopup] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,6 +46,7 @@ const Modal = ({ course, onClose }) => {
     }));
 
     if (selectedPaymentMethod === "Gcash") {
+      setPolicyPopup(true);
       setQrcodeModal(true);
       setReferenceNumberModal(true);
     } else {
@@ -421,6 +424,40 @@ const confirmSubmission = async () => {
           </motion.div>
         </motion.div>
       )}
+
+      {policyPopup && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+          <motion.div 
+            initial={{ scale: 0.5, opacity: 0 }} 
+            animate={{ scale: [1.1, 0.9, 1], opacity: 1 }} 
+            transition={{ duration: 0.5, ease: "easeInOut" }} 
+            className="w-1/4 h-1/2 bg-white rounded-xl p-5 flex flex-col justify-between items-center shadow-lg"
+          >
+            {/* 🚨 Animated Warning Icon */}
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], y: [0, -5, 0] }} 
+              transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+            >
+              <TiWarning className="text-red-500 mb-2" size={80} />
+            </motion.div>
+            <span className="montserrat-semibold text-2xl">Important Notice:</span>
+            <p className="text-center">
+              Once the payment is made through our online platform, it is 
+              <span className="montserrat-semibold"> non-refundable </span> and 
+              <span className="montserrat-semibold"> non-transferable </span> to another person. 
+              Please ensure all details are correct before completing your payment.
+            </p>
+
+            <button 
+              onClick={() => setPolicyPopup(false)} 
+              className="mt-4 px-4 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition hover:cursor-pointer"
+            >
+              Close
+            </button>
+          </motion.div>
+        </div>
+      )}
+
     </div>
   );
 };
