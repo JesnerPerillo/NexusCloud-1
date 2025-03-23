@@ -6,6 +6,8 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
+const MAX_ATTEMPTS = 5; 
+const LOCKOUT_TIME = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 const saltRounds = 10;
 const secretKey = 'jennefer';
 
@@ -60,18 +62,59 @@ userRouter.post('/login', async (req, res) => {
         }
 
         const user = rows[0];
+    //cooment ko muna pre 
+    //     const isMatch = await bcrypt.compare(password, user.password);
+
+    //     if (!isMatch) {
+    //         console.log('password do not match')
+    //         return res.status(401).json({ error: "Incorrect password" });
+    //     }
+
+    //     const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1h' });
+
+    //     res.json({ message: "Login successful", token });
+    // } catch (error) {
+    //     console.log(error)
+    //     res.status(500).json({ error: "Server error: " + error.message });
+    // }
+        // Check if the account is locked
+        if (user.lockout_until && new Date(user.lockout_until) > new Date()) {
+            return res.status(403).json({ error: "Account locked for 1 day. Try again later." });
+        }
+
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            console.log('password do not match')
+            console.log('Password does not match');
+
+            // Increment failed attempts
+            const newAttempts = user.failed_attempts + 1;
+            let lockoutUntil = user.lockout_until;
+
+            // Lock account if max attempts reached
+            if (newAttempts >= MAX_ATTEMPTS) {
+                lockoutUntil = new Date(Date.now() + LOCKOUT_TIME);
+            }
+
+            await conn.promise().query(
+                "UPDATE admin SET failed_attempts = ?, lockout_until = ? WHERE username = ?",
+                [newAttempts, lockoutUntil, username]
+            );
+
             return res.status(401).json({ error: "Incorrect password" });
         }
+
+        // Reset failed attempts on successful login
+        await conn.promise().query(
+            "UPDATE admin SET failed_attempts = 0, lockout_until = NULL WHERE username = ?",
+            [username]
+        );
 
         const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1h' });
 
         res.json({ message: "Login successful", token });
     } catch (error) {
-        console.log(error)
+        console.error(error);
         res.status(500).json({ error: "Server error: " + error.message });
     }
 });
