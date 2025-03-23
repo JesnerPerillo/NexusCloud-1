@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TeachImg from "../Images/tree.png";
+import { Link } from 'react-router';
 import { SteppedEase } from 'gsap';
 
 export default function ContentLandingPage() {
@@ -21,7 +22,7 @@ export default function ContentLandingPage() {
 
 
     // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
-    return (
+return (
     <div className="flex flex-col con mt-0 lg:flex-row items-center justify-between px-5 lg:px-20 py-10 overflow-hidden">
         {/* Right Side */}
         <div className="w-full mt-20 text-left lg:w-3/4">
@@ -39,7 +40,7 @@ export default function ContentLandingPage() {
                 No Experience Needed!
                 </h2>
                 <p className="text text-white w-full mt-5 text-justify sm:w-1/2">{`Join us today and take the first step toward mastering the tech skills of tomorrow! Whether you're a beginner exploring the world of technology or a professional looking to enhance your expertise, our comprehensive seminars will equip you with the knowledge, hands-on experience, and industry insights needed to stay ahead in the ever-evolving digital landscape. Don't miss this opportunity to learn from expert instructors, engage with like-minded individuals, and unlock new career possibilities in the world of IT!`}</p>
-                <button className="relative w-40 mt-10 flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-[#ffbe00] rounded-md group hover:cursor-pointer">
+                <Link to="/courses"><button className="relative w-40 mt-10 flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-[#ffbe00] rounded-md group hover:cursor-pointer">
                 <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-[#bfa149] rounded group-hover:-mr-4 group-hover:-mt-4">
                     <span
                     className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
@@ -60,7 +61,7 @@ export default function ContentLandingPage() {
                     >Enroll Now!</span
                 >
                 </button>
-
+                </Link>
             </div>
         </div>
 

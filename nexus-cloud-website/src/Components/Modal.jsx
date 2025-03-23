@@ -85,6 +85,8 @@ const confirmSubmission = async () => {
     alert(`Error submitting form: ${error.response?.data?.error || "Please try again later. Error: " + error.message}`);
   }
 };
+
+
   
   
 
@@ -207,7 +209,7 @@ const confirmSubmission = async () => {
             >
               <option value="" hidden>Select Modality</option>
               <option value="online">Online (via Zoom)</option>
-              <option value="on-Site">On-Site (At the office)</option>
+              <option value="onsite">On-Site (At the office)</option>
             </select>
           </div>
 

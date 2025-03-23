@@ -3,6 +3,7 @@ import WhatWeDo3 from '../Images/whatwedo3.jpg';
 import WhatWeDo4 from '../Images/whatwedo4.jpg';
 import WhatWeDo2 from '../Images/whatwedo2.jpg';
 import Footer from '../Components/Footer.jsx';
+import Contact from '../Components/Contact.jsx';
 
 export default function Process() {
   const images = [
@@ -49,6 +50,10 @@ export default function Process() {
         <h2 className="text-[#ffbd59] oswald-bold text-2xl mb-10">Expert Instructors & Certification Success</h2>
         <p className="text text-xl mb-10">Learn from certified professionals (MCT, CCNA, AWS, VCP, Citrix, etc.) with 20+ years of experience. With study guides, hands-on labs, and reviewers, most students pass their exams within days.
         </p>
+      </div>
+
+      <div>
+        <Contact />
       </div>
 
       <div>

@@ -4,6 +4,7 @@ import LandingPage from "./Routes/LandingPage.jsx";
 import AboutNexus from './Routes/AboutNexus.jsx';
 import Courses from './Routes/Courses.jsx';
 import Process from './Routes/Process.jsx';
+import FAQs from './Routes/FAQs.jsx';
 import Login from './AdminSide/Login.jsx';
 import Dashboard from './AdminSide/Dashboard.jsx';
 import Enrollees from './AdminSide/Enrollees.jsx';
@@ -25,6 +26,7 @@ export default function App(){
         <Route path="/aboutnexus" element={<AboutNexus />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/process" element={<Process />} />
+        <Route path="/faqs" element={<FAQs />} />
         <Route path="/adminlogin" element={<Login />} />
         <Route path="/admindashboard" element={<Dashboard />} />
         <Route path="/enrollees" element={<Enrollees />} />

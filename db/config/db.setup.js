@@ -5,7 +5,7 @@ const conn = mysql2.createPool({
     host: "localhost",
     user: "root",
     password: "",
-    database: "nexusclouddb",
+    database: "NexusCloudDB",
     connectionLimit: 10,
     port: 3306
 })

@@ -15,6 +15,9 @@ export default function Login() {
     username: '',
     password: '',
   });
+  const [remainingAttempts, setRemainingAttempts] = useState(5);
+  const [accountLocked, setAccountLocked] = useState(false);
+  const [lockoutMessage, setLockoutMessage] = useState('');
 
   const navigate = useNavigate();
 
@@ -28,24 +31,36 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     try {
       const response = await axios.post('http://localhost:5000/api/admin/login', {
         username: formData.username,
         password: formData.password,
       });
-
+  
       console.log("Login response:", response.data);
       localStorage.setItem('token', response.data.token);
       setLoginSuccess(true);
-
+  
       setTimeout(() => {
         navigate('/admindashboard');
       }, 5000);
-      
     } catch (error) {
-      console.error("Login error:", error);
-      setIncorrectPassword(true);
+      console.error("Login error:", error.response?.data);
+      console.log(error.response.data.failed_attempts);
+  
+      if (error.response?.data?.error === "User not found") {
+        setIncorrectPassword(true);
+        setLockoutMessage("User not found. Please check your username.");
+      } else if (error.response?.data?.error === "Account locked for 1 day. Try again later.") {
+        setAccountLocked(true);
+        setLockoutMessage(error.response.data.error);
+      } else if (error.response?.data?.error === "Incorrect password") {
+        setIncorrectPassword(true);
+        setRemainingAttempts(5 - (error.response.data.failed_attempts || 0));
+        setLockoutMessage(`Incorrect password! ${remainingAttempts} attempts remaining.`);
+      }
+  
       setTimeout(() => {
         setIncorrectPassword(false);
       }, 1500);
@@ -54,6 +69,7 @@ export default function Login() {
     }
   };
 
+  
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300">
       <motion.div
@@ -148,7 +164,20 @@ export default function Login() {
             className="absolute top-[-80px] bg-white border border-red-500 shadow-lg rounded-lg px-6 py-4 flex items-center space-x-4"
           >
             <TiWarning className="text-red-500" size={28} />
-            <p className="text-sm font-semibold text-red-600">Incorrect password! Please try again.</p>
+            <p className="text-sm font-semibold text-red-600">{lockoutMessage}</p>
+          </motion.div>
+        )}
+
+        {/* Account Locked Modal */}
+        {accountLocked && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-[-80px] bg-red-500 text-white shadow-lg rounded-lg px-6 py-4 flex items-center space-x-4"
+          >
+            <TiWarning className="text-white" size={28} />
+            <p className="text-sm text-center font-semibold">{lockoutMessage}</p>
           </motion.div>
         )}
 
