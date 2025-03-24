@@ -110,7 +110,7 @@ export default function Process() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {paymentMethods.map((method, index) => (
-            <div key={index} className="report p-6 rounded-2xl shadow-lg flex flex-col items-center">
+            <div key={index} className="report p-6 rounded-2xl shadow-lg flex flex-col items-center hover:scale-110 transition-transform">
               <div className="mb-4">{method.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{method.title}</h3>
               <p className="">{method.description}</p>
