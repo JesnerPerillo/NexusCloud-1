@@ -7,10 +7,20 @@ import AzureImg from '../Images/azure.png';
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Test from '../Components/CardContent.jsx';
+import WhatWeDo3 from '../Images/whatwedo3.jpg';
+import WhatWeDo4 from '../Images/whatwedo4.jpg';
+import WhatWeDo2 from '../Images/whatwedo2.jpg';
 
 
 
 export default function Courses() {
+
+  const images = [
+      { src: WhatWeDo3, clip: "polygon(0% 0%, 95% 0%, 85% 100%, 0% 100%)" },
+      { src: WhatWeDo4, clip: "polygon(10% 0%, 95% 0%, 85% 100%, 0% 100%)" },
+      { src: WhatWeDo2, clip: "polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%)" },
+    ];
+
   const courses = [
     {
       title: "ETHICAL HACKING & PENETRATION TESTING",
@@ -55,6 +65,24 @@ export default function Courses() {
     <div className="con w-full h-auto sm:w-full h-auto">
       <div>
         <Header />
+      </div>
+
+      <div className="relative w-full h-auto con">
+        <h1 className="absolute z-20 text-7xl left-5 text-purple-500 bottom-20 sm:bottom-0 sm:left-20 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY COURSES </h1>
+        <h1 className="absolute z-20 text-white left-4 text-7xl bottom-22 sm:bottom-2 sm:left-18 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY COURSES </h1>
+        <div className="flex justify-center items-center pt-22 relative opacity-70">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className="relative w-full h-[450px] bg-cover bg-center shadow-lg"
+            style={{
+              backgroundImage: `url(${image.src})`,
+              clipPath: image.clip,
+              marginLeft: index !== 0 ? "-5%" : "0", // Overlapping effect
+            }}
+          ></div>
+          ))}
+        </div>
       </div>
       
       <div className="w-full h-auto con pt-20 flex flex-col items-center text-white">

@@ -1,64 +1,142 @@
-import Header from '../Components/Header.jsx';
-import WhatWeDo3 from '../Images/whatwedo3.jpg';
-import WhatWeDo4 from '../Images/whatwedo4.jpg';
-import WhatWeDo2 from '../Images/whatwedo2.jpg';
-import Footer from '../Components/Footer.jsx';
-import Contact from '../Components/Contact.jsx';
+import { CheckCircle, CreditCard, FileText, Pencil, Calendar, Mail, Users, GraduationCap, Clock, ShieldCheck, Banknote, Building2, Wallet } from "lucide-react";
+import Header from "../Components/Header.jsx";
+import Footer from "../Components/Footer.jsx";
+import Contact from "../Components/Contact.jsx";
+
+const steps = [
+  { icon: <FileText size={32} className="text" />, title: "Browse Courses", description: "Explore a variety of IT training courses." },
+  { icon: <Pencil size={32} className="text" />, title: "Fill Out Enrollment Form", description: "Provide your details and select the course you want to enroll in." },
+  { icon: <Calendar size={32} className="text" />, title: "Select Schedule", description: "Choose a seminar date that fits your availability." },
+  { icon: <CreditCard size={32} className="text" />, title: "Make Payment", description: "Pay securely via GCash or Cash at our office." },
+  { icon: <Mail size={32} className="text" />, title: "Receive Confirmation", description: "An email receipt and confirmation will be sent to you." },
+  { icon: <CheckCircle size={32} className="text" />, title: "Start Learning", description: "Attend the seminar and enhance your skills!" },
+];
+
+const benefits = [
+  { icon: <GraduationCap size={32} className="text" />, title: "Industry-Recognized Certificates", description: "Get certified upon completing your training." },
+  { icon: <Users size={32} className="text" />, title: "Expert Instructors", description: "Learn from experienced professionals in IT and cybersecurity." },
+  { icon: <Clock size={32} className="text" />, title: "Flexible Schedules", description: "Choose seminar dates that fit your availability." },
+  { icon: <ShieldCheck size={32} className="text" />, title: "Secure Payments", description: "We offer trusted and secure payment options." },
+  { icon: <CheckCircle size={32} className="text" />, title: "Hands-on Learning", description: "Work on real-world projects and practical exercises to enhance your skills." },
+  { icon: <Mail size={32} className="text" />, title: "Career Support", description: "Get guidance on job opportunities, resume building, and interview preparation." },
+  { icon: <CreditCard size={32} className="text" />, title: "Affordable Pricing", description: "Receive high-quality training at competitive prices with no hidden fees." },
+  { icon: <Users size={32} className="text" />, title: "Networking Opportunities", description: "Connect with industry professionals and peers to expand your career network." },
+];
+
+
+const paymentMethods = [
+  { 
+    icon: <Wallet size={32} className="text" />, 
+    title: "GCash Payment", 
+    description: "Send your payment via GCash to our official number. Ensure that you provide the correct reference number in the enrollment form. A confirmation email will be sent once payment is verified.",
+    additionalInfo: "Processing time: 1-2 hours during business hours."
+  },
+  { 
+    icon: <Banknote size={32} className="text" />, 
+    title: "Cash at Office", 
+    description: "Visit our office during business hours to pay in cash. Our staff will assist you with the enrollment process and provide an official receipt.",
+    additionalInfo: "Office hours: Monday to Saturday, 9 AM - 5 PM."
+  },
+  { 
+    icon: <Building2 size={32} className="text" />, 
+    title: "Bank Transfer (BDO) (Coming Soon)", 
+    description: "Transfer your payment via BDO online banking or over-the-counter. Send a screenshot of the transaction receipt to our email for verification.",
+    additionalInfo: "Account details will be provided upon course reservation."
+  },
+  { 
+    icon: <CreditCard size={32} className="text" />, 
+    title: "Credit/Debit Card (Coming Soon)", 
+    description: "We will soon accept credit and debit card payments for easier transactions. Stay tuned for updates!",
+    additionalInfo: "Expected launch: Q2 2025."
+  }
+];
+
+const testimonials = [
+  { name: "Mark A.", feedback: "The training was excellent! The instructors were knowledgeable, and I got certified after completing my course." },
+  { name: "Sarah L.", feedback: "I loved the flexibility of schedules. I was able to enroll and learn at my own pace while working full-time." },
+  { name: "John D.", feedback: "The enrollment process was seamless. I received my confirmation email within minutes, and everything was well-organized!" },
+  { name: "Mark A.", feedback: "The training was excellent! The instructors were knowledgeable, and I got certified after completing my course." },
+  { name: "Sarah L.", feedback: "I loved the flexibility of schedules. I was able to enroll and learn at my own pace while working full-time." },
+  { name: "John D.", feedback: "The enrollment process was seamless. I received my confirmation email within minutes, and everything was well-organized!" },
+  { name: "Mark A.", feedback: "The training was excellent! The instructors were knowledgeable, and I got certified after completing my course." },
+  { name: "Sarah L.", feedback: "I loved the flexibility of schedules. I was able to enroll and learn at my own pace while working full-time." },
+  { name: "John D.", feedback: "The enrollment process was seamless. I received my confirmation email within minutes, and everything was well-organized!" },
+];
+
 
 export default function Process() {
-  const images = [
-    { src: WhatWeDo3, clip: "polygon(0% 0%, 95% 0%, 85% 100%, 0% 100%)" },
-    { src: WhatWeDo4, clip: "polygon(10% 0%, 95% 0%, 85% 100%, 0% 100%)" },
-    { src: WhatWeDo2, clip: "polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%)" },
-  ];
-
-
-
-  return(
+  return (
     <div className="con">
-      <div>
-        <Header />
-      </div>
+      <Header />
 
-      <div className="relative w-full h-auto con">
-        <h1 className="absolute z-20 text-7xl left-5 text-purple-500 bottom-20 sm:bottom-0 sm:left-20 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY PACKAGES </h1>
-        <h1 className="absolute z-20 text-white left-4 text-7xl bottom-22 sm:bottom-2 sm:left-18 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY PACKAGES </h1>
-        <div className="flex justify-center items-center pt-22 relative opacity-70">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="relative w-full h-[450px] bg-cover bg-center shadow-lg"
-            style={{
-              backgroundImage: `url(${image.src})`,
-              clipPath: image.clip,
-              marginLeft: index !== 0 ? "-5%" : "0", // Overlapping effect
-            }}
-          ></div>
+      {/* Enrollment Process */}
+      <div className="max-w-6xl mx-auto py-16 pt-30 px-6 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">How to Enroll in a Course</h2>
+        <p className="text-gray-600 text-lg">Follow these simple steps to enroll and start learning.</p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
+          {steps.map((step, index) => (
+            <div key={index} className="flex flex-col items-center report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform">
+              <div className="mb-4">{step.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              <p className="">{step.description}</p>
+            </div>
           ))}
         </div>
       </div>
-      <div className="p-10 con">
-        <p className="text text-xl mb-10">We offer a 1-year unlimited, practical, and job-ready IT certification training program designed for real-world success. Our bite-sized lessons include hands-on labs and projects to ensure practical learning.
-        </p>
-        <h2 className="text-[#ffbd59] oswald-bold text-2xl mb-10">Fast-Track & Flexible Learning</h2>
-        <p className="text text-xl mb-10">Courses run 1 to 5 days instead of months, giving you more flexibility. Our Job-Ready Program lasts 3 to 6 months part-time, with a 2-year internship for industry experience.</p>
-        <h2 className="text-[#ffbd59] oswald-bold text-2xl mb-10">Training Options</h2>
-        <ul className="list-disc p-5 mb-10 text-xl text">
-          <li>Live Online (Zoom & MS Teams) – Learn from home while working.</li>
-          <li>On-Site (Ortigas Data Center) – Get hands-on with physical Cisco routers and switches.</li>
-        </ul>
-        <h2 className="text-[#ffbd59] oswald-bold text-2xl mb-10">Expert Instructors & Certification Success</h2>
-        <p className="text text-xl mb-10">Learn from certified professionals (MCT, CCNA, AWS, VCP, Citrix, etc.) with 20+ years of experience. With study guides, hands-on labs, and reviewers, most students pass their exams within days.
-        </p>
+
+      {/* Why Choose NexusCloud? */}
+      <div className="con h-screen py-16 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose NexusCloud IT Solutions?</h2>
+          <p className="text-gray-600 text-lg mb-10">We provide high-quality IT training with real-world applications.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex flex-col items-center report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform">
+                <div className="mb-4">{benefit.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
+                <p className="">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div>
-        <Contact />
+      {/* Payment Methods */}
+      <div className="max-w-6xl h-screen mx-auto py-16 px-6 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Payment Methods</h2>
+        <p className="text-gray-600 text-lg mb-10">Choose the most convenient way to pay for your course.</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {paymentMethods.map((method, index) => (
+            <div key={index} className="report p-6 rounded-2xl shadow-lg flex flex-col items-center">
+              <div className="mb-4">{method.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{method.title}</h3>
+              <p className="">{method.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div>
-        <Footer />
+      {/* Student Testimonials */}
+      <div className="con h-screen py-16 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Students Say</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform">
+                <p className="">`{testimonial.feedback}`</p>
+                <h3 className="text-xl font-semibold mt-4">{testimonial.name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
+      <Contact />
+      <Footer />
     </div>
   );
 }

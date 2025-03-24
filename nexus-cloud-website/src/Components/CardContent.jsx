@@ -179,8 +179,8 @@ const getImageForCourse = (courseName) => {
     "Microsoft 365 Endpoint Administrator Associate (MD-102)": ModernDesktopAdmin,
     "Microsoft 365 Certified: Administrator Expert (MS-102)": EnterpriseAdmin,
     "Microsoft Certified: Windows Server 2022 & Azure Cloud Hybrid Administrator (AZ-800)": WSHA,
-    "VMware vSphere 7 Data Center Virtualization": VMware,
-    "Microsoft Windows Server 2019 Administration Automation": WindowsServer,
+    "3-Day VMware vSphere 8.0 Data Center Virtualization": VMware,
+    "IT Support Admin Engineer by automating Windows Server": WindowsServer,
     "Facebook Ads Strategies 2025": FacebookAds,
   };
 
