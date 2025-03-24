@@ -72,7 +72,7 @@ export default function Process() {
       {/* Enrollment Process */}
       <div className="max-w-6xl mx-auto py-16 pt-30 px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">How to Enroll in a Course</h2>
-        <p className="text-gray-600 text-lg">Follow these simple steps to enroll and start learning.</p>
+        <p className="text-gray-400 text-lg">Follow these simple steps to enroll and start learning.</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
           {steps.map((step, index) => (
@@ -89,7 +89,7 @@ export default function Process() {
       <div className="con h-screen py-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose NexusCloud IT Solutions?</h2>
-          <p className="text-gray-600 text-lg mb-10">We provide high-quality IT training with real-world applications.</p>
+          <p className="text-gray-400 text-lg mb-10">We provide high-quality IT training with real-world applications.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
@@ -106,7 +106,7 @@ export default function Process() {
       {/* Payment Methods */}
       <div className="max-w-6xl h-screen mx-auto py-16 px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Payment Methods</h2>
-        <p className="text-gray-600 text-lg mb-10">Choose the most convenient way to pay for your course.</p>
+        <p className="text-gray-400 text-lg mb-10">Choose the most convenient way to pay for your course.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {paymentMethods.map((method, index) => (
@@ -122,7 +122,7 @@ export default function Process() {
       {/* Student Testimonials */}
       <div className="con h-screen py-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Students Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-10">What Our Students Say</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (

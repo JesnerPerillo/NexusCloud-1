@@ -267,7 +267,7 @@ export default function FAQs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
           {nexus.map((nexu, index) => (
-            <div key={index} className="flex items-start gap-2 border-l-2 border-red-500 pl-4">
+            <div key={index} className="flex items-start gap-2 border-l-2 border-text pl-4">
               <div>
                 <h3 className="text-lg montserrat-bold">{nexu.title}</h3>
                 <p className="text">{nexu.description}</p>
@@ -285,7 +285,7 @@ export default function FAQs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
           {courses.map((course, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-red-500 pl-4">
+            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
               <div>
                 <h3 className="text-lg montserrat-bold">{course.title}</h3>
                 <p className="text">{course.description}</p>
@@ -303,7 +303,7 @@ export default function FAQs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
           {paymentEnrollments.map((paymentEnrollment, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-red-500 pl-4">
+            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
               <div>
                 <h3 className="text-lg montserrat-bold">{paymentEnrollment.title}</h3>
                 <p className="text">{paymentEnrollment.description}</p>
@@ -322,7 +322,7 @@ export default function FAQs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
           {teaching.map((teach, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-red-500 pl-4">
+            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
               <div>
                 <h3 className="text-lg montserrat-bold">{teach.title}</h3>
                 <p className="text">{teach.description}</p>
@@ -340,7 +340,7 @@ export default function FAQs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
           {certifications.map((certification, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-red-500 pl-4">
+            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
               <div>
                 <h3 className="text-lg montserrat-bold">{certification.title}</h3>
                 <p className="text">{certification.description}</p>
@@ -358,7 +358,7 @@ export default function FAQs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
           {reschedulings.map((rescheduling, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-red-500 pl-4">
+            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
               <div>
                 <h3 className="text-lg montserrat-bold">{rescheduling.title}</h3>
                 <p className="text">{rescheduling.description}</p>
@@ -376,7 +376,7 @@ export default function FAQs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
           {additionalInfos.map((additionalInfo, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-red-500 pl-4">
+            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
               <div>
                 <h3 className="text-lg montserrat-bold">{additionalInfo.title}</h3>
                 <p className="text">{additionalInfo.description}</p>
