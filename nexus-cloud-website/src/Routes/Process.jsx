@@ -70,7 +70,7 @@ export default function Process() {
       <Header />
 
       {/* Enrollment Process */}
-      <div className="max-w-6xl mx-auto py-16 pt-30 px-6 text-center">
+      <div className="max-w-6xl h-full mx-auto py-16 pt-30 px-6 text-center sm:h-screen">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">How to Enroll in a Course</h2>
         <p className="text-gray-400 text-lg">Follow these simple steps to enroll and start learning.</p>
 
@@ -86,9 +86,9 @@ export default function Process() {
       </div>
 
       {/* Why Choose NexusCloud? */}
-      <div className="con h-screen py-16 px-6">
+      <div className="con h-full sm:h-screen py-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose NexusCloud IT Solutions?</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Why Choose NexusCloud IT Solutions?</h2>
           <p className="text-gray-400 text-lg mb-10">We provide high-quality IT training with real-world applications.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -104,7 +104,7 @@ export default function Process() {
       </div>
 
       {/* Payment Methods */}
-      <div className="max-w-6xl h-screen mx-auto py-16 px-6 text-center">
+      <div className="max-w-6xl h-full sm:h-screen mx-auto py-16 px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Payment Methods</h2>
         <p className="text-gray-400 text-lg mb-10">Choose the most convenient way to pay for your course.</p>
 
@@ -120,7 +120,7 @@ export default function Process() {
       </div>
 
       {/* Student Testimonials */}
-      <div className="con h-screen py-16 px-6">
+      <div className="con h-full sm:h-screen py-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-10">What Our Students Say</h2>
 
