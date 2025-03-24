@@ -23,6 +23,10 @@ export default function AboutNexus() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [weAreIndex, setWeAreIndex] = useState(0);
   
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
     const slides = [
       WhatWeDoImg,
       WhatWeDo1Img,

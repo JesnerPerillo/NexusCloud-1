@@ -2,6 +2,7 @@ import { CheckCircle, CreditCard, FileText, Pencil, Calendar, Mail, Users, Gradu
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import Contact from "../Components/Contact.jsx";
+import { useEffect } from "react";
 
 const steps = [
   { icon: <FileText size={32} className="text" />, title: "Browse Courses", description: "Explore a variety of IT training courses." },
@@ -65,6 +66,10 @@ const testimonials = [
 
 
 export default function Process() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="con">
       <Header />

@@ -21,6 +21,10 @@ export default function Courses() {
       { src: WhatWeDo2, clip: "polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%)" },
     ];
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
   const courses = [
     {
       title: "ETHICAL HACKING & PENETRATION TESTING",

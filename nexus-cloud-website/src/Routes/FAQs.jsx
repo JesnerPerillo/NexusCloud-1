@@ -1,5 +1,7 @@
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import Contact from "../Components/Contact";
+import { useEffect } from "react";
 
 const nexus = [
   {
@@ -253,6 +255,11 @@ const paymentEnrollments = [
 
 
 export default function FAQs() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  
   return (
     <div className="h-auto con">
       <div>
@@ -387,6 +394,7 @@ export default function FAQs() {
       </div>
 
       <div>
+        <Contact />
         <Footer />
       </div>
     </div>
