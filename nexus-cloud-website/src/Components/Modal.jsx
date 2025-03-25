@@ -24,6 +24,7 @@ const Modal = ({ course, onClose }) => {
     email: '',
     phoneNumber: '',
     course: course.title,
+    modality: '',
     date: selectedDate,
     paymentMethod: '',
     referenceNumber: '',
@@ -93,9 +94,9 @@ const confirmSubmission = async () => {
   {/*API call for courses in the database (abang lang to) */}
   useEffect(() => {
     if (course?.title) {
-      axios.get("http://localhost:5000/api/courses")
-        .then((res) => {
-          console.log("API Response:", res.data);
+        axios.get("http://localhost:5000/api/courses/")
+          .then((res) => {
+          console.log("fetching courses date:", res.data.date);
 
           const courseData = res.data.find(c => c.course_name === course.title);
           if (courseData && courseData.dates.length > 0) {
@@ -217,11 +218,12 @@ const confirmSubmission = async () => {
           <div className="w-1/2">
             <label className="block text-xs font-medium text-gray-700 mb-1">Select Date</label>
             <DatePicker
-              selected={selectedDate}
+              selected="2025-03-27"
               onChange={(date) => setSelectedDate(date)}
               includeDates={allowedDates}
               minDate={new Date()}
               dateFormat="yyyy-MM-dd"
+              name='date'
               className="w-full px-3 text-black py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
@@ -282,7 +284,7 @@ const confirmSubmission = async () => {
             damping: 10,
             bounce: 0.4,
           }}
-          className="mt-6 w-1/2 bg-black text-white py-2.5 rounded-md hover:bg-[#1b1c1c] transition-all duration-200"
+          className="mt-6 w-1/2 bg-black text-white py-2.5 rounded-md hover:bg-[#1b1c1c] transition-all duration-200 hover:cursor-pointer"
         >
           Submit
         </motion.button>
@@ -400,7 +402,7 @@ const confirmSubmission = async () => {
             </motion.div>
     
             <h1 className="text-lg font-semibold text-gray-700 mt-4">
-              Payment Successful!
+              Enrollment Successful!
             </h1>
     
             {/* Close Button */}
@@ -445,7 +447,7 @@ const confirmSubmission = async () => {
                 type="checkbox"
                 checked={agreedToPolicy}
                 onChange={() => setAgreedToPolicy(!agreedToPolicy)}
-                className="h-4 w-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="h-4 w-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-blue-500 hover:cursor-pointer"
               />
               <label className="ml-2 text-sm text-gray-700">
                 I have read and agree to the No Return of Money policy.
@@ -464,7 +466,7 @@ const confirmSubmission = async () => {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={confirmSubmission}
-                className={`px-4 py-2 text-sm text-white rounded-md ${
+                className={`px-4 py-2 text-sm text-white rounded-md hover:cursor-pointer ${
                   agreedToPolicy ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400 cursor-not-allowed"
                 }`}
                 disabled={!agreedToPolicy}

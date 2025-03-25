@@ -44,7 +44,7 @@ export default function Login() {
   
       setTimeout(() => {
         navigate('/admindashboard');
-      }, 5000);
+      }, 2000);
     } catch (error) {
       console.error("Login error:", error.response?.data);
       console.log(error.response.data.failed_attempts);
@@ -63,7 +63,7 @@ export default function Login() {
   
       setTimeout(() => {
         setIncorrectPassword(false);
-      }, 1500);
+      }, 2000);
     } finally {
       setLoading(false);
     }

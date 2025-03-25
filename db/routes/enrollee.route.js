@@ -48,7 +48,7 @@ enrolleeRouter.post('/create', [
 
     conn.promise().query(
         "INSERT INTO enrollees (name, email, phone_number, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber, date, paymentMethod, reference_number]
+        [name, email, phoneNumber, new Date('2025-03-27'), paymentMethod, reference_number]
     )
     .then(([rows]) => {
         console.log(rows);
