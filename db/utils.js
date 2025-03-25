@@ -36,13 +36,13 @@ const sendEmail = async (to, name, course, type = 'pending') => {
 try {
     const htmlEmail = type === 'success' ? successEmail(name, course) : pendingEmail(name, course);
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-        },
-    });
+    // const transporter = createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //         user: process.env.EMAIL_USER,
+    //         pass: process.env.EMAIL_PASS,
+    //     },
+    // });
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
@@ -51,7 +51,7 @@ try {
         html: htmlEmail,
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await transport.sendMail(mailOptions);
     console.log('Email sent:', info.response);
 } catch (error) {
     console.error('Error sending email:', error);
