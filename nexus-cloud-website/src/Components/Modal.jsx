@@ -95,19 +95,12 @@ const confirmSubmission = async () => {
 
   useEffect(() => {
     if (course?.title) {
-<<<<<<< HEAD
-        axios.get("http://localhost:5000/api/courses/")
-          .then((res) => {
-          console.log("fetching courses date:", res.data.date);
-
-=======
       console.log("Fetching courses for:", course.title);
   
       axios.get("http://localhost:5000/api/courses?sortby=course_name&order=desc")
         .then((res) => {
           console.log("API Response:", res.data);
   
->>>>>>> 1a9b485a5e537d23608e26beeca520f77c25b06f
           const courseData = res.data.find(c => c.course_name === course.title);
           console.log("Matched course data", courseData);
   
@@ -327,6 +320,7 @@ const confirmSubmission = async () => {
               maxLength={13}
               placeholder="Reference Number"
               className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none border p-2"
+
             />
           </div>
           )}
