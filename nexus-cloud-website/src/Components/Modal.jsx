@@ -160,6 +160,15 @@ const confirmSubmission = async () => {
   // }, [course]);
   // console.log(selectedDate)
 
+  const handlesChange = (e) => {
+    const { name, value } = e.target;
+  
+    // Allow only numeric values
+    if (/^\d*$/.test(value)) {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
       <motion.div
@@ -296,17 +305,19 @@ const confirmSubmission = async () => {
         </div>
 
         {/*Reference Number Field (automatic)*/}
+        
         {referenceNumberModal && (
             <div>
             <label className="block text-xs font-medium text-gray-700 mb-1">Reference Number</label>
             <input
               value={formData.referenceNumber}
-              type="text"
-              name="reference_number"
+              type="number"
+
+              name="referenceNumber"
               onChange={handleChange}
               maxLength={13}
               placeholder="Reference Number"
-              className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md"
+              className="w-full px-3 text-black  py-2 border border-gray-200 rounded-md appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none border p-2"
             />
           </div>
           )}
