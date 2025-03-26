@@ -1,7 +1,20 @@
 import express from 'express';
-import conn from '../config/db.setup.js';
 import bcrypt from 'bcrypt';
 import { check, validationResult } from 'express-validator';
+
+const mysql = require("mysql");
+
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "NexusCloudDB",
+});
+
+db.connect((err) => {
+  if (err) throw err;
+  console.log("MySQL Connected...");
+});
 
 const saltRounds = 10;
 export const userRouter = express.Router();
@@ -41,7 +54,7 @@ userRouter.post('/login', async (req, res) => {
 
     try {
         const [rows] = await conn.promise().query(
-            "SELECT * FROM users WHERE username = ?",
+            "SELECT * FROM admin WHERE username = ?",
             [username]
         );
 
@@ -68,7 +81,7 @@ userRouter.patch('/update/:id', async (req, res) => {
 
     try {
         const [existingUser] = await conn.promise().query(
-            "SELECT username, email, password FROM users WHERE id = ?",
+            "SELECT username, email, password FROM admin WHERE id = ?",
             [id]
         );
 
@@ -85,7 +98,7 @@ userRouter.patch('/update/:id', async (req, res) => {
             : currentUser.password;
 
         await conn.promise().query(
-            "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?",
+            "UPDATE admin SET username = ?, email = ?, password = ? WHERE id = ?",
             [newName, newEmail, newPassword, id]
         );
 
@@ -100,7 +113,7 @@ userRouter.delete('/delete/:id', async (req, res) => {
 
     try {
         const [result] = await conn.promise().query(
-            "DELETE FROM users WHERE id = ?",
+            "DELETE FROM admin WHERE id = ?",
             [id]
         );
 

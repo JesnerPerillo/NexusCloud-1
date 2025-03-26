@@ -10,7 +10,7 @@ enrolleeRouter.get('/', (req, res) => {
     const limit = 12 || req.body.limit;
     const order = req.body.order || 'asc';
     const offset = parseInt(req.body.offset) || 0;
-    const validColumns = ['name', 'email', 'phoneNumber', 'course', 'date', 'payment_method', 'reference_number'];
+    const validColumns = ['name', 'email', 'phoneNumber', 'course', 'modality', 'date', 'payment_method', 'reference_number'];
 
     if (!validColumns.includes(sortby)) {
         return res.status(400).json({ error: 'Invalid sort by column' });
@@ -33,12 +33,13 @@ enrolleeRouter.post('/create', [
     check('email').isEmail(),
     check('phoneNumber').not().isEmpty(),
     check('course').not().isEmpty(),
+    check('modality').not().isEmpty(),
     check('date').not().isEmpty(),
    check('paymentMethod').not().isEmpty(),
 // 
     
  ], async (req, res) => {
-    const { name, email, phoneNumber, course, date, paymentMethod, reference_number } = req.body;  
+    const { name, email, phoneNumber, course, modality, date, paymentMethod, reference_number } = req.body;  
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -47,7 +48,7 @@ enrolleeRouter.post('/create', [
     }
 
     conn.promise().query(
-        "INSERT INTO enrollees (name, email, phone_number, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?)", 
+        "INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)", 
         [name, email, phoneNumber, date, paymentMethod, reference_number]
     )
     .then(([rows]) => {
@@ -63,10 +64,10 @@ enrolleeRouter.post('/create', [
 
 enrolleeRouter.put('/update/:id',  async (req, res) => {
     const {id} = req.params;
-    const {name, email, phoneNumber, course, date, paymentMethod, referenceNumber} = req.body;
+    const {name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber} = req.body;
 
     try {
-        const existingEnrollee = conn.promise().query(`SELECT * FROM enerollee WHERE id=?`, [id])
+        const existingEnrollee = conn.promise().query(`SELECT * FROM enrollees WHERE id=?`, [id])
 
         if (!existingEnrollee) {
             res.status(404),json({"error": "enrolle doesn't exist".toUpperCase()})
@@ -76,12 +77,13 @@ enrolleeRouter.put('/update/:id',  async (req, res) => {
         const newEmail = email || existingEnrollee.email
         const newPhoneNumber = phoneNumber || existingEnrollee.phoneNumber
         const newCourse = course || existingEnrollee.course
+        const newModality = modality || existingEnrollee.modality
         const newDate = date || existingEnrollee.date
         const newPaymentMethod = paymentMethod || existingEnrollee.payment_method
         const newReferenceNumber =referenceNumber || referenceNumber
 
-        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, date=?, payment_method=?, referenceNumber=?", [
-            newName, newEmail, newPhoneNumber, newCourse, newDate, newPaymentMethod, newReferenceNumber, id
+        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, modality=?, date=?, payment_method=?, referenceNumber=?", [
+            newName, newEmail, newPhoneNumber, newCourse, newModality, newDate, newPaymentMethod, newReferenceNumber, id
         ])
 
         res.send("Update Succesfull")

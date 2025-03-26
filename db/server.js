@@ -7,6 +7,7 @@ import {rateLimit} from "express-rate-limit"
 import { userRouter } from "./routes/user.routes.js";
 import courseRouter from "./routes/courses.route.js";
 import enrolleeRouter from "./routes/enrollee.route.js";
+import getenrolleesRouter from "./routes/getenrollees.route.js";
 
 
 
@@ -27,6 +28,16 @@ app.use(limiter)
 app.use("/api/admin", userRouter)
 app.use("/api/courses",  courseRouter)
 app.use("/api/enrollees", enrolleeRouter)
+app.use('/api/enrollees', getenrolleesRouter);
+
+app.get("/api/courses", (req, res) => {
+    getCourses((err, courses) => {
+        if (err) {
+        return res.status(500).json({ error: "Internal server error" });
+        }
+        res.json(courses);
+    });
+});
 
 app.listen(5000, 
     console.log("Server Connected at port 5000")

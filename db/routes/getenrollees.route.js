@@ -1,4 +1,5 @@
 import express from "express";
+import conn from '../config/db.setup.js';
 
 const router = express.Router();
 
@@ -7,7 +8,7 @@ export default (db) => {
     const limit = 12;
     const offset = parseInt(req.query.offset) || 0;
 
-    const query = `SELECT * FROM enrollees LIMIT ? OFFSET ?`;
+    const query = `SELECT * FROM enrollees ORDER BY id ASC`;
 
     db.query(query, [limit, offset], (err, results) => {
       if (err) {

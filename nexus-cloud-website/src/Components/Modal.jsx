@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import { TiWarning } from "react-icons/ti";
 
-const Modal = ({ course, onClose }) => {
+const Modal = ({ course, onClose, onCloseInfo }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [allowedDates, setAllowedDates] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -24,6 +24,7 @@ const Modal = ({ course, onClose }) => {
     email: '',
     phoneNumber: '',
     course: course.title,
+    modality: '',
     date: selectedDate,
     paymentMethod: '',
     referenceNumber: '',
@@ -36,6 +37,7 @@ const Modal = ({ course, onClose }) => {
       [name]: value,
     }));
   };
+
 
   const handlePaymentMethodChange = (e) => {
     const selectedPaymentMethod = e.target.value;
@@ -74,7 +76,7 @@ const confirmSubmission = async () => {
   };
 
   try {
-    const response = await axios.post("http://localhost:5000/api/enrollees/create", updateFormData);
+    const response = await axios.post("http://localhost:5000/api/enrollees", updateFormData);
     console.log("Form submitted successfully:", response.data);
 
     setSuccess(true);
@@ -292,7 +294,7 @@ const confirmSubmission = async () => {
       {/* Close Button */}
       <div className="flex justify-center">
       <motion.button
-        onClick={onClose}
+        onClick={() => {onClose(); onCloseInfo();}}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         transition={{
@@ -400,7 +402,7 @@ const confirmSubmission = async () => {
             </motion.div>
     
             <h1 className="text-lg font-semibold text-gray-700 mt-4">
-              Payment Successful!
+              Registration Successful!
             </h1>
     
             {/* Close Button */}

@@ -230,6 +230,7 @@ export default function CardContent() {
         <Modal
           course={selectedCourse}
           onClose={() => setIsModalOpen(false)}
+          onCloseInfo={() => setSelectedCourse(false)}
         />
       )}
     </div>
