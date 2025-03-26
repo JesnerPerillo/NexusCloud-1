@@ -7,26 +7,50 @@ const courseRouter = express.Router();
 
 
 // ALL THESE ROUTE SHOULD HAVE AUTORIZATION AND AUTHENTICATION
+
 courseRouter.get('/', async (req, res) => {
     const sortby = req.body.sortby || 'date';
-    const order = req.body.order || 'asc';
-    const validColumns = ['couser_name', 'date', 'original_price',  'discounted_price', 'modality', 'slots'];
+    let order = req.query.order == 'desc'? 'DESC': 'ASC';
+    
+    const validColumns = ['course_name', 'date', 'original_price',  'discounted_price', 'modality', 'slots'];
     
     if(!validColumns.includes(sortby)){
         return res.status(400).json({error: 'Invalid sort by column'});
-    } 
-    try{
+    }
 
+    try {
         const sql = `SELECT * FROM courses ORDER BY ?? ${order}`;
         const [rows] = await conn.promise().query(sql, [sortby]);
         res.status(200).json(rows);
-    }catch(err){
-        
+    } catch (err) {
+        console.err("Database Errpr " + err.message);
         res.status(500).json({error: 'Database error at ' + err});
-        console.log("Courses error" + err.message)
     }
-     
 })
+
+
+
+
+// courseRouter.get('/', async (req, res) => {
+//     const sortby = req.body.sortby || 'date';
+//     const order = req.body.order || 'asc';
+//     const validColumns = ['couser_name', 'date', 'original_price',  'discounted_price', 'modality', 'slots'];
+    
+//     if(!validColumns.includes(sortby)){
+//         return res.status(400).json({error: 'Invalid sort by column'});
+//     } 
+//     try{
+
+//         const sql = `SELECT * FROM courses ORDER BY ?? ${order}`;
+//         const [rows] = await conn.promise().query(sql, [sortby]);
+//         res.status(200).json(rows);
+//     }catch(err){
+        
+//         res.status(500).json({error: 'Database error at ' + err});
+//         console.log("Courses error" + err.message)
+//     }
+     
+// })
 
 courseRouter.post('/create', [
     check('course_name').not().isEmpty(),
@@ -55,6 +79,8 @@ courseRouter.post('/create', [
         res.status(500).json({ error: "Database error" });
     }
 });
+
+
 courseRouter.get('/:id', async (req, res) => {
     const {id} = req.params;
     await conn.promise().query("SELECT * FROM course WHERE id = ?", [id])

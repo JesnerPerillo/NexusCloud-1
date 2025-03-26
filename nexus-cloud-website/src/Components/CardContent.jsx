@@ -195,7 +195,7 @@ export default function CardContent() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/courses")
+      .get("http://localhost:5000/api/courses")
       .then((response) => {
         const formattedCourses = response.data.map((course) => ({
           title: course.course_name,

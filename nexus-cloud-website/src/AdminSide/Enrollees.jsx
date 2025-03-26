@@ -5,6 +5,9 @@ import SideBar from "./Components/Sidebar";
 import { PiUserListThin } from "react-icons/pi";
 import { MdEdit, MdDelete  } from "react-icons/md";
 import { ImPrevious, ImNext  } from "react-icons/im";
+import { GrLinkNext } from "react-icons/gr";
+import { GrLinkPrevious } from "react-icons/gr";
+
 
 export default function Enrollees() {
   const [enrollees, setEnrollees] = useState([]);
@@ -104,7 +107,7 @@ export default function Enrollees() {
                     : "bg-gray-800 text-white hover:bg-gray-900"
                 }`}
               >
-                <ImPrevious />
+                <GrLinkPrevious />
               </button>
               <button
                 onClick={() => setCurrentPage((prev) => prev + 1)}
@@ -115,7 +118,7 @@ export default function Enrollees() {
                     : "bg-gray-100 text-gray-400 cursor-not-allowed"
                 }`}
               >
-                <ImNext />
+                <GrLinkNext />
               </button>
             </div>
           </div>
