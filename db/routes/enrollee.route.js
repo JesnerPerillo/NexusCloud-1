@@ -6,27 +6,35 @@ import sendEmail from '../utils.js';
 const enrolleeRouter = express.Router();
 
 enrolleeRouter.get('/', (req, res) => {
-    const sortby = req.body.sortby || 'date';
-    const limit = 12 || req.body.limit;
-    const order = req.body.order || 'asc';
-    const offset = parseInt(req.body.offset) || 0;
+    const sortby = req.query.sortby || 'date';
+    const modality = req.query.modality || 'ON-SITE';
+    const limit = parseInt(req.query.limit) || 12;
+    const offset = parseInt(req.query.offset) || 0;
+    let order = req.query.order || 'asc';
+
     const validColumns = ['name', 'email', 'phoneNumber', 'course', 'date', 'payment_method', 'reference_number'];
+    const validOrders = ['asc', 'desc'];
 
     if (!validColumns.includes(sortby)) {
         return res.status(400).json({ error: 'Invalid sort by column' });
     }
-    const query = `SELECT * FROM enrollees ORDER BY ?? ${order} LIMIT ? OFFSET ?`;
+
+    if (!validOrders.includes(order.toLowerCase())) {
+        return res.status(400).json({ error: 'Invalid order type' });
+    }
+
+    const query = `SELECT * FROM enrollees ORDER BY id ${order} LIMIT ? OFFSET ?`;
 
     conn.promise()
-        .query(query, [sortby, parseInt(limit), parseInt(offset)])
+        .query(query, [ limit, offset])
         .then(([rows]) => {
-            res.status(200).send(rows);
+            res.status(200).json(rows);
         })
         .catch((err) => {
             console.error("Database query error:", err);
-            res.status(500).send({ error: "Internal Server Error" });
+            res.status(500).json({ error: "Internal Server Error" });
         });
-})
+});
 
 enrolleeRouter.post('/create', [
     check('name').not().isEmpty(),
@@ -38,7 +46,7 @@ enrolleeRouter.post('/create', [
 // 
     
  ], async (req, res) => {
-    const { name, email, phoneNumber, course, date, paymentMethod, reference_number } = req.body;  
+    const { name, email, phoneNumber, course, date, paymentMethod, referenceNumber } = req.body;  
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -47,13 +55,8 @@ enrolleeRouter.post('/create', [
     }
 
     conn.promise().query(
-<<<<<<< HEAD
-        "INSERT INTO enrollees (name, email, phone_number, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber, new Date('2025-03-27'), paymentMethod, reference_number]
-=======
         "INSERT INTO enrollees (name, email, phone_number, course, date, payment_method, reference_number ) VALUES ( ?, ?,  ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber,  course, date, paymentMethod, reference_number]
->>>>>>> 1a9b485a5e537d23608e26beeca520f77c25b06f
+        [name, email, phoneNumber,  course, date, paymentMethod, referenceNumber]
     )
     .then(([rows]) => {
         console.log(rows);
@@ -85,7 +88,7 @@ enrolleeRouter.put('/update/:id',  async (req, res) => {
         const newPaymentMethod = paymentMethod || existingEnrollee.payment_method
         const newReferenceNumber =referenceNumber || referenceNumber
 
-        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, date=?, payment_method=?, referenceNumber=?", [
+        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, date=?, payment_method=?, reference_number=?", [
             newName, newEmail, newPhoneNumber, newCourse, newDate, newPaymentMethod, newReferenceNumber, id
         ])
 
