@@ -1,40 +1,31 @@
 import express from 'express';
 import { check, validationResult } from 'express-validator';
 import conn from '../config/db.setup.js';
-
 import sendEmail from '../utils.js';
+
 const enrolleeRouter = express.Router();
 
 enrolleeRouter.get('/', (req, res) => {
-<<<<<<< HEAD
-    const sortby = req.body.sortby || 'date';
-    const limit = 12 || req.body.limit;
-    const order = req.body.order || 'asc';
-    const offset = parseInt(req.body.offset) || 0;
     const validColumns = ['name', 'email', 'phoneNumber', 'course', 'modality', 'date', 'payment_method', 'reference_number'];
-=======
+    const validOrders = ['asc', 'desc'];
+    
     const sortby = req.query.sortby || 'date';
-    const modality = req.query.modality || 'ON-SITE';
     const limit = parseInt(req.query.limit) || 12;
     const offset = parseInt(req.query.offset) || 0;
     let order = req.query.order || 'asc';
-
-    const validColumns = ['name', 'email', 'phoneNumber', 'course', 'date', 'payment_method', 'reference_number'];
-    const validOrders = ['asc', 'desc'];
->>>>>>> baad94bc047e3e202de54d1e6f6e5175b1e903db
-
+    
     if (!validColumns.includes(sortby)) {
         return res.status(400).json({ error: 'Invalid sort by column' });
     }
-
+    
     if (!validOrders.includes(order.toLowerCase())) {
         return res.status(400).json({ error: 'Invalid order type' });
     }
-
-    const query = `SELECT * FROM enrollees ORDER BY id ${order} LIMIT ? OFFSET ?`;
-
+    
+    const query = `SELECT * FROM enrollees ORDER BY ${sortby} ${order} LIMIT ? OFFSET ?`;
+    
     conn.promise()
-        .query(query, [ limit, offset])
+        .query(query, [limit, offset])
         .then(([rows]) => {
             res.status(200).json(rows);
         })
@@ -51,97 +42,77 @@ enrolleeRouter.post('/create', [
     check('course').not().isEmpty(),
     check('modality').not().isEmpty(),
     check('date').not().isEmpty(),
-   check('paymentMethod').not().isEmpty(),
-// 
-    
- ], async (req, res) => {
-<<<<<<< HEAD
-    const { name, email, phoneNumber, course, modality, date, paymentMethod, reference_number } = req.body;  
-=======
-    const { name, email, phoneNumber, course, date, paymentMethod, referenceNumber } = req.body;  
->>>>>>> baad94bc047e3e202de54d1e6f6e5175b1e903db
+    check('paymentMethod').not().isEmpty(),
+], async (req, res) => {
+    const { name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        console.log(errors);
         return res.status(400).json({ errors: errors.array() });
     }
 
-    conn.promise().query(
-<<<<<<< HEAD
-        "INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber, date, paymentMethod, reference_number]
-=======
-        "INSERT INTO enrollees (name, email, phone_number, course, date, payment_method, reference_number ) VALUES ( ?, ?,  ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber,  course, date, paymentMethod, referenceNumber]
->>>>>>> baad94bc047e3e202de54d1e6f6e5175b1e903db
-    )
-    .then(([rows]) => {
-        console.log(rows);
-        sendEmail(email, name, course); // move this because this automatically send when they filled up the form, it should be when payment is succesfull
+    try {
+        await conn.promise().query(
+            "INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            [name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber]
+        );
         res.send("Enrollee created");
-    })
-    .catch(err => {
+    } catch (err) {
         console.error(err);
         res.status(500).send("Error creating enrollee");
-    });
+    }
 });
 
-enrolleeRouter.put('/update/:id',  async (req, res) => {
-    const {id} = req.params;
-    const {name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber} = req.body;
-
+enrolleeRouter.put('/update/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber } = req.body;
+    
     try {
-        const existingEnrollee = conn.promise().query(`SELECT * FROM enrollees WHERE id=?`, [id])
-
-        if (!existingEnrollee) {
-            res.status(404),json({"error": "enrolle doesn't exist".toUpperCase()})
+        const [existingEnrollee] = await conn.promise().query("SELECT * FROM enrollees WHERE id=?", [id]);
+        if (!existingEnrollee.length) {
+            return res.status(404).json({ error: "Enrollee doesn't exist" });
         }
 
-        const newName = name || existingEnrollee.name
-        const newEmail = email || existingEnrollee.email
-        const newPhoneNumber = phoneNumber || existingEnrollee.phoneNumber
-        const newCourse = course || existingEnrollee.course
-        const newModality = modality || existingEnrollee.modality
-        const newDate = date || existingEnrollee.date
-        const newPaymentMethod = paymentMethod || existingEnrollee.payment_method
-        const newReferenceNumber =referenceNumber || referenceNumber
+        const newName = name || existingEnrollee[0].name;
+        const newEmail = email || existingEnrollee[0].email;
+        const newPhoneNumber = phoneNumber || existingEnrollee[0].phone_number;
+        const newCourse = course || existingEnrollee[0].course;
+        const newModality = modality || existingEnrollee[0].modality;
+        const newDate = date || existingEnrollee[0].date;
+        const newPaymentMethod = paymentMethod || existingEnrollee[0].payment_method;
+        const newReferenceNumber = referenceNumber || existingEnrollee[0].reference_number;
 
-<<<<<<< HEAD
-        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, modality=?, date=?, payment_method=?, referenceNumber=?", [
-            newName, newEmail, newPhoneNumber, newCourse, newModality, newDate, newPaymentMethod, newReferenceNumber, id
-=======
-        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, date=?, payment_method=?, reference_number=?", [
-            newName, newEmail, newPhoneNumber, newCourse, newDate, newPaymentMethod, newReferenceNumber, id
->>>>>>> baad94bc047e3e202de54d1e6f6e5175b1e903db
-        ])
-
-        res.send("Update Succesfull")
-    } catch(err) {
-        res.send(500).json({error: 'Server error ' + err.message})
+        await conn.promise().query(
+            "UPDATE enrollees SET name=?, email=?, phone_number=?, course=?, modality=?, date=?, payment_method=?, reference_number=? WHERE id=?",
+            [newName, newEmail, newPhoneNumber, newCourse, newModality, newDate, newPaymentMethod, newReferenceNumber, id]
+        );
+        res.send("Update Successful");
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error: " + err.message });
     }
-    
-})
-
-
-enrolleeRouter.delete('/delete/:id', (req, res) => {
-    const {id} = req.params;
-    conn.promise().query("DELETE FROM enrollees WHERE id = ?", [id])
-    .then(([rows]) => {
-        res.send(rows)
-    })
 });
 
-
-
-// batch deletion of enrollee accordint to course
-enrolleeRouter.delete("/delete/:course", (req, res) => {
-    const { course } = req.params;
+enrolleeRouter.delete('/delete/:id', async (req, res) => {
+    const { id } = req.params;
     try {
-        conn.promise().query("DELETE FROM enrollees WHERE course = ?", [course]);
+        await conn.promise().query("DELETE FROM enrollees WHERE id = ?", [id]);
         res.status(200).json({ message: "Enrollee deleted successfully" });
-    }catch (error) {
+    } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Error deleting enrollee" });
     }
-    });
-export default enrolleeRouter
+});
+
+enrolleeRouter.delete('/delete/course/:course', async (req, res) => {
+    const { course } = req.params;
+    try {
+        await conn.promise().query("DELETE FROM enrollees WHERE course = ?", [course]);
+        res.status(200).json({ message: "Enrollees deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error deleting enrollees" });
+    }
+});
+
+export default enrolleeRouter;

@@ -1,17 +1,4 @@
-const mysql = require('mysql');
-
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "NexusCloudDB",
-});
-
-db.connect((err) => {
-  if (err) throw err;
-  console.log("MySQL Connected...");
-});
+import conn from '../config/db.setup.js';
 
 const getCourses = (callback) => {
   const sql = `
@@ -23,7 +10,7 @@ const getCourses = (callback) => {
     FROM courses
   `;
 
-  db.query(sql, (err, result) => {
+  conn.query(sql, (err, result) => { 
     if (err) {
       console.error("Error fetching courses:", err);
       callback(err, null);
@@ -49,4 +36,4 @@ const getCourses = (callback) => {
   });
 };
 
-module.exports = { getCourses };
+export { getCourses };

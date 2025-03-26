@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express';
+import cors from 'cors';
 const router = express.Router();
 
 module.exports = (db) => {
@@ -7,7 +8,7 @@ module.exports = (db) => {
     const limit = 12;
     const offset = parseInt(req.query.offset) || 0;
 
-    const query = `SELECT * FROM enrollees LIMIT ? OFFSET ?`;
+    const query = `SELECT * FROM enrollees LIMIT 12 OFFSET 0`;
 
     db.query(query, [limit, offset], (err, results) => {
       if (err) {

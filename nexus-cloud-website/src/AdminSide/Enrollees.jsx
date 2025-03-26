@@ -4,7 +4,6 @@ import AdminHeader from "./Components/AdminHeader";
 import SideBar from "./Components/Sidebar";
 import { PiUserListThin } from "react-icons/pi";
 import { MdEdit, MdDelete  } from "react-icons/md";
-import { ImPrevious, ImNext  } from "react-icons/im";
 import { GrLinkNext } from "react-icons/gr";
 import { GrLinkPrevious } from "react-icons/gr";
 
@@ -29,7 +28,7 @@ export default function Enrollees() {
   const fetchEnrollees = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/enrollees?limit=${limit}&offset=${currentPage * limit}`
+        `http://localhost:5000/api/getenrollees?limit=${limit}&offset=${currentPage * limit}`
       );
   
       // ✅ Format the date before setting the state
