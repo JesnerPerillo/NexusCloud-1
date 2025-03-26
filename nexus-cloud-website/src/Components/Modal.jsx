@@ -7,7 +7,7 @@ import QRCode from '../Images/qr.jpg';
 import { TfiClose } from "react-icons/tfi";
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
-import { TiWarning } from "react-icons/ti";
+import { RiAlarmWarningFill } from "react-icons/ri";
 
 const Modal = ({ course, onClose, onCloseInfo }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -491,7 +491,7 @@ const confirmSubmission = async () => {
               animate={{ scale: [1, 1.2, 1], y: [0, -5, 0] }} 
               transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
             >
-              <TiWarning className="text-red-500 mb-2" size={80} />
+              <RiAlarmWarningFill className="text-red-500 mb-2" size={80} />
             </motion.div>
             <span className="montserrat-semibold text-2xl">Important Notice:</span>
             <p className="text-center">
