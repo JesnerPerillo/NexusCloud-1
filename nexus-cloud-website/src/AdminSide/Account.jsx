@@ -5,7 +5,10 @@ import { FaEdit } from "react-icons/fa";
 
 export default function Account() {
   const [admins, setAdmins] = useState([]);
-  const [newAdmin, setNewAdmin] = useState({ name: "", email: "", password: "" });
+  const [newAdmin, setNewAdmin] = useState({ 
+  name: '', 
+  email: '', 
+  password: ''});
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [pricing, setPricing] = useState({ original_price: "", discounted_price: "" });
@@ -22,16 +25,40 @@ export default function Account() {
       .catch((err) => console.error("Error fetching courses:", err));
   }, []);
 
-  const addAdmin = () => {
+  const addAdmin = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    
     fetch("http://localhost:5000/api/admin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newAdmin),
+      body: JSON.stringify({
+        username: newAdmin.username,
+        email: newAdmin.email,
+        password: newAdmin.password
+      }),
     })
-      .then((res) => res.json())
-      .then((data) => setAdmins([...admins, data]))
-      .catch((err) => console.error("Error adding admin:", err));
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to add admin");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      setAdmins([...admins, data]);
+      // Reset form after successful submission
+      setNewAdmin({
+        username: '',
+        email: '',
+        password: ''
+      });
+      alert('Admin created successfully!');
+    })
+    .catch((err) => {
+      console.error("Error adding admin:", err);
+      alert('Error creating admin. Please try again.');
+    });
   };
+  
 
   const updatePricing = () => {
     fetch(`http://localhost:5000/api/courses/${selectedCourse}`, {
@@ -79,34 +106,41 @@ export default function Account() {
 
         {/* Create Admin Account */}
         <form onSubmit={addAdmin} className="bg-white w-1/3 p-6 rounded-xl shadow-lg border border-gray-300">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h2>
-          <div className="space-y-4">
-            <input
-              placeholder="Enter Username"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
-              type="text"
-              onChange={(e) => setNewAdmin((prev) => ({ ...prev, name: e.target.value }))}
-            />
-            <input
-              placeholder="Enter Email"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
-              type="email"
-              onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
-            />
-            <input
-              placeholder="Enter Password"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
-              type="password"
-              onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
-            />
-            <button
-              className="w-full bg-blue-600 hover:bg-blue-700 transition duration-200 text-white py-3 rounded-lg text-sm font-medium"
-              type="submit"
-            >
-              Create an Account
-            </button>
-          </div>
-        </form>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h2>
+      <div className="space-y-4">
+        <input
+          placeholder="Enter Username"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+          type="text"
+          value={newAdmin.username}
+          onChange={(e) => setNewAdmin((prev) => ({ ...prev, username: e.target.value }))}
+          required
+        />
+        <input
+          placeholder="Enter Email"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+          type="email"
+          value={newAdmin.email}
+          onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
+          required
+        />
+        <input
+          placeholder="Enter Password"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+          type="password"
+          value={newAdmin.password}
+          onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
+          required
+          minLength="6"
+        />
+        <button
+          className="w-full bg-blue-600 hover:bg-blue-700 transition duration-200 text-white py-3 rounded-lg text-sm font-medium"
+          type="submit"
+        >
+          Create an Account
+        </button>
+      </div>
+    </form>
       </div>
 
       {/* Update Course Pricing */}
