@@ -151,7 +151,7 @@ export default function Account() {
         <div className="w-1/2 h-fit flex gap-5 flex-col">
           {/* Update Course Pricing */}
           <div className="w-full h-60 bg-white p-6 rounded-xl shadow-lg border border-gray-300">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Update Pricing</h2>
+            <h2 className="text-md font-semibold text-gray-800 mb-4 text-center">Update Pricing</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
                 <select
                   className="w-full p-3 border border-gray-300 rounded-lg text-sm"
@@ -188,11 +188,11 @@ export default function Account() {
           {/* Create Admin Account */}
           <div className="flex items-center gap-20 justify-between">
             <form onSubmit={addAdmin} className="bg-white w-1/2 h-80 p-6 rounded-xl shadow-lg border border-gray-300">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h2>
+              <h2 className="text-md text-center font-semibold text-gray-800 mb-4">Create an Admin Account</h2>
               <div className="space-y-4">
                 <input
                   placeholder="Enter Username"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                   type="text"
                   value={newAdmin.username}
                   onChange={(e) => setNewAdmin((prev) => ({ ...prev, username: e.target.value }))}
@@ -200,7 +200,7 @@ export default function Account() {
                 />
                 <input
                   placeholder="Enter Email"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                   type="email"
                   value={newAdmin.email}
                   onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
@@ -208,7 +208,7 @@ export default function Account() {
                 />
                 <input
                   placeholder="Enter Password"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                   type="password"
                   value={newAdmin.password}
                   onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
