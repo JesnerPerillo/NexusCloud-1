@@ -1,67 +1,77 @@
-
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { MdSpaceDashboard, MdManageAccounts } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi2";
 import { CiLogout } from "react-icons/ci";
 import DarkMode from '../../Components/DarkMode.jsx';
 import '../../darkmode.css';
+import { useState } from "react";
 
 export default function SideBar() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
-    className={`sidebar drop-shadow-2xl w-14 fixed flex flex-col justify-between items-start p-4 transition-all duration-300 z-20 hover:w-48 group`} 
-    style={{
-      height: `calc(100vh - 5rem)`, 
-    }}
->
-  <div className="flex flex-col space-y-6">
-    <button
-      className="flex items-center space-x-2 text hover:text-black"
-    >
-      <FiMenu size={24} />
-      <span className="text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:delay-300 group-hover:opacity-100 group-hover:translate-x-2">
-        Menu
-      </span>
-    </button>
-    <Link to="/admindashboard">
-      <button className="flex items-center space-x-2 text hover:text-black hover:cursor-pointer">
-        <MdSpaceDashboard size={24} />
-        <span className="text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:delay-300 group-hover:opacity-100">
-          Dashboard
-        </span>
+    <>
+      {/* Menu Button for Small and Medium Screens */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden fixed top-25 left-2 p-2 rounded-full z-30"
+      >
+        <FiMenu size={24} />
       </button>
-    </Link>
-    <Link to="/enrollees">
-      <button className="flex items-center space-x-2 text hover:text-black hover:cursor-pointer">
-        <HiUserGroup size={24} />
-        <span className="text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:delay-300 group-hover:opacity-100">
-          Enrollees
-        </span>
-      </button>
-    </Link>
-    <Link to="/account">
-      <button className="flex items-center space-x-2 text hover:text-black hover:cursor-pointer">
-        <MdManageAccounts size={24} />
-        <span className="text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:delay-300 group-hover:opacity-100">
-          Account
-        </span>
-      </button>
-    </Link>
-  </div>
-  <div>
-    <div className="text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:delay-300 group-hover:opacity-100 mb-3">
-      <DarkMode />
-    </div>
-    <button className="flex items-center space-x-2 text hover:text-red-500 hover:cursor-pointer">
-      <CiLogout size={24} />
-      <span className="text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:delay-300 group-hover:opacity-100">
-        Logout
-      </span>
-    </button>
-  </div>
-</div>
-
+      
+      <div 
+        className={`fixed top-0 pt-30 left-0 h-full bg-white drop-shadow-2xl transition-all duration-300 z-20 ${isOpen ? "w-3/6 md:w-48" : "w-14 md:block hidden "}`} 
+      >
+        <div className="flex flex-col justify-between h-full p-4">
+          <div className="flex flex-col space-y-6">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center space-x-2 text hover:text-black"
+            >
+              <FiMenu size={24} />
+              <span className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>
+                Menu
+              </span>
+            </button>
+            <Link to="/admindashboard">
+              <button className="flex items-center space-x-2 text hover:text-black">
+                <MdSpaceDashboard size={24} />
+                <span className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>
+                  Dashboard
+                </span>
+              </button>
+            </Link>
+            <Link to="/enrollees">
+              <button className="flex items-center space-x-2 text hover:text-black">
+                <HiUserGroup size={24} />
+                <span className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>
+                  Enrollees
+                </span>
+              </button>
+            </Link>
+            <Link to="/account">
+              <button className="flex items-center space-x-2 text hover:text-black">
+                <MdManageAccounts size={24} />
+                <span className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>
+                  Account
+                </span>
+              </button>
+            </Link>
+          </div>
+          <div>
+            <div className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"} mb-3`}>
+              <DarkMode />
+            </div>
+            <button className="flex items-center space-x-2 text hover:text-red-500">
+              <CiLogout size={24} />
+              <span className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>
+                Logout
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

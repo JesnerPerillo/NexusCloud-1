@@ -115,44 +115,47 @@ export default function Account() {
 
 
   return (
-    <div className="w-full h-screen con">
+    <div className="w-full min-h-screen flex flex-col bg-gray-100">
+      {/* Header */}
       <div className="w-full h-20">
         <AdminHeader />
       </div>
-      <div>
-        <SideBar />
-      </div>
-      <div className="w-full p-5 bg-gray-100 flex justify-evenly min-h-screen">
-      <div className="w-2/5 h-150 flex justify-center">
-        {/* Admin List */}
-        <div className="bg-white w-5/6 p-6 rounded-xl shadow-lg border border-gray-300">
-          <h2 className="text-3xl text-gray-800 mb-6 oswald-bold">Admin User List</h2>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-gray-200 text-gray-700 text-sm">
-                  <th className="p-3">Name</th>
-                  <th className="p-3">Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                {admins.map((admin, index) => (
-                  <tr key={index} className="border-t text-gray-700 hover:bg-gray-100 transition">
-                    <td className="p-3">{admin.username}</td>
-                    <td className="p-3">{admin.email}</td>
+      <div className="flex flex-col md:flex-row">
+        {/* Sidebar */}
+        <div className="w-full md:w-1/4 lg:w-1/5">
+          <SideBar />
+        </div>
+        {/* Main Content */}
+        <div className="flex flex-col md:flex-row gap-6 p-5 w-full">
+          {/* Admin User List */}
+          <div className="w-full md:w-2/5 bg-white p-6 rounded-xl shadow-lg border border-gray-300">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Admin User List</h2>
+            <div className="overflow-hidden rounded-lg border border-gray-200">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-gray-200 text-gray-700 text-sm">
+                    <th className="p-3">Name</th>
+                    <th className="p-3">Email</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {admins.map((admin, index) => (
+                    <tr key={index} className="border-t text-gray-700 hover:bg-gray-100 transition">
+                      <td className="p-3">{admin.username}</td>
+                      <td className="p-3">{admin.email}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-        </div>
 
-        <div className="w-1/2 h-fit flex gap-5 flex-col">
-          {/* Update Course Pricing */}
-          <div className="w-full h-60 bg-white p-6 rounded-xl shadow-lg border border-gray-300">
-            <h2 className="text-md font-semibold text-gray-800 mb-4 text-center">Update Pricing</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+          {/* Right Section */}
+          <div className="flex flex-col gap-5 w-full md:w-3/5">
+            {/* Update Course Pricing */}
+            <div className="w-full bg-white p-6 rounded-xl shadow-lg border border-gray-300">
+              <h2 className="text-lg font-semibold text-gray-800 mb-4 text-center">Update Pricing</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <select
                   className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                   onChange={(e) => setSelectedCourse(e.target.value)}
@@ -164,8 +167,8 @@ export default function Account() {
                 </select>
                 <input
                   type="number"
-                  placeholder={courses.original_price}
-                  className="w-full p-3 border border-gray-300 rounded-lg ftext-sm"
+                  placeholder="Original Price"
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                   onChange={(e) => setPricing((prev) => ({ ...prev, original_price: e.target.value }))}
                 />
                 <input
@@ -183,107 +186,78 @@ export default function Account() {
                   <FaEdit className="mr-1 text-lg" /> Update
                 </button>
               </div>
-          </div>
+            </div>
 
-          {/* Create Admin Account */}
-          <div className="flex items-center gap-20 justify-between">
-            <form onSubmit={addAdmin} className="bg-white w-1/2 h-80 p-6 rounded-xl shadow-lg border border-gray-300">
-              <h2 className="text-md text-center font-semibold text-gray-800 mb-4">Create an Admin Account</h2>
-              <div className="space-y-4">
-                <input
-                  placeholder="Enter Username"
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
-                  type="text"
-                  value={newAdmin.username}
-                  onChange={(e) => setNewAdmin((prev) => ({ ...prev, username: e.target.value }))}
-                  required
-                />
-                <input
-                  placeholder="Enter Email"
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
-                  type="email"
-                  value={newAdmin.email}
-                  onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
-                  required
-                />
-                <input
-                  placeholder="Enter Password"
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
-                  type="password"
-                  value={newAdmin.password}
-                  onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
-                  required
-                  minLength="6"
-                />
-                <div className="w-full flex justify-center">
-                  <button
-                    className="w-full bg-black hover:bg-gray-900 transition duration-200 text-white py-2 rounded-lg text-sm"
-                    type="submit"
-                  >
-                    Create an Account
-                  </button>
+            {/* Create Admin Account */}
+            <div className="flex flex-col md:flex-row items-center gap-5">
+              <form onSubmit={addAdmin} className="bg-white w-full md:w-1/2 p-6 rounded-xl shadow-lg border border-gray-300">
+                <h2 className="text-lg text-center font-semibold text-gray-800 mb-4">Create an Admin Account</h2>
+                <div className="space-y-4">
+                  <input
+                    placeholder="Enter Username"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                    type="text"
+                    value={newAdmin.username}
+                    onChange={(e) => setNewAdmin((prev) => ({ ...prev, username: e.target.value }))}
+                    required
+                  />
+                  <input
+                    placeholder="Enter Email"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                    type="email"
+                    value={newAdmin.email}
+                    onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
+                    required
+                  />
+                  <input
+                    placeholder="Enter Password"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                    type="password"
+                    value={newAdmin.password}
+                    onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
+                    required
+                    minLength="6"
+                  />
+                  <div className="w-full flex justify-center">
+                    <button
+                      className="w-full bg-black hover:bg-gray-900 transition duration-200 text-white py-2 rounded-lg text-sm"
+                      type="submit"
+                    >
+                      Create an Account
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
-              <img src={AccountImg} alt="account" className="w-96 h-96" />
+              </form>
+              <img src={AccountImg} alt="account" className="w-40 md:w-96 h-auto" />
+            </div>
           </div>
         </div>
       </div>
 
-      
-
+      {/* Success & Error Messages */}
       {createAdminSuccess && (
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-40">
-          <motion.div 
-            initial={{ scale: 0.5, opacity: 0 }} 
-            animate={{ scale: [1.1, 0.9, 1], opacity: 1 }} 
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <div className="w-100 h-60 bg-white rounded-xl flex flex-col items-center justify-center relative z-50">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1, rotate: 360 }}
-                transition={{ type: 'spring', stiffness: 100, damping: 10 }}
-                className="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center"
-              >
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-40">
+          <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: [1.1, 0.9, 1], opacity: 1 }} transition={{ duration: 0.5, ease: "easeInOut" }}>
+            <div className="bg-white p-6 rounded-xl flex flex-col items-center justify-center relative">
+              <motion.div className="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center">
                 <CheckCircle className="text-white w-10 h-10" />
               </motion.div>
-              <h1 className="text-xl pt-5 oswald-bold">Create New Admin Successfully!</h1>
-              <button 
-                className="mt-10 hover:cursor-pointer"
-                onClick={() => setCreateAdminSuccess(false)}
-              >
-                Close
-              </button>
+              <h1 className="text-lg font-bold pt-5">Admin Created Successfully!</h1>
+              <button className="mt-4 text-sm text-gray-600 hover:underline" onClick={() => setCreateAdminSuccess(false)}>Close</button>
             </div>
           </motion.div>
         </div>
       )}
 
       {createAdminFailed && (
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-40">
-          <motion.div 
-            initial={{ scale: 0.5, opacity: 0 }} 
-            animate={{ scale: [1.1, 0.9, 1], opacity: 1 }} 
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <div className="w-100 h-60 bg-white rounded-xl flex flex-col items-center justify-center relative z-50">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1, rotate: 360 }}
-                transition={{ type: 'spring', stiffness: 100, damping: 10 }}
-                className="bg-red-500 rounded-full w-16 h-16 flex items-center justify-center"
-              >
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-40">
+          <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: [1.1, 0.9, 1], opacity: 1 }} transition={{ duration: 0.5, ease: "easeInOut" }}>
+            <div className="bg-white p-6 rounded-xl flex flex-col items-center justify-center relative">
+              <motion.div className="bg-red-500 rounded-full w-16 h-16 flex items-center justify-center">
                 <ImCross className="text-white w-10 h-10" />
               </motion.div>
-              <h1 className="text-xl oswald-bold tracking-widest">OOPPSS...</h1>
-              <h1 className="text-xl pt-2 oswald-bold">Create New Admin Failed! Please Try Again.</h1>
-              <button 
-                className="mt-10 hover:cursor-pointer"
-                onClick={() => setCreateAdminFailed(false)}
-              >
-                Close
-              </button>
+              <h1 className="text-lg font-bold pt-5">Failed to Create Admin!</h1>
+              <button className="mt-4 text-sm text-gray-600 hover:underline" onClick={() => setCreateAdminFailed(false)}>Close</button>
             </div>
           </motion.div>
         </div>
