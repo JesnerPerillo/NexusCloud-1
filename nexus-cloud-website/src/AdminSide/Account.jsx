@@ -147,13 +147,13 @@ export default function Account() {
         </div>
         </div>
 
-        <div className="w-1/4 h-fit flex gap-5 flex-col">
+        <div className="w-1/2 h-fit flex gap-5 flex-col">
           {/* Update Course Pricing */}
           <div className="w-full h-60 bg-white p-6 rounded-xl shadow-lg border border-gray-300">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Update Pricing</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
                 <select
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                   onChange={(e) => setSelectedCourse(e.target.value)}
                 >
                   <option value="">Select Course</option>
@@ -164,13 +164,13 @@ export default function Account() {
                 <input
                   type="number"
                   placeholder={courses.original_price}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg ftext-sm"
                   onChange={(e) => setPricing((prev) => ({ ...prev, original_price: e.target.value }))}
                 />
                 <input
                   type="number"
                   placeholder="Discounted Price"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                   onChange={(e) => setPricing((prev) => ({ ...prev, discounted_price: e.target.value }))}
                 />
               </div>
@@ -185,7 +185,7 @@ export default function Account() {
           </div>
 
           {/* Create Admin Account */}
-          <form onSubmit={addAdmin} className="bg-white h-80 p-6 rounded-xl shadow-lg border border-gray-300">
+          <form onSubmit={addAdmin} className="bg-white w-1/2 h-80 p-6 rounded-xl shadow-lg border border-gray-300">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h2>
             <div className="space-y-4">
               <input
