@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { ImCross } from "react-icons/im";
+import AccountImg from '../Images/account.svg';
 
 export default function Account() {
   const [admins, setAdmins] = useState([]);
@@ -185,44 +186,47 @@ export default function Account() {
           </div>
 
           {/* Create Admin Account */}
-          <form onSubmit={addAdmin} className="bg-white w-1/2 h-80 p-6 rounded-xl shadow-lg border border-gray-300">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h2>
-            <div className="space-y-4">
-              <input
-                placeholder="Enter Username"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
-                type="text"
-                value={newAdmin.username}
-                onChange={(e) => setNewAdmin((prev) => ({ ...prev, username: e.target.value }))}
-                required
-              />
-              <input
-                placeholder="Enter Email"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
-                type="email"
-                value={newAdmin.email}
-                onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
-                required
-              />
-              <input
-                placeholder="Enter Password"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
-                type="password"
-                value={newAdmin.password}
-                onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
-                required
-                minLength="6"
-              />
-              <div className="w-full flex justify-center">
-                <button
-                  className="w-1/2 bg-black hover:bg-gray-900 transition duration-200 text-white py-2 rounded-lg text-sm"
-                  type="submit"
-                >
-                  Create an Account
-                </button>
+          <div className="flex items-center gap-20 justify-between">
+            <form onSubmit={addAdmin} className="bg-white w-1/2 h-80 p-6 rounded-xl shadow-lg border border-gray-300">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h2>
+              <div className="space-y-4">
+                <input
+                  placeholder="Enter Username"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+                  type="text"
+                  value={newAdmin.username}
+                  onChange={(e) => setNewAdmin((prev) => ({ ...prev, username: e.target.value }))}
+                  required
+                />
+                <input
+                  placeholder="Enter Email"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+                  type="email"
+                  value={newAdmin.email}
+                  onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
+                  required
+                />
+                <input
+                  placeholder="Enter Password"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-sm"
+                  type="password"
+                  value={newAdmin.password}
+                  onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
+                  required
+                  minLength="6"
+                />
+                <div className="w-full flex justify-center">
+                  <button
+                    className="w-full bg-black hover:bg-gray-900 transition duration-200 text-white py-2 rounded-lg text-sm"
+                    type="submit"
+                  >
+                    Create an Account
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+              <img src={AccountImg} alt="account" className="w-96 h-96" />
+          </div>
         </div>
       </div>
 
