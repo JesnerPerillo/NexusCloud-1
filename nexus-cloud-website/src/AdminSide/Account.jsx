@@ -121,11 +121,11 @@ export default function Account() {
       <div>
         <SideBar />
       </div>
-      <div className="w-full p-5 bg-gray-100 flex justify-between min-h-screen">
-      <div className="w-full h-150 flex justify-center">
+      <div className="w-full p-5 bg-gray-100 flex justify-evenly min-h-screen">
+      <div className="w-2/5 h-150 flex justify-center">
         {/* Admin List */}
         <div className="bg-white w-5/6 p-6 rounded-xl shadow-lg border border-gray-300">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6">Admin List</h2>
+          <h2 className="text-3xl text-gray-800 mb-6 oswald-bold">Admin User List</h2>
           <div className="overflow-hidden rounded-lg border border-gray-200">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -147,7 +147,7 @@ export default function Account() {
         </div>
         </div>
 
-        <div className="w-1/2 h-fit flex gap-5 flex-col">
+        <div className="w-1/4 h-fit flex gap-5 flex-col">
           {/* Update Course Pricing */}
           <div className="w-full h-60 bg-white p-6 rounded-xl shadow-lg border border-gray-300">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Update Pricing</h2>
