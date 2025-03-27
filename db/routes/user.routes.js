@@ -15,7 +15,7 @@ export const userRouter = express.Router();
 
 
 userRouter.get('/', async (req, res) => {
-    const [rows] = await conn.promise().query("SELECT * FROM users");
+    const [rows] = await conn.promise().query("SELECT * FROM admin");
     res.status(200).json(rows);
 })
 userRouter.post(

@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
+import { userRouter } from "./routes/user.routes.js"; 
 
 import addadminRouter from "./routes/addadmin.route.js";
 import courseRouter from "./routes/courses.route.js";
@@ -11,7 +12,7 @@ import getadminRouter from "./routes/getadmin.route.js";
 
 const app = express();
 const limiter = rateLimit({
-  windowMs: 30 * 60 * 1000,
+  windowMs: 30 * 60 * 1000, // 30 minutes
   max: 100,
 });
 
@@ -25,5 +26,6 @@ app.use("/api/courses", courseRouter);
 app.use("/api/enrollees", enrolleeRouter);
 app.use("/api/getenrollees", getenrolleesRouter);
 app.use("/api/getadmin", getadminRouter);
+app.use("/api/loginadmin", userRouter); 
 
 app.listen(5000, () => console.log("Server running on port 5000"));
