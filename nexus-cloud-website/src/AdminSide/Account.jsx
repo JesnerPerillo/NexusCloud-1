@@ -163,7 +163,7 @@ export default function Account() {
                 </select>
                 <input
                   type="number"
-                  placeholder="Original Price"
+                  placeholder={courses.original_price}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 text-sm"
                   onChange={(e) => setPricing((prev) => ({ ...prev, original_price: e.target.value }))}
                 />
@@ -174,12 +174,14 @@ export default function Account() {
                   onChange={(e) => setPricing((prev) => ({ ...prev, discounted_price: e.target.value }))}
                 />
               </div>
-              <button
-                className="w-full mt-4 p-3 bg-green-500 text-white rounded-lg flex items-center justify-center text-sm font-medium hover:bg-green-600 transition duration-200"
-                onClick={updatePricing}
-              >
-                <FaEdit className="mr-1 text-lg" /> Update
-              </button>
+              <div className="w-full flex justify-center">
+                <button
+                  className="w-1/2 mt-4 p-2 bg-black text-white rounded-lg flex items-center justify-center text-sm font-medium hover:bg-gray-900 transition duration-200"
+                  onClick={updatePricing}
+                >
+                  <FaEdit className="mr-1 text-lg" /> Update
+                </button>
+              </div>
           </div>
 
           {/* Create Admin Account */}
@@ -211,12 +213,14 @@ export default function Account() {
                 required
                 minLength="6"
               />
-              <button
-                className="w-full bg-blue-600 hover:bg-blue-700 transition duration-200 text-white py-3 rounded-lg text-sm font-medium"
-                type="submit"
-              >
-                Create an Account
-              </button>
+              <div className="w-full flex justify-center">
+                <button
+                  className="w-1/2 bg-black hover:bg-gray-900 transition duration-200 text-white py-2 rounded-lg text-sm"
+                  type="submit"
+                >
+                  Create an Account
+                </button>
+              </div>
             </div>
           </form>
         </div>
