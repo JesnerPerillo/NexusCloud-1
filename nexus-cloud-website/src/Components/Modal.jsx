@@ -98,7 +98,7 @@ useEffect(() => {
     if (course?.title) {
       console.log("Fetching courses for:", course.title);
   
-      axios.get("http://localhost:5000/api/courses?sortby=course_name&order=desc")
+      axios.get("http://localhost:5000/api/courses/get?sortby=course_name&order=desc")
         .then((res) => {
           console.log("API Response:", res.data);
           console.log(res, 'slots')
@@ -133,7 +133,7 @@ useEffect(() => {
   
   useEffect(() => {
     if (course?.title) {
-      axios.get("http://localhost:5000/api/courses")
+      axios.get("http://localhost:5000/api/courses/get")
         .then((res) => {
           console.log("API Response:", res.data);
 

@@ -6,8 +6,7 @@ import sendEmail from '../utils.js';
 const enrolleeRouter = express.Router();
 
 enrolleeRouter.get('/', (req, res) => {
-<<<<<<< Updated upstream
-    const validColumns = ['name', 'email', 'phoneNumber', 'course', 'modality', 'date', 'payment_method', 'reference_number'];
+    const validColumns = ['name', 'email', 'phone_number', 'course', 'modality', 'date', 'payment_method', 'reference_number'];
     const validOrders = ['asc', 'desc'];
     
     const sortby = req.query.sortby || 'date';
@@ -15,14 +14,6 @@ enrolleeRouter.get('/', (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
     let order = req.query.order || 'asc';
     
-=======
-    const sortby = req.query.sortby || 'date';
-    const limit = 12 || req.query.limit;
-    const order = req.query.order || 'asc';
-    const offset = parseInt(req.query.offset) || 0;
-    const validColumns = ['name', 'email', 'phoneNumber', 'course', 'modality', 'date', 'payment_method', 'reference_number'];
-    const validOrders = ['asc', 'desc'];
->>>>>>> Stashed changes
     if (!validColumns.includes(sortby)) {
         return res.status(400).json({ error: 'Invalid sort by column' });
     }
@@ -31,7 +22,7 @@ enrolleeRouter.get('/', (req, res) => {
         return res.status(400).json({ error: 'Invalid order type' });
     }
     
-    const query = `SELECT * FROM enrollees ORDER BY id ${order} LIMIT ? OFFSET ?`;
+    const query = `SELECT * FROM enrollees ORDER BY ${sortby} ${order} LIMIT ? OFFSET ?`;
     
     conn.promise()
         .query(query, [limit, offset])
@@ -51,43 +42,28 @@ enrolleeRouter.post('/create', [
     check('course').not().isEmpty(),
     check('modality').not().isEmpty(),
     check('date').not().isEmpty(),
-<<<<<<< Updated upstream
-    check('paymentMethod').not().isEmpty(),
+    check('paymentMethod').not().isEmpty()
 ], async (req, res) => {
     const { name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber } = req.body;
-=======
-   check('paymentMethod').not().isEmpty(),
-// 
-    
- ], async (req, res) => {
-    const { name, email, phoneNumber, course, modality, date, paymentMethod, reference_number } = req.body;  
->>>>>>> Stashed changes
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
 
-<<<<<<< Updated upstream
     try {
         await conn.promise().query(
             "INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             [name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber]
         );
-        sendEmail(email, name, course);
-=======
-    conn.promise().query(
-        "INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)", 
-        [name, email, phoneNumber, date, paymentMethod, reference_number]
-    )
-    .then(([rows]) => {
-        console.log(rows);
-        sendEmail(email, name, course); // move this because this automatically send when they filled up the form, it should be when payment is succesfull
->>>>>>> Stashed changes
-        res.send("Enrollee created");
+        
+        // Only send email if payment is successful (you might want to add a payment status check here)
+        // sendEmail(email, name, course);
+        
+        res.status(201).json({ message: "Enrollee created successfully" });
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error creating enrollee");
+        res.status(500).json({ error: "Error creating enrollee" });
     }
 });
 
@@ -110,24 +86,15 @@ enrolleeRouter.put('/update/:id', async (req, res) => {
         const newPaymentMethod = paymentMethod || existingEnrollee[0].payment_method;
         const newReferenceNumber = referenceNumber || existingEnrollee[0].reference_number;
 
-<<<<<<< Updated upstream
         await conn.promise().query(
             "UPDATE enrollees SET name=?, email=?, phone_number=?, course=?, modality=?, date=?, payment_method=?, reference_number=? WHERE id=?",
             [newName, newEmail, newPhoneNumber, newCourse, newModality, newDate, newPaymentMethod, newReferenceNumber, id]
         );
-        res.send("Update Successful");
+        
+        res.status(200).json({ message: "Update Successful" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Server error: " + err.message });
-=======
-        await conn.promise().query("UPDATE enrollees SET name=?, email=?, phoneNumber=?, course=?, modality=?, date=?, payment_method=?, referenceNumber=?", [
-            newName, newEmail, newPhoneNumber, newCourse, newModality, newDate, newPaymentMethod, newReferenceNumber, id
-        ])
-
-        res.send("Update Succesfull")
-    } catch(err) {
-        res.send(500).json({error: 'Server error ' + err.message})
->>>>>>> Stashed changes
     }
 });
 
