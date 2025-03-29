@@ -1,9 +1,8 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const { getCourses } = require("./fetchdata"); 
-
-const mysql = require("mysql");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import { getCourses } from "./fetchdata.js";
+import mysql from "mysql2";
 
 const db = mysql.createConnection({
   host: "localhost",
