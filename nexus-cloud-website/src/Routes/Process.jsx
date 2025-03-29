@@ -3,6 +3,7 @@ import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import Contact from "../Components/Contact.jsx";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const steps = [
   { icon: <FileText size={32} className="text" />, title: "Browse Courses", description: "Explore a variety of IT training courses." },
@@ -70,75 +71,126 @@ export default function Process() {
     window.scrollTo(0, 0);
   }, []);
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+  
+
   return (
     <div className="con">
       <Header />
 
-      {/* Enrollment Process */}
-      <div className="max-w-6xl h-full mx-auto py-16 pt-30 px-6 text-center sm:h-screen">
+      <div className="pt-20">
+      <motion.div 
+        className="max-w-6xl h-full mx-auto py-16 px-6 text-center sm:h-screen"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">How to Enroll in a Course</h2>
         <p className="text-gray-400 text-lg">Follow these simple steps to enroll and start learning.</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
           {steps.map((step, index) => (
-            <div key={index} className="flex flex-col items-center report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform">
+            <motion.div
+              key={index}
+              className="flex flex-col items-center report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform"
+              whileHover={{ scale: 1.1 }}
+              variants={fadeInUp}
+            >
               <div className="mb-4">{step.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
               <p className="">{step.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Why Choose NexusCloud? */}
-      <div className="con h-full sm:h-screen py-16 px-6">
+      <motion.div 
+        className="con h-full sm:h-screen py-16 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl md:text-4xl font-bold mb-4">Why Choose NexusCloud IT Solutions?</h2>
           <p className="text-gray-400 text-lg mb-10">We provide high-quality IT training with real-world applications.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
-              <div key={index} className="flex flex-col items-center report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform">
+              <motion.div
+                key={index}
+                className="flex flex-col items-center report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform"
+                whileHover={{ scale: 1.1 }}
+                variants={fadeInUp}
+              >
                 <div className="mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
                 <p className="">{benefit.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Payment Methods */}
-      <div className="max-w-6xl h-full sm:h-screen mx-auto py-16 px-6 text-center">
+      <motion.div 
+        className="max-w-6xl h-full sm:h-screen mx-auto py-16 px-6 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Payment Methods</h2>
         <p className="text-gray-400 text-lg mb-10">Choose the most convenient way to pay for your course.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {paymentMethods.map((method, index) => (
-            <div key={index} className="report p-6 rounded-2xl shadow-lg flex flex-col items-center hover:scale-110 transition-transform">
+            <motion.div
+              key={index}
+              className="report p-6 rounded-2xl shadow-lg flex flex-col items-center hover:scale-110 transition-transform"
+              whileHover={{ scale: 1.1 }}
+              variants={fadeInUp}
+            >
               <div className="mb-4">{method.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{method.title}</h3>
               <p className="">{method.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Student Testimonials */}
-      <div className="con h-full sm:h-screen py-16 px-6">
+      <motion.div 
+        className="con h-full sm:h-screen py-16 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-10">What Our Students Say</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform">
-                <p className="">`{testimonial.feedback}`</p>
+              <motion.div
+                key={index}
+                className="report shadow-lg p-6 rounded-2xl hover:scale-110 transition-transform"
+                whileHover={{ scale: 1.1 }}
+                variants={fadeInUp}
+              >
+                <p className="">&quot;{testimonial.feedback}&quot;</p>
                 <h3 className="text-xl font-semibold mt-4">{testimonial.name}</h3>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
+    </div>
 
       <Contact />
       <Footer />
