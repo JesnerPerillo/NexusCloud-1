@@ -76,7 +76,7 @@ const confirmSubmission = async () => {
   };
 
   try {
-    const response = await axios.post("http://localhost:5000/api/enrollees", updateFormData);
+    const response = await axios.post("http://localhost:5000/api/enrollees/create", updateFormData);
     console.log("Form submitted successfully:", response.data);
 
     setSuccess(true);
@@ -93,34 +93,82 @@ const confirmSubmission = async () => {
   
 
   {/*API call for courses in the database (abang lang to) */}
-  useEffect(() => {
+
+useEffect(() => {
     if (course?.title) {
-      axios.get("http://localhost:5000/api/courses")
+      console.log("Fetching courses for:", course.title);
+  
+      axios.get("http://localhost:5000/api/courses?sortby=course_name&order=desc")
         .then((res) => {
           console.log("API Response:", res.data);
-
+<<<<<<< Updated upstream
+          console.log(res, 'slots')
+=======
+>>>>>>> Stashed changes
+  
           const courseData = res.data.find(c => c.course_name === course.title);
-          if (courseData && courseData.dates.length > 0) {
-            console.log("Course Data:", courseData.date);
+          console.log("Matched course data", courseData);
+  
+          if (courseData && courseData.date) {
+<<<<<<< Updated upstream
+            console.log("Course Data(Raw):", courseData.slots);
+=======
+            console.log("Course Data(Raw):", courseData.date);
+>>>>>>> Stashed changes
+  
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-
-            const formattedDates = courseData.dates
-              .map(dateStr => {
-                const date = new Date(dateStr);
-                console.log("Converted Date:", date);
-                return date;
-              })
-              .filter(date => date >= today);
-
-            setAllowedDates(formattedDates);
+  
+            const formattedDate = new Date(courseData.date);
+            console.log("Converted Date:", formattedDate);
+  
+            if (formattedDate >= today) {
+              setAllowedDates([formattedDate]);
+            } else {
+              console.warn("Date is in the past", formattedDate);
+            }
+          } else {
+            console.warn("No data field in course data");
           }
         })
-        .catch((err) => console.error("Error fetching courses:", err.message));
+        .catch((error) => {
+          console.error("Error fetching courses:", error);
+        });
     }
-  }, [course]);
+  }, [course]); // Closing properly
+  
+<<<<<<< Updated upstream
+  
+=======
+  // useEffect(() => {
+  //   if (course?.title) {
+  //     axios.get("http://localhost:5000/api/courses")
+  //       .then((res) => {
+  //         console.log("API Response:", res.data);
+
+  //         const courseData = res.data.find(c => c.course_name === course.title);
+  //         if (courseData && courseData.dates.length > 0) {
+  //           console.log("Course Data:", courseData.date);
+  //           const today = new Date();
+  //           today.setHours(0, 0, 0, 0);
+
+  //           const formattedDates = courseData.dates
+  //             .map(dateStr => {
+  //               const date = new Date(dateStr);
+  //               console.log("Converted Date:", date);
+  //               return date;
+  //             })
+  //             .filter(date => date >= today);
+
+  //           setAllowedDates(formattedDates);
+  //         }
+  //       })
+  //       .catch((err) => console.error("Error fetching courses:", err.message));
+  //   }
+  // }, [course]);
   console.log(selectedDate)
 
+>>>>>>> Stashed changes
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
       <motion.div
@@ -199,6 +247,19 @@ const confirmSubmission = async () => {
           />
         </div>
 
+        <div>
+          <label className="block text-xs font-medium text-gray-700 mb-1">Available Slots</label>
+          <input
+            type="number"
+            name="slots"
+            value="20"
+            onChange={handleChange}
+            placeholder={course.title}
+            disabled
+            className="w-full px-3 text-black py-2 border border-gray-200 rounded-md cursor-not-allowed"
+          />
+        </div>
+
         <div className="flex gap-2">
           {/* Modality Field */}
           <div className="w-1/2">
@@ -210,8 +271,8 @@ const confirmSubmission = async () => {
               className="w-full px-3 text-black py-2 border border-gray-200 rounded-md"
             >
               <option value="" hidden>Select Modality</option>
-              <option value="online">Online (via Zoom)</option>
-              <option value="onsite">On-Site (At the office)</option>
+              <option value="online" name='modality'>Online (via Zoom)</option>
+              <option value="onsite" name='modality'>On-Site (At the office)</option>
             </select>
           </div>
 

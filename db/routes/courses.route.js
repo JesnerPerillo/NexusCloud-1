@@ -13,19 +13,22 @@ courseRouter.get('/', async (req, res) => {
     let order = req.query.order == 'desc'? 'DESC': 'ASC';
     
     const validColumns = ['course_name', 'date', 'original_price',  'discounted_price', 'modality', 'slots'];
-    
+
     if(!validColumns.includes(sortby)){
         return res.status(400).json({error: 'Invalid sort by column'});
     }
+
 
     try {
         const sql = `SELECT * FROM courses ORDER BY ?? ${order}`;
         const [rows] = await conn.promise().query(sql, [sortby]);
         res.status(200).json(rows);
     } catch (err) {
-        console.err("Database Errpr " + err.message);
+        console.error("Database Errpr " + err.message);
         res.status(500).json({error: 'Database error at ' + err});
+
     }
+
 })
 
 

@@ -198,6 +198,7 @@ export default function CardContent() {
       .get("http://localhost:5000/api/courses")
       .then((response) => {
         const formattedCourses = response.data.map((course) => ({
+          id: course.id,
           title: course.course_name,
           originalPrice: `P${course.original_price || "N/A"}`,
           discountedPrice: `P${course.discounted_price || "N/A"}`,
@@ -206,10 +207,13 @@ export default function CardContent() {
         setCourse(formattedCourses);
       })
       .catch((error) => {
-        console.error("Error fetching courses:", error);
+        // console.error("Error fetching courses:", error);
+        console.log(error.message)
+        res.status(500).json({ error: 'Database error', details: err.message });
+
       });
   }, []);
-
+  console.log("Courses Data:", courses);
   return (
     <div className="p-2 gap-5 mb-10 justify-around grid grid-cols-1 sm:grid-cols-4 sm:px-5 sm:flex-row">
       {courses.map((course) => (
