@@ -16,6 +16,7 @@ import WhatWeDo2Img from '../Images/whatwedo2.jpg';
 import WhatWeDo3Img from '../Images/whatwedo3.jpg';
 import WhatWeDo4Img from '../Images/whatwedo4.jpg';
 import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
+import { motion } from "framer-motion";
 
 export default function AboutNexus() {
   const [isActive, setIsActive] = useState(false);
@@ -84,19 +85,38 @@ export default function AboutNexus() {
       </div>
 
       {/*Who We Are Container */}
-      <div className="w-full h-auto flex flex-col items-center justify-around sm:w-full sm:h-screen sm:flex-row hover:cursor-pointer">
-        <div className="w-auto mt-30 h-auto flex flex-col items-center sm:w-1/3 sm:h-[40rem]">
-          <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl ">
-            <div className="relative w-full h-full overflow-hidden rounded-xl">
-              <img
-                src={weAreSlides[weAreIndex]}
-                alt={`Slide ${weAreIndex + 1}`}
-                className="w-full h-[35rem] object-cover rounded-xl"
-              />
-            </div>
+      <motion.div 
+      className="w-full h-auto flex flex-col justify-around sm:w-full sm:h-screen sm:flex-row hover:cursor-pointer"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
+      <motion.div 
+        className="w-auto mt-30 h-auto flex flex-col items-center sm:w-1/3 sm:h-[40rem]"
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <div className="relative w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl ">
+          <div className="relative w-full h-full overflow-hidden rounded-xl">
+            <img
+              src={weAreSlides[weAreIndex]}
+              alt={`Slide ${weAreIndex + 1}`}
+              className="w-full h-[35rem] object-cover rounded-xl"
+            />
           </div>
-          {/* Mini images (thumbnails) */}
-        <div className="mt-10 w-full bg-white/30 backdrop-blur-lg shadow-lg p-2 rounded-2xl flex items-center justify-around sm:w-[20rem]">
+        </div>
+        
+        {/* Mini images (thumbnails) */}
+        <motion.div 
+          className="mt-10 w-full bg-white/30 backdrop-blur-lg shadow-lg p-2 rounded-2xl flex items-center justify-around sm:w-[20rem]"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
           {weAreSlides.map((slide, index) => (
             <img
               key={index}
@@ -106,63 +126,102 @@ export default function AboutNexus() {
               onClick={() => handleThumbnailClick(index)}
             />
           ))}
-        </div>
-      </div>
-      <div className="w-full text-center mt-20 p-0 text-white pr-0 sm:w-1/2 sm:p-10 sm:pr-20 sm:text-right mt-10">
-        <h1 className="text-[4rem] oswald-bold sm:text-[5rem] text-[#f4ca4f]">WHO WE ARE</h1>
-        <p className="text text-lg px-5 text-justify leading-7 montserrat-semibold sm:text-lg">We are a team of dedicated <span className="text-[#f4ca4f]">IT professionals and educators</span> committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /> <br />
+        </motion.div>
+      </motion.div>
 
-        Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with <span className="text-[#f4ca4f]">over 20 years of experience</span> in finance, retail, managed services, and government sectors. We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers.<br /> <br/>
-
-        At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence
-        .</p>
-      </div>
-    </div>
+      <motion.div 
+        className="w-full text-center mt-20 p-0 text-white pr-0 sm:w-1/2 sm:p-10 sm:pr-20 sm:text-right mt-10"
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <h1 className="text-[3rem] oswald-bold sm:text-[4rem] text-[#f4ca4f]">WHO WE ARE</h1>
+        <p className="text text-lg px-5 text-justify leading-7 montserrat-semibold sm:text-sm sm:px-0">
+          We are a team of dedicated <span className="text-[#f4ca4f]">IT professionals and educators</span> committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
+          Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with <span className="text-[#f4ca4f]">over 20 years of experience</span> in finance, retail, managed services, and government sectors. We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers.<br /><br />
+          At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence.
+        </p>
+      </motion.div>
+    </motion.div>
 
     {/* What We Do Container */}  
-        <div className="w-full h-auto flex flex-col justify-between relative mt-0 px-5 p-0 sm:w-full sm:h-auto sm:flex-row sm:px-20 gap-20 p-5 mt-50">
-          <div className="absolute flex blur drop-shadow-2xl mx-0 rounded-xl sm:mx-10"></div>
-          <div className="w-full text-white z-20 sm:w-1/2">
-            <h1 className="text-[4rem] text-center oswald-bold text-[#f4ca4f] sm:text-[5rem]">WHAT WE DO</h1>
-            <p className="text-lg text-justify text montserrat-semibold">We are a team of dedicated IT professionals and educators committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
+    <motion.div
+      className="w-full h-auto flex flex-col-reverse justify-between relative mt-0 px-5 sm:w-full sm:h-auto sm:flex-row sm:px-20 gap-20 p-5"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
+      {/* Text Content */}
+      <motion.div 
+        className="w-full text-white z-20 sm:w-1/2"
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <h1 className="text-[3rem] text-center oswald-bold text-[#f4ca4f] sm:text-[4rem] sm:text-left">
+          WHAT WE DO
+        </h1>
+        <p className="text-md text-justify text montserrat-semibold">
+          We are a team of dedicated IT professionals and educators committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
 
-            Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with over 20 years of experience in finance, retail, managed services, and government sectors. <br /><br />
+          Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with over 20 years of experience in finance, retail, managed services, and government sectors. <br /><br />
 
-            We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers. At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence .
-            </p>
-          </div>
-          <div className="relative mt-20 z-20 w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-2 sm:p-0 sm:w-1/2 sm:mt-0">
-            <div className="relative w-full h-full overflow-hidden">
-              <img
-                src={slides[currentIndex]}
-                alt={`Slide ${currentIndex + 1}`}
-                className="w-full h-[35rem] object-cover rounded-xl"
-              />
-            </div>
-            
-            {/* Prev Button */}
-            <GrCaretPrevious
-              onClick={prevSlide}
-              className="absolute w-20 h-8 top-1/2 left-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:-translate-x-[-5px] sm:w-20 sm:h-20 sm:left-[-50px]"
-            />
+          We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers. At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence.
+        </p>
+      </motion.div>
 
-            {/* Next Button */}
-            <GrCaretNext
-              onClick={nextSlide}
-              className="absolute w-20 h-8 top-1/2 right-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:-translate-x-[5px] sm:w-20 sm:h-20 sm:right-[-50px]"
-            />
-
-            {/* Indicator */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-              {slides.map((_, index) => (
-                <span
-                  key={index}
-                  className={`h-2 w-2 rounded-full ${index === currentIndex ? 'bg-gray-400' : 'bg-gray-600'}`}
-                ></span>
-              ))}
-            </div>
-          </div>
+      {/* Image Carousel */}
+      <motion.div 
+        className="relative mt-20 z-20 w-full max-w-2xl mx-auto h-3/4 bg-white/20 backdrop-blur-lg shadow-lg flex items-center justify-between rounded-xl p-2 sm:p-0 sm:w-1/2 sm:mt-0"
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <div className="relative w-full h-full overflow-hidden">
+          <motion.img
+            key={currentIndex} // Ensures smooth transition when changing images
+            src={slides[currentIndex]}
+            alt={`Slide ${currentIndex + 1}`}
+            className="w-full h-[35rem] object-cover rounded-xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          />
         </div>
+        
+        {/* Prev Button */}
+        <GrCaretPrevious
+          onClick={prevSlide}
+          className="absolute w-20 h-8 top-1/2 left-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:scale-110 sm:w-20 sm:h-20 sm:left-[-50px]"
+        />
+
+        {/* Next Button */}
+        <GrCaretNext
+          onClick={nextSlide}
+          className="absolute w-20 h-8 top-1/2 right-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:scale-110 sm:w-20 sm:h-20 sm:right-[-50px]"
+        />
+
+        {/* Indicator */}
+        <motion.div 
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          {slides.map((_, index) => (
+            <span
+              key={index}
+              className={`h-2 w-2 rounded-full ${index === currentIndex ? 'bg-gray-400' : 'bg-gray-600'}`}
+            ></span>
+          ))}
+        </motion.div>
+      </motion.div>
+    </motion.div>
       <div className="w-full con pt-40 flex flex-col items-center text-white">
         <h1 className="text-4xl text-[#f4ca4f] oswald-bold sm:text-[6rem]">CORE PRINCIPLES</h1>
         <div className="flex w-full items-center flex-col justify-center p-5 mt-10 gap-5 sm:flex-row sm:gap-0">
