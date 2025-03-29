@@ -93,20 +93,28 @@ const confirmSubmission = async () => {
   
 
   {/*API call for courses in the database (abang lang to) */}
-  useEffect(() => {
+
+useEffect(() => {
     if (course?.title) {
       console.log("Fetching courses for:", course.title);
   
       axios.get("http://localhost:5000/api/courses?sortby=course_name&order=desc")
         .then((res) => {
           console.log("API Response:", res.data);
+<<<<<<< Updated upstream
           console.log(res, 'slots')
+=======
+>>>>>>> Stashed changes
   
           const courseData = res.data.find(c => c.course_name === course.title);
           console.log("Matched course data", courseData);
   
           if (courseData && courseData.date) {
+<<<<<<< Updated upstream
             console.log("Course Data(Raw):", courseData.slots);
+=======
+            console.log("Course Data(Raw):", courseData.date);
+>>>>>>> Stashed changes
   
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -129,7 +137,38 @@ const confirmSubmission = async () => {
     }
   }, [course]); // Closing properly
   
+<<<<<<< Updated upstream
   
+=======
+  // useEffect(() => {
+  //   if (course?.title) {
+  //     axios.get("http://localhost:5000/api/courses")
+  //       .then((res) => {
+  //         console.log("API Response:", res.data);
+
+  //         const courseData = res.data.find(c => c.course_name === course.title);
+  //         if (courseData && courseData.dates.length > 0) {
+  //           console.log("Course Data:", courseData.date);
+  //           const today = new Date();
+  //           today.setHours(0, 0, 0, 0);
+
+  //           const formattedDates = courseData.dates
+  //             .map(dateStr => {
+  //               const date = new Date(dateStr);
+  //               console.log("Converted Date:", date);
+  //               return date;
+  //             })
+  //             .filter(date => date >= today);
+
+  //           setAllowedDates(formattedDates);
+  //         }
+  //       })
+  //       .catch((err) => console.error("Error fetching courses:", err.message));
+  //   }
+  // }, [course]);
+  console.log(selectedDate)
+
+>>>>>>> Stashed changes
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-30">
       <motion.div
@@ -232,8 +271,8 @@ const confirmSubmission = async () => {
               className="w-full px-3 text-black py-2 border border-gray-200 rounded-md"
             >
               <option value="" hidden>Select Modality</option>
-              <option value="online">Online (via Zoom)</option>
-              <option value="onsite">On-Site (At the office)</option>
+              <option value="online" name='modality'>Online (via Zoom)</option>
+              <option value="onsite" name='modality'>On-Site (At the office)</option>
             </select>
           </div>
 
