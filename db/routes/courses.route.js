@@ -8,7 +8,7 @@ const courseRouter = express.Router();
 
 // ALL THESE ROUTE SHOULD HAVE AUTORIZATION AND AUTHENTICATION
 
-courseRouter.get('/', async (req, res) => {
+courseRouter.get('/get', async (req, res) => {
     const sortby = req.body.sortby || 'date';
     let order = req.query.order == 'desc'? 'DESC': 'ASC';
     
