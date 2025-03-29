@@ -22,7 +22,7 @@ enrolleeRouter.get('/', (req, res) => {
         return res.status(400).json({ error: 'Invalid order type' });
     }
     
-    const query = `SELECT * FROM enrollees ORDER BY ${sortby} ${order} LIMIT ? OFFSET ?`;
+    const query = `SELECT * FROM enrollees ORDER BY id ${order} LIMIT ? OFFSET ?`;
     
     conn.promise()
         .query(query, [limit, offset])
@@ -56,6 +56,7 @@ enrolleeRouter.post('/create', [
             "INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             [name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber]
         );
+        sendEmail(email, name, course);
         res.send("Enrollee created");
     } catch (err) {
         console.error(err);
