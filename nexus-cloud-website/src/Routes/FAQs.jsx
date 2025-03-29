@@ -2,6 +2,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Contact from "../Components/Contact";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const nexus = [
   {
@@ -266,132 +267,47 @@ export default function FAQs() {
         <Header />
       </div>
 
-      <div className="w-full h-full con py-16 pt-30 sm:h-screen">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text px-3">Here are some of the frequently asked questions about NexusCloud IT Solutions.</p>
-        </div>
+      {[ 
+        { data: nexus, title: "FAQ", description: "Here are some of the frequently asked questions about NexusCloud IT Solutions." },
+        { data: courses, title: "FAQ", description: "Here are some of the frequently asked questions about Courses" },
+        { data: paymentEnrollments, title: "FAQ", description: "Here are some of the frequently asked questions about Courses" },
+        { data: teaching, title: "FAQ", description: "Here are some of the frequently asked questions about Instructor & Teaching Style." },
+        { data: certifications, title: "FAQ", description: "Here are some of the frequently asked questions about Certification & Career Opportunities." },
+        { data: reschedulings, title: "FAQ", description: "Here are some of the frequently asked questions about Course Rescheduling & Cancellations." },
+        { data: additionalInfos, title: "FAQ", description: "Here are some of the frequently asked questions for Additional Information." }
+      ].map((section, idx) => (
+        <motion.div 
+          key={idx}
+          className="w-full h-full con py-16 sm:h-screen"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-6xl mt-20 mx-auto text-center mb-10">
+            <h2 className="text-3xl font-bold">{section.title}</h2>
+            <p className="text px-3">{section.description}</p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-          {nexus.map((nexu, index) => (
-            <div key={index} className="flex items-start gap-2 border-l-2 border-text pl-4">
-              <div>
-                <h3 className="text-lg montserrat-bold">{nexu.title}</h3>
-                <p className="text">{nexu.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="w-full h-full con py-16 sm:h-screen">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text px-3">Here are some of the frequently asked questions about Courses</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-          {courses.map((course, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
-              <div>
-                <h3 className="text-lg montserrat-bold">{course.title}</h3>
-                <p className="text">{course.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="w-full h-full con py-16 ">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text px-3">Here are some of the frequently asked questions about Courses</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-          {paymentEnrollments.map((paymentEnrollment, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
-              <div>
-                <h3 className="text-lg montserrat-bold">{paymentEnrollment.title}</h3>
-                <p className="text">{paymentEnrollment.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="w-full h-full con py-16 ">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text px-3">Here are some of the frequently asked questions about Instructor & Teaching Style
-          .</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-          {teaching.map((teach, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
-              <div>
-                <h3 className="text-lg montserrat-bold">{teach.title}</h3>
-                <p className="text">{teach.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="w-full h-full con py-16 ">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text px-3">Here are some of the frequently asked questions about Certification & Career Opportunities.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-          {certifications.map((certification, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
-              <div>
-                <h3 className="text-lg montserrat-bold">{certification.title}</h3>
-                <p className="text">{certification.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="w-full h-full con py-16 ">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text px-3">Here are some of the frequently asked questions about Course Rescheduling & Cancellations.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-          {reschedulings.map((rescheduling, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
-              <div>
-                <h3 className="text-lg montserrat-bold">{rescheduling.title}</h3>
-                <p className="text">{rescheduling.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="w-full h-full con py-16 ">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold">FAQ</h2>
-          <p className="text px-3">Here are some of the frequently asked questions for Additional Information.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-          {additionalInfos.map((additionalInfo, index) => (
-            <div key={index} className="flex items-start gap-4 border-l-2 border-text pl-4">
-              <div>
-                <h3 className="text-lg montserrat-bold">{additionalInfo.title}</h3>
-                <p className="text">{additionalInfo.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
+            {section.data.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="flex items-start gap-4 border-l-2 border-text pl-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div>
+                  <h3 className="text-lg montserrat-bold">{item.title}</h3>
+                  <p className="text">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      ))}
 
       <div>
         <Contact />

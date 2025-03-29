@@ -115,7 +115,7 @@ export default function Account() {
 
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-gray-100">
+    <div className="w-full min-h-screen con flex flex-col">
       {/* Header */}
       <div className="w-full h-20">
         <AdminHeader />
@@ -128,19 +128,19 @@ export default function Account() {
         {/* Main Content */}
         <div className="flex flex-col md:flex-row gap-6 p-5 w-full">
           {/* Admin User List */}
-          <div className="w-full md:w-2/5 bg-white p-6 rounded-xl shadow-lg border border-gray-300">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Admin User List</h2>
+          <div className="w-full md:w-2/5 bg-white p-6 rounded-xl shadow-lg border border-gray-300 sidebar">
+            <h2 className="text-xl font-semibold text mb-4">Admin User List</h2>
             <div className="overflow-hidden rounded-lg border border-gray-200">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-gray-200 text-gray-700 text-sm">
+                  <tr className="con text text-sm">
                     <th className="p-3">Name</th>
                     <th className="p-3">Email</th>
                   </tr>
                 </thead>
                 <tbody>
                   {admins.map((admin, index) => (
-                    <tr key={index} className="border-t text-gray-700 hover:bg-gray-100 transition">
+                    <tr key={index} className="border-t text transition">
                       <td className="p-3">{admin.username}</td>
                       <td className="p-3">{admin.email}</td>
                     </tr>
@@ -153,8 +153,8 @@ export default function Account() {
           {/* Right Section */}
           <div className="flex flex-col gap-5 w-full md:w-3/5">
             {/* Update Course Pricing */}
-            <div className="w-full bg-white p-6 rounded-xl shadow-lg border border-gray-300">
-              <h2 className="text-lg font-semibold text-gray-800 mb-4 text-center">Update Pricing</h2>
+            <div className="w-full bg-white p-6 rounded-xl shadow-lg border border-gray-300 sidebar">
+              <h2 className="text-lg font-semibold text mb-4 text-center">Update Pricing</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <select
                   className="w-full p-3 border border-gray-300 rounded-lg text-sm"
@@ -168,13 +168,13 @@ export default function Account() {
                 <input
                   type="number"
                   placeholder="Original Price"
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                  className="text w-full p-3 border border-gray-300 rounded-lg text-sm"
                   onChange={(e) => setPricing((prev) => ({ ...prev, original_price: e.target.value }))}
                 />
                 <input
                   type="number"
                   placeholder="Discounted Price"
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                  className="text w-full p-3 border border-gray-300 rounded-lg text-sm"
                   onChange={(e) => setPricing((prev) => ({ ...prev, discounted_price: e.target.value }))}
                 />
               </div>
@@ -190,12 +190,12 @@ export default function Account() {
 
             {/* Create Admin Account */}
             <div className="flex flex-col md:flex-row items-center gap-5">
-              <form onSubmit={addAdmin} className="bg-white w-full md:w-1/2 p-6 rounded-xl shadow-lg border border-gray-300">
-                <h2 className="text-lg text-center font-semibold text-gray-800 mb-4">Create an Admin Account</h2>
+              <form onSubmit={addAdmin} className="sidebar w-full md:w-1/2 p-6 rounded-xl shadow-lg border border-gray-300">
+                <h2 className="text-lg text-center font-semibold text mb-4">Create an Admin Account</h2>
                 <div className="space-y-4">
                   <input
                     placeholder="Enter Username"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-sm text"
                     type="text"
                     value={newAdmin.username}
                     onChange={(e) => setNewAdmin((prev) => ({ ...prev, username: e.target.value }))}
@@ -203,7 +203,7 @@ export default function Account() {
                   />
                   <input
                     placeholder="Enter Email"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                    className="text w-full p-3 border border-gray-300 rounded-lg text-sm"
                     type="email"
                     value={newAdmin.email}
                     onChange={(e) => setNewAdmin((prev) => ({ ...prev, email: e.target.value }))}
@@ -211,7 +211,7 @@ export default function Account() {
                   />
                   <input
                     placeholder="Enter Password"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                    className="text w-full p-3 border border-gray-300 rounded-lg text-sm"
                     type="password"
                     value={newAdmin.password}
                     onChange={(e) => setNewAdmin((prev) => ({ ...prev, password: e.target.value }))}
@@ -220,7 +220,7 @@ export default function Account() {
                   />
                   <div className="w-full flex justify-center">
                     <button
-                      className="w-full bg-black hover:bg-gray-900 transition duration-200 text-white py-2 rounded-lg text-sm"
+                      className="w-full button hover:bg-gray-900 transition duration-200 text-white py-2 rounded-lg text-sm hover:cursor-pointer"
                       type="submit"
                     >
                       Create an Account
