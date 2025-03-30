@@ -17,6 +17,7 @@ import WhatWeDo3Img from '../Images/whatwedo3.jpg';
 import WhatWeDo4Img from '../Images/whatwedo4.jpg';
 import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 import { motion } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 
 export default function AboutNexus() {
   const [isActive, setIsActive] = useState(false);
@@ -77,6 +78,44 @@ export default function AboutNexus() {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 50
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Track when sections are in view
+  const [titleRef, titleInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  });
+
+  const [cardsRef, cardsInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+
+
 
   return(
     <div className="con overflow-x-hidden w-full h-auto sm:w-full h-auto">
@@ -223,34 +262,76 @@ export default function AboutNexus() {
       </motion.div>
     </motion.div>
       <div className="w-full con pt-40 flex flex-col items-center text-white">
-        <h1 className="text-4xl text-[#f4ca4f] oswald-bold sm:text-[6rem]">CORE PRINCIPLES</h1>
-        <div className="flex w-full items-center flex-col justify-center p-5 mt-10 gap-5 sm:flex-row sm:gap-0">
-          <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group sm:w-1/3" style={{ backgroundImage: `url(${VisionImg})`}} onClick={handleToggle}>
-            <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${isActive ? "opacity-70" : "opacity-40"} group-hover:opacity-70`}></div>
-            <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>VISION</h1>
-            <p className={`absolute text-md text-white text-justify px-5 opacity-0 transition-opacity duration-500 z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} group-hover:opacity-100 group-hover:translate-y-0 sm:text-xl`}>Our vision at Nexuscloud IT Solution is to be the preferred choice for individuals and organizations seeking top-notch IT training. We aspire to create an inclusive learning environment where participants can acquire cutting-edge industry knowledge, practical skills, and valuable certifications at a low-cost fee. We are dedicated to continuously expanding our offerings, leveraging advanced technology, and partnering with industry leaders to ensure our clients receive the best possible training experience.</p>
-          </div>
-          <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group sm:w-1/3" style={{ backgroundImage: `url(${MissionImg})`}} onClick={handleToggle}>
-            <div className={`absolute inset-0 bg-black transition-opacity duration-500 group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
-            <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>MISSION</h1>
-            <p className={`absolute text-lg text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-0 z-20 ${isActive ? "opacity-100 tranlate-y-5" : "opacity-0 translate-y-5"}`}>At Nexuscloud IT Solution, we aim to provide high-quality training and development opportunities to individuals and organizations, empowering them with the skills and knowledge essential for success in the digital age. We are committed to delivering exceptional value through comprehensive programs, affordable fees, and a wide range of freebies.</p>
-          </div>
-          <div className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group group-hover:w-full sm:w-1/3" style={{ backgroundImage: `url(${ValuesImg})`}} onClick={handleToggle}>
-            <div className={`absolute inset-0 bg-black transition-opacity group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
-            <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] group-hover:translate-y-[-13rem] duration-500 ${isActive ? "-translate-y-[15rem]" : ""}`}>VALUES</h1>
-            <p className={`absolute text-xs text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-[3rem] z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} sm:text-[14px]`}>
-            <u>High-Quality Training</u>: Our commitment to excellence is evident in our meticulously crafted training programs, facilitated by industry experts who provide practical and hands-on learning experiences.<br /><br />
+      {/* Title */}
+      <motion.h1 
+        ref={titleRef}
+        initial={{ opacity: 0, y: -50 }}
+        animate={titleInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8 }}
+        className="text-5xl text-[#f4ca4f] oswald-bold sm:text-[6rem]"
+      >
+        CORE PRINCIPLES
+      </motion.h1>
 
-            <u>Low-Cost Fees</u>: We are dedicated to providing quality training at affordable costs, ensuring accessibility for individuals and organizations with varying budgets.<br /><br />
+      {/* Cards Container */}
+      <motion.div
+        ref={cardsRef}
+        initial="hidden"
+        animate={cardsInView ? "show" : "hidden"}
+        variants={containerVariants}
+        className="flex w-full items-center flex-col justify-center p-5 mt-10 gap-5 sm:flex-row sm:gap-0"
+      >
+        {/* Vision Card */}
+        <motion.div 
+          variants={itemVariants}
+          className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group sm:w-1/3" 
+          style={{ backgroundImage: `url(${VisionImg})`}} 
+          onClick={handleToggle}
+        >
+          <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${isActive ? "opacity-70" : "opacity-40"} group-hover:opacity-70`}></div>
+          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>VISION</h1>
+          <p className={`absolute text-md text-white text-justify px-5 opacity-0 transition-opacity duration-500 z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} group-hover:opacity-100 group-hover:translate-y-0 sm:text-xl`}>
+          Our vision at Nexuscloud IT Solution is to be the preferred choice for individuals and organizations seeking top-notch IT training. We aspire to create an inclusive learning environment where participants can acquire cutting-edge industry knowledge, practical skills, and valuable certifications at a low-cost fee. We are dedicated to continuously expanding our offerings, leveraging advanced technology, and partnering with industry leaders to ensure our clients receive the best possible training experience.
+          </p>
+        </motion.div>
 
-            <u>Lots of Freebies</u>: We offer freebies like study materials, practice exams, and online resources to enhance clients learning experience and ensure they get the most out of their training.<br /><br />
+        {/* Mission Card */}
+        <motion.div 
+          variants={itemVariants}
+          className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group sm:w-1/3" 
+          style={{ backgroundImage: `url(${MissionImg})`}} 
+          onClick={handleToggle}
+        >
+          <div className={`absolute inset-0 bg-black transition-opacity duration-500 group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
+          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>MISSION</h1>
+          <p className={`absolute text-lg text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-0 z-20 ${isActive ? "opacity-100 tranlate-y-5" : "opacity-0 translate-y-5"}`}>
+          At Nexuscloud IT Solution, we aim to provide high-quality training and development opportunities to individuals and organizations, empowering them with the skills and knowledge essential for success in the digital age. We are committed to delivering exceptional value through comprehensive programs, affordable fees, and a wide range of freebies.
+          </p>
+        </motion.div>
 
-            <u>Customer-Focused Approach</u>: Our focus is on putting clients at the center of our operations, ensuring they are satisfied with our services and building long-term relationships based on trust and integrity.<br /><br />
+        {/* Values Card */}
+        <motion.div 
+          variants={itemVariants}
+          className="w-full h-[35rem] relative flex justify-center items-center hover:cursor-pointer group group-hover:w-full sm:w-1/3" 
+          style={{ backgroundImage: `url(${ValuesImg})`}} 
+          onClick={handleToggle}
+        >
+          <div className={`absolute inset-0 bg-black transition-opacity group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
+          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] group-hover:translate-y-[-13rem] duration-500 ${isActive ? "-translate-y-[15rem]" : ""}`}>VALUES</h1>
+          <p className={`absolute text-xs text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-[3rem] z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} sm:text-[14px]`}>
+          <span className="montserrat-bold">High-Quality Training</span>: Our commitment to excellence is evident in our meticulously crafted training programs, facilitated by industry experts who provide practical and hands-on learning experiences.<br /><br />
 
-            Nexuscloud IT Solution aims to equip individuals and organizations with the necessary knowledge and skills to thrive in the rapidly evolving IT landscape.</p>
-          </div>
-        </div>
-      </div>
+          <span className="montserrat-bold">Low-Cost Fees</span>: We are dedicated to providing quality training at affordable costs, ensuring accessibility for individuals and organizations with varying budgets.<br /><br />
+
+          <span className="montserrat-bold">Lots of Freebies</span>: We offer freebies like study materials, practice exams, and online resources to enhance clients learning experience and ensure they get the most out of their training.<br /><br />
+
+          <span className="montserrat-bold">Customer-Focused Approach</span>: Our focus is on putting clients at the center of our operations, ensuring they are satisfied with our services and building long-term relationships based on trust and integrity.<br /><br />
+
+          Nexuscloud IT Solution aims to equip individuals and organizations with the necessary knowledge and skills to thrive in the rapidly evolving IT landscape.
+          </p>
+        </motion.div>
+      </motion.div>
+    </div>
       <div>
         <Contact />
       </div>

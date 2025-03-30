@@ -63,6 +63,60 @@ export default function Courses() {
     setIndex((prevIndex) => (prevIndex - 1 + courses.length) % courses.length);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 0.7,
+      transition: {
+        staggerChildren: 0.3, // Delay between each image animation
+      }
+    }
+  };
+  
+  const imageVariants = {
+    hidden: { 
+      y: -1000, // Start above the viewport
+      opacity: 0 
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 15,
+        mass: 0.5
+      }
+    }
+  };
+
+  const leftSlideVariant = {
+    hidden: { x: -100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
+
+  const rightSlideVariant = {
+    hidden: { x: 100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+        delay: 0.2
+      }
+    }
+  };
+
 
 
   return(
@@ -72,38 +126,95 @@ export default function Courses() {
       </div>
 
       <div className="relative w-full h-auto con">
-        <h1 className="absolute z-20 text-7xl left-5 text-purple-500 bottom-20 sm:bottom-0 sm:left-20 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY COURSES </h1>
-        <h1 className="absolute z-20 text-white left-4 text-7xl bottom-22 sm:bottom-2 sm:left-18 oswald-bold sm:text-[8rem]">ZERO-TO-JOB-READY COURSES </h1>
-        <div className="flex justify-center items-center pt-22 relative opacity-70">
+      <motion.h1
+        className="absolute z-20 text-7xl left-5 text-purple-500 bottom-20 sm:bottom-0 sm:left-20 oswald-bold sm:text-[8rem]"
+        initial={{ x: -300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 50,
+          damping: 10,
+          delay: 0.2
+        }}
+      >
+        ZERO-TO-JOB-READY COURSES
+      </motion.h1>
+
+      {/* White Text - Slides in from bottom */}
+      <motion.h1
+        className="absolute z-20 text-white left-4 text-7xl bottom-22 sm:bottom-2 sm:left-18 oswald-bold sm:text-[8rem]"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 50,
+          damping: 10,
+          delay: 0.4
+        }}
+        >
+          ZERO-TO-JOB-READY COURSES
+        </motion.h1>
+        <motion.div
+        className="flex justify-center items-center pt-22 relative opacity-70"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {images.map((image, index) => (
-          <div
+          <motion.div
             key={index}
             className="relative w-full h-[450px] bg-cover bg-center shadow-lg"
             style={{
               backgroundImage: `url(${image.src})`,
               clipPath: image.clip,
-              marginLeft: index !== 0 ? "-5%" : "0", // Overlapping effect
+              marginLeft: index !== 0 ? "-5%" : "0",
             }}
-          ></div>
-          ))}
-        </div>
+            variants={imageVariants}
+            custom={index} // Pass index to calculate individual delays
+          />
+        ))}
+      </motion.div>
       </div>
       
-      <div className="w-full h-auto con pt-20 flex flex-col items-center text-white">
-        <div className="flex w-full flex-col justify-between mt-10 mb-10 sm:mt-10 mb-0 sm:items-center sm:flex-row">
-          <div className="w-40 ml-5 mt-2 border-l-15 border-yellow-500">
+      <motion.div 
+        className="w-full h-auto con pt-20 flex flex-col items-center text-white"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div className="flex w-full flex-col justify-between mt-10 mb-10 sm:mt-10 mb-0 sm:items-center sm:flex-row">
+          <motion.div 
+            className="w-40 ml-5 mt-2 border-l-15 border-yellow-500"
+            variants={leftSlideVariant}
+          >
             <h1 className="text-6xl play-bold pl-5 oswald-bold text">AVAILABLE COURSES</h1>
-          </div>
-          <div className="text w-full text-2xl text-justify px-10 mt-5 sm:mt-0 sm:text-right sm:pr-5 sm:w-3/5">
-            <h1>Our available courses are designed to equip learners with essential IT skills for career advancement. With a focus on practical knowledge and industry-recognized certifications, our programs provide hands-on training in cutting-edge technologies. </h1>
-          </div>
+          </motion.div>
+          
+          <motion.div 
+            className="text w-full text-2xl text-justify px-10 mt-5 sm:mt-0 sm:text-right sm:pr-5 sm:w-3/5"
+            variants={rightSlideVariant}
+          >
+            <h1>Our available courses are designed to equip learners with essential IT skills for career advancement. With a focus on practical knowledge and industry-recognized certifications, our programs provide hands-on training in cutting-edge technologies.</h1>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Second Section - Recommended */}
+      <motion.div 
+        className="w-full text-2xl mt-20 mb-50 relative"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          delay: 0.5,
+          type: "spring",
+          stiffness: 100,
+          damping: 10
+        }}
+      >
+        <div className="absolute h-20 flex items-center pr-2 right-0 border-r-10 border-yellow-500 mr-1 sm:mr-5">
+          <h1 className="text-6xl pl-0 oswald-bold text sm:pl-5">RECOMMENDED</h1>
         </div>
-      </div>
-      <div className="w-full text-2xl mt-20 mb-50 relative">
-          <div className="absolute h-20 flex items-center pr-2 right-0 border-r-10 border-yellow-500 mr-1 sm:mr-5">
-            <h1 className="text-6xl pl-0 oswald-bold text sm:pl-5">RECOMMENDED</h1>
-          </div>
-        </div>
+      </motion.div>
         <div className="w-full h-5/6 flex items-center justify-center sm:w-full">
           <div className="bg-gray-200 rounded-lg sm:p-2 relative">
             <div className="flex w-full justify-center items-center h-auto">
