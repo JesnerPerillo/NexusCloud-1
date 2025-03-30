@@ -1,10 +1,10 @@
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
-import TeachImg from "../Images/tree.png";
 import { Link } from 'react-router';
 import { SteppedEase } from 'gsap';
 import { motion } from 'framer-motion';
+import LandingImg from '../Images/landing.png';
 
 export default function ContentLandingPage() {
 
@@ -106,7 +106,20 @@ return (
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <img src={TeachImg} alt="Teaching Image" className="w-full scale-100 sm:scale-200 sm:w-2/3 lg:w-full" />
+      <motion.img
+        src={LandingImg}
+        alt="Teaching Image"
+        className="w-full sm:w-2/3 lg:w-full"
+        animate={{
+          y: [-10, 10, -10], // Moves up and down
+          scale: [1, 1.05, 1] // Subtle pulse effect
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
     </motion.div>
     
   </div>

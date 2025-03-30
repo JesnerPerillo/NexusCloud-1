@@ -103,7 +103,7 @@ export default function Enrollees() {
                 className={`px-2 py-2 rounded-full border transition ${
                   currentPage === 0
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-gray-800 text-white hover:bg-gray-900"
+                    : "bg-gray-800 text-white hover:bg-gray-900 hover:cursor-pointer"
                 }`}
               >
                 <GrLinkPrevious />
@@ -113,7 +113,7 @@ export default function Enrollees() {
                 disabled={!hasMore}
                 className={`px-2 py-2 rounded-full border transition ${
                   hasMore
-                    ? "bg-gray-800 text-white hover:bg-gray-900"
+                    ? "bg-gray-800 text-white hover:bg-gray-900 hover:cursor-pointer"
                     : "bg-gray-100 text-gray-400 cursor-not-allowed"
                 }`}
               >

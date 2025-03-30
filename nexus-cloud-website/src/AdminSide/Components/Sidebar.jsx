@@ -6,10 +6,12 @@ import { CiLogout } from "react-icons/ci";
 import DarkMode from '../../Components/DarkMode.jsx';
 import '../../darkmode.css';
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,6 +20,12 @@ export default function SideBar() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    navigate("/");
+  }
 
   return (
     <>
@@ -68,7 +76,7 @@ export default function SideBar() {
             <div className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"} mb-3`}>
               <DarkMode />
             </div>
-            <button className="flex items-center space-x-2 text hover:text-red-500 hover:cursor-pointer">
+            <button className="flex items-center space-x-2 text hover:text-red-500 hover:cursor-pointer" onClick={handleLogout}>
               <CiLogout size={24} />
               <span className={`text-sm font-medium transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>
                 Logout
