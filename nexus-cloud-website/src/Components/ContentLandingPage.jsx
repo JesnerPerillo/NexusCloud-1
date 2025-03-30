@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import LandingImg from '../Images/landing.png';
 import { CgArrowLongRight } from "react-icons/cg";
+import { ImRocket } from "react-icons/im";
 
 export default function ContentLandingPage() {
 
@@ -33,8 +34,8 @@ return (
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <h1 className="text text-fuchsia-50 font-bolder text-5xl sm:text-7xl lg:text-[100px] mt-5 flex items-center oswald-bold xl:text-[75px]">
-            LAUNCH YOUR CAREER🚀
+          <h1 className="text text-fuchsia-50 gap-5 font-bolder text-5xl sm:text-7xl lg:text-[100px] mt-5 flex items-center oswald-bold xl:text-[75px]">
+            LAUNCH YOUR CAREER <ImRocket />
           </h1>
         </motion.div>
 
