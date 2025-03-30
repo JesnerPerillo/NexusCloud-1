@@ -6,7 +6,7 @@ import CCNAImg1 from '../Images/ccna1.png';
 import AzureImg from '../Images/azure.png';
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Test from '../Components/CardContent.jsx';
+import Cards from '../Components/CardContent.jsx';
 import WhatWeDo3 from '../Images/whatwedo3.jpg';
 import WhatWeDo4 from '../Images/whatwedo4.jpg';
 import WhatWeDo2 from '../Images/whatwedo2.jpg';
@@ -127,7 +127,7 @@ export default function Courses() {
 
       <div className="relative w-full h-auto con">
       <motion.h1
-        className="absolute z-20 text-7xl left-5 text-purple-500 bottom-20 sm:bottom-0 sm:left-20 oswald-bold sm:text-[8rem]"
+        className="absolute z-20 text-7xl left-5 card-text bottom-20 sm:bottom-0 sm:left-20 oswald-bold sm:text-[8rem]"
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ 
@@ -142,7 +142,7 @@ export default function Courses() {
 
       {/* White Text - Slides in from bottom */}
       <motion.h1
-        className="absolute z-20 text-white left-4 text-7xl bottom-22 sm:bottom-2 sm:left-18 oswald-bold sm:text-[8rem]"
+        className="absolute z-20 text left-4 text-7xl bottom-22 sm:bottom-2 sm:left-18 oswald-bold sm:text-[8rem]"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ 
@@ -177,14 +177,14 @@ export default function Courses() {
       </div>
       
       <motion.div 
-        className="w-full h-auto con pt-20 flex flex-col items-center text-white"
+        className="w-full h-auto con pt-20 flex flex-col items-center text"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
         <motion.div className="flex w-full flex-col justify-between mt-10 mb-10 sm:mt-10 mb-0 sm:items-center sm:flex-row">
           <motion.div 
-            className="w-40 ml-5 mt-2 border-l-15 border-yellow-500"
+            className="w-40 ml-5 mt-2 border-l-15 border-text"
             variants={leftSlideVariant}
           >
             <h1 className="text-6xl play-bold pl-5 oswald-bold text">AVAILABLE COURSES</h1>
@@ -250,11 +250,11 @@ export default function Courses() {
         <div className="mt-20">
           <div className="flex items-center w-full mb-10">
             <div className="hidden border-t border sm:flex-1 sm:block"></div>
-              <span className="px-10 tracking-widest text-5xl oswald-bold text-[#f4ca4f] sm:text-7xl">ALL COURSES</span>
+              <span className="px-10 tracking-widest text-5xl oswald-bold text sm:text-7xl">ALL COURSES</span>
             <div className="hidden border-t border sm:flex-1 sm:block"></div>
           </div>
           {/*Card Container #1st Line*/}
-          <Test />
+          <Cards />
         </div>
       <div>
         <Contact />

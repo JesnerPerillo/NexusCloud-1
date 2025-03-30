@@ -2,7 +2,9 @@
 :root {
     --bg-color: #f9fafb;    
     --text-color: #000000;   
-    --button-bg: #d8dbe0;    
+    --button-bg: #222222;
+    --button-wing: #cacaca;
+    --button-hover: #000000;    
     --button-text: #000000;   
     --nav-color: #000000;
     --blur-color: #000000;
@@ -15,12 +17,15 @@
     --sidebar: #ffffff;
     --enroll-con: #ffffff;
     --report: #ffffff;
+    --button-shadow: 0 0 20px rgba(10, 10, 10, 0.7);
   }
   
   html.dark {
     --bg-color: #141414;    
-    --text-color: #f9fafb;   
-    --button-bg: #4b5563;   
+    --text-color: #ffffff;   
+    --button-bg: #f3f3f3;  
+    --button-wing: #252525;
+    --button-hover: #ffffff; 
     --button-text: #f3f4f6; 
     --nav-color: #f9fafb; 
     --blur-color: #ffffff;
@@ -32,6 +37,7 @@
     --sidebar: #000000;
     --enroll-con: #222222;
     --report: #0f0f0f;
+    --button-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
   }
 
   .nav {
@@ -47,7 +53,20 @@
   
   .button {
     background-color: var(--button-bg);
-    color: var(--button-text);
+    color: var(--bg-color);
+    transition: all 0.3s ease-out; /* Fallback for non-Framer Motion users */
+  }
+  
+  .button:hover {
+    background-color: var(--button-hover);
+    color: var(--cardtext-color);
+    scale: 1.05;
+    box-shadow: var(--button-shadow);
+  }
+
+  .button-wing {
+    background-color: var(--button-wing);
+    color: var(--bg-color);
   }
 
   .text {
@@ -102,7 +121,7 @@
 
   .enroll {
     background-color: var(--enroll-con);
-    color: var(--text-color);
+    color: var(--cardtext-color);
   }
 
   .report {

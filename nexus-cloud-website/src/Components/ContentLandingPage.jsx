@@ -1,28 +1,12 @@
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { Link } from 'react-router';
-import { SteppedEase } from 'gsap';
 import { motion } from 'framer-motion';
 import LandingImg from '../Images/landing.png';
+import { CgArrowLongRight } from "react-icons/cg";
 
 export default function ContentLandingPage() {
 
-    gsap.registerPlugin(ScrollTrigger, useGSAP);
-    useGSAP(() => {
-        const tl =  gsap.timeline({paused: true});
-        tl.fromTo('.type-writer', 8, 
-            {
-            width: 0
-        },{
-            width: "20.18em", /* same as CSS .line-1 width */
-            ease:  SteppedEase.config(37)
-        }, 0);
-        tl.play()
-    });
 
 
-    // gsap.from('.img-logo', {duration: 1, opacity: 0, ease: 'power2.out'});
 return (
     <div className="flex flex-col con mt-0 lg:flex-row items-center justify-between px-5 lg:px-20 py-10 overflow-hidden">
       
@@ -79,22 +63,24 @@ return (
           transition={{ delay: 1.2 }}
         >
           
+          <Link to="/courses">
             <motion.button 
-              className="relative w-40 flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-[#ffbe00] rounded-md group hover:cursor-pointer"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3 }}
+              className="button w-40 flex items-center justify-around p-2 rounded-xl hover:cursor-pointer"
+              initial={false}
+              whileHover={{
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut"
+                }
+              }}
+              whileTap={{
+                scale: 0.95,
+                transition: { duration: 0.1 }
+              }}
             >
-              <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-[#bfa149] rounded group-hover:-mr-4 group-hover:-mt-4">
-                <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
-              </span>
-              <span className="absolute bottom-0 rotate-180 left-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-[#bfa149] rounded group-hover:-ml-4 group-hover:-mb-4">
-                <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
-              </span>
-              <span className="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full bg-[#f4ca4f] rounded-md group-hover:translate-x-0"></span>
-              <Link to="/courses"><span className="relative w-full text-center text-white transition-colors duration-200 ease-in-out group-hover:text-white">
-                Enroll Now!
-              </span></Link>
+              Enroll Now! <CgArrowLongRight />
             </motion.button>
+          </Link>
         </motion.div>
       </div>
     </motion.div>
