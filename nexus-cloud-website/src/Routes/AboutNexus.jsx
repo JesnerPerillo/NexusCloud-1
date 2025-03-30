@@ -161,7 +161,7 @@ export default function AboutNexus() {
               key={index}
               src={slide}
               alt={`Thumbnail ${index + 1}`}
-              className={`h-10 w-10 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 hover:scale-130 ${index === weAreIndex ? 'border-2 border-yellow-300' : 'opacity-70'}`}
+              className={`h-10 w-10 object-cover rounded-full cursor-pointer duration-500 hover:opacity-100 hover:scale-130 ${index === weAreIndex ? 'border-2 border-black' : 'opacity-70'}`}
               onClick={() => handleThumbnailClick(index)}
             />
           ))}
@@ -175,10 +175,10 @@ export default function AboutNexus() {
         transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
       >
-        <h1 className="text-[3rem] oswald-bold sm:text-[4rem] text-[#f4ca4f]">WHO WE ARE</h1>
+        <h1 className="text-[3rem] oswald-bold sm:text-[4rem] text">WHO WE ARE</h1>
         <p className="text text-lg px-5 text-justify leading-7 montserrat-semibold sm:text-sm sm:px-0">
-          We are a team of dedicated <span className="text-[#f4ca4f]">IT professionals and educators</span> committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
-          Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with <span className="text-[#f4ca4f]">over 20 years of experience</span> in finance, retail, managed services, and government sectors. We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers.<br /><br />
+          We are a team of dedicated IT professionals and educators committed to empowering individuals with practical, job-ready skills in Information Technology. With a strong foundation in industry-leading certifications, we bridge the gap between learning and real-world application.<br /><br />
+          Our trainers are highly experienced and certified experts (MCT, CCNA, CCNP, MCSE, AWS, VCP, Citrix) with over 20 years of experience in finance, retail, managed services, and government sectors. We believe in accessible, hands-on training that prepares students not just to pass exams, but to excel in their careers.<br /><br />
           At our core, we are mentors, industry leaders, and innovators who are passionate about helping aspiring IT professionals build their future with confidence.
         </p>
       </motion.div>
@@ -200,7 +200,7 @@ export default function AboutNexus() {
         transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
       >
-        <h1 className="text-[3rem] text-center oswald-bold text-[#f4ca4f] sm:text-[4rem] sm:text-left">
+        <h1 className="text-[3rem] text-center oswald-bold text sm:text-[4rem] sm:text-left">
           WHAT WE DO
         </h1>
         <p className="text-md text-justify text montserrat-semibold">
@@ -222,7 +222,7 @@ export default function AboutNexus() {
       >
         <div className="relative w-full h-full overflow-hidden">
           <motion.img
-            key={currentIndex} // Ensures smooth transition when changing images
+            key={currentIndex} 
             src={slides[currentIndex]}
             alt={`Slide ${currentIndex + 1}`}
             className="w-full h-[35rem] object-cover rounded-xl"
@@ -235,13 +235,13 @@ export default function AboutNexus() {
         {/* Prev Button */}
         <GrCaretPrevious
           onClick={prevSlide}
-          className="absolute w-20 h-8 top-1/2 left-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:scale-110 sm:w-20 sm:h-20 sm:left-[-50px]"
+          className="absolute w-20 h-8 top-1/2 left-[-40px] transform -translate-y-1/2 text duration-500 hover:scale-110 sm:w-20 sm:h-20 sm:left-[-50px]"
         />
 
         {/* Next Button */}
         <GrCaretNext
           onClick={nextSlide}
-          className="absolute w-20 h-8 top-1/2 right-[-40px] transform -translate-y-1/2 text-[#f4ca4f] duration-500 hover:scale-110 sm:w-20 sm:h-20 sm:right-[-50px]"
+          className="absolute w-20 h-8 top-1/2 right-[-40px] transform -translate-y-1/2 text duration-500 hover:scale-110 sm:w-20 sm:h-20 sm:right-[-50px]"
         />
 
         {/* Indicator */}
@@ -268,7 +268,7 @@ export default function AboutNexus() {
         initial={{ opacity: 0, y: -50 }}
         animate={titleInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
-        className="text-5xl text-[#f4ca4f] oswald-bold sm:text-[6rem]"
+        className="text-5xl text oswald-bold sm:text-[6rem]"
       >
         CORE PRINCIPLES
       </motion.h1>
@@ -289,7 +289,7 @@ export default function AboutNexus() {
           onClick={handleToggle}
         >
           <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${isActive ? "opacity-70" : "opacity-40"} group-hover:opacity-70`}></div>
-          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>VISION</h1>
+          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-white transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>VISION</h1>
           <p className={`absolute text-md text-white text-justify px-5 opacity-0 transition-opacity duration-500 z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} group-hover:opacity-100 group-hover:translate-y-0 sm:text-xl`}>
           Our vision at Nexuscloud IT Solution is to be the preferred choice for individuals and organizations seeking top-notch IT training. We aspire to create an inclusive learning environment where participants can acquire cutting-edge industry knowledge, practical skills, and valuable certifications at a low-cost fee. We are dedicated to continuously expanding our offerings, leveraging advanced technology, and partnering with industry leaders to ensure our clients receive the best possible training experience.
           </p>
@@ -303,7 +303,7 @@ export default function AboutNexus() {
           onClick={handleToggle}
         >
           <div className={`absolute inset-0 bg-black transition-opacity duration-500 group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
-          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>MISSION</h1>
+          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-white transition-all duration-500 group-hover:translate-y-[-13rem] ${isActive ? "-translate-y-[15rem]" : ""}`}>MISSION</h1>
           <p className={`absolute text-lg text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-0 z-20 ${isActive ? "opacity-100 tranlate-y-5" : "opacity-0 translate-y-5"}`}>
           At Nexuscloud IT Solution, we aim to provide high-quality training and development opportunities to individuals and organizations, empowering them with the skills and knowledge essential for success in the digital age. We are committed to delivering exceptional value through comprehensive programs, affordable fees, and a wide range of freebies.
           </p>
@@ -317,7 +317,7 @@ export default function AboutNexus() {
           onClick={handleToggle}
         >
           <div className={`absolute inset-0 bg-black transition-opacity group-hover:opacity-70 ${isActive ? "opacity-70" : "opacity-40"}`}></div>
-          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-[#f4ca4f] group-hover:translate-y-[-13rem] duration-500 ${isActive ? "-translate-y-[15rem]" : ""}`}>VALUES</h1>
+          <h1 className={`montserrat-bold text-6xl tracking-wide z-20 text-white group-hover:translate-y-[-13rem] duration-500 ${isActive ? "-translate-y-[15rem]" : ""}`}>VALUES</h1>
           <p className={`absolute text-xs text-white text-justify px-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:translate-y-[3rem] z-20 ${isActive ? "opacity-100 translate-y-5" : "opacity-0 translate-y-5"} sm:text-[14px]`}>
           <span className="montserrat-bold">High-Quality Training</span>: Our commitment to excellence is evident in our meticulously crafted training programs, facilitated by industry experts who provide practical and hands-on learning experiences.<br /><br />
 
