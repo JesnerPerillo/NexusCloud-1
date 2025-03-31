@@ -210,6 +210,18 @@ const confirmSubmission = async () => {
             className="w-full px-3 text-black py-2 border border-gray-200 rounded-md cursor-not-allowed"
           />
         </div>
+        <div>
+          <label className="block text-xs font-medium text-gray-700 mb-1">Slots</label>
+          <input
+            type="text"
+            name="slots"
+            value={course.slots }
+            onChange={handleChange}
+            placeholder={20}
+            disabled
+            className="w-full px-3 text-black py-2 border border-gray-200 rounded-md cursor-not-allowed"
+          />
+        </div>
 {/* 
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">Available Slots</label>
@@ -245,7 +257,7 @@ const confirmSubmission = async () => {
             <label className="block text-xs font-medium text-gray-700 mb-1">Select Date</label>
             <DatePicker
             name='date'
-              selected={allowedDates}  // set nyo to to new Date if nahihirapan kayo maghanap ng date di kasi lumalabas sa valid date if later than today yung date kaya di maselect, set nyo na lang sa set date para sa testing 
+              selected={selectedDate}  // set nyo to to new Date if nahihirapan kayo maghanap ng date di kasi lumalabas sa valid date if later than today yung date kaya di maselect, set nyo na lang sa set date para sa testing 
               onChange={(date) => setSelectedDate(date)}
               includeDates={allowedDates}
               minDate={new Date()}
