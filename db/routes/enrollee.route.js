@@ -6,7 +6,7 @@ import sendEmail from '../utils.js';
 const enrolleeRouter = express.Router();
 
 enrolleeRouter.get('/', (req, res) => {
-    const validColumns = ['name', 'email', 'phone_number', 'course', 'modality', 'date', 'payment_method', 'reference_number'];
+    const validColumns = ['name', 'email', 'phoneNumber', 'course', 'modality', 'date', 'payment_method', 'reference_number'];
     const validOrders = ['asc', 'desc'];
     
     const sortby = req.query.sortby || 'date';
@@ -25,7 +25,7 @@ enrolleeRouter.get('/', (req, res) => {
     const query = `SELECT * FROM enrollees ORDER BY ${sortby} ${order} LIMIT ? OFFSET ?`;
     
     conn.promise()
-        .query(query, [limit, offset])
+        .query(query, [sortby, limit, offset])
         .then(([rows]) => {
             res.status(200).json(rows);
         })
@@ -41,24 +41,25 @@ enrolleeRouter.post('/create', [
     check('phoneNumber').not().isEmpty(),
     check('course').not().isEmpty(),
     check('modality').not().isEmpty(),
-    check('date').not().isEmpty(),
     check('paymentMethod').not().isEmpty()
 ], async (req, res) => {
     const { name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
+        console.log(errors.array());
         return res.status(400).json({ errors: errors.array() });
     }
 
     try {
         await conn.promise().query(
             "INSERT INTO enrollees (name, email, phone_number, course, modality, date, payment_method, reference_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            [name, email, phoneNumber, course, modality, date, paymentMethod, referenceNumber]
+            [name, email, phoneNumber, course, modality, date    , paymentMethod, referenceNumber || null]
         );
         
         // Only send email if payment is successful (you might want to add a payment status check here)
         // sendEmail(email, name, course);
+        console.log("Success")
         
         res.status(201).json({ message: "Enrollee created successfully" });
     } catch (err) {
@@ -79,7 +80,7 @@ enrolleeRouter.put('/update/:id', async (req, res) => {
 
         const newName = name || existingEnrollee[0].name;
         const newEmail = email || existingEnrollee[0].email;
-        const newPhoneNumber = phoneNumber || existingEnrollee[0].phone_number;
+        const newPhoneNumber = phoneNumber || existingEnrollee[0].phoneNumber;
         const newCourse = course || existingEnrollee[0].course;
         const newModality = modality || existingEnrollee[0].modality;
         const newDate = date || existingEnrollee[0].date;

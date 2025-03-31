@@ -20,12 +20,12 @@ courseRouter.get('/get', async (req, res) => {
 
 
     try {
-        const sql = `SELECT * FROM courses ORDER BY ?? ${order}`;
-        const [rows] = await conn.promise().query(sql, [sortby]);
+        const sql = `SELECT * FROM courses ORDER BY id ${order}`;
+        const [rows] = await conn.promise().query(sql);
         res.status(200).json(rows);
     } catch (err) {
-        console.error("Database Errpr " + err.message);
-        res.status(500).json({error: 'Database error at ' + err});
+        console.error("Database Error " + err.message);
+        res.status(500).json({error: 'Database error at ' + err.message});
 
     }
 

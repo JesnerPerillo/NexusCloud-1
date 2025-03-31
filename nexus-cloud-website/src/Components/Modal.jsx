@@ -83,7 +83,7 @@ const confirmSubmission = async () => {
     setShowConfirmation(false);
   } catch (error) {
     console.log(selectedDate,)
-    console.error("Error submitting form:", error.response?.data || error.message);
+    console.error("Error submitting form: jhay", error.message);
     alert(`Error submitting form: ${error.response?.data?.error || "Please try again later. Error: " + error.message}`);
   }
 };
@@ -94,11 +94,11 @@ const confirmSubmission = async () => {
 
   {/*API call for courses in the database (abang lang to) */}
 
-useEffect(() => {
+  useEffect(() => {
     if (course?.title) {
       console.log("Fetching courses for:", course.title);
   
-      axios.get("http://localhost:5000/api/courses/get?sortby=course_name&order=desc")
+      axios.get("http://localhost:5000/api/courses?sortby=course_name&order=desc")
         .then((res) => {
           console.log("API Response:", res.data);
           console.log(res, 'slots')
@@ -108,7 +108,6 @@ useEffect(() => {
   
           if (courseData && courseData.date) {
             console.log("Course Data(Raw):", courseData.slots);
-            console.log("Course Data(Raw):", courseData.date);
   
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -131,32 +130,7 @@ useEffect(() => {
     }
   }, [course]); // Closing properly
   
-  useEffect(() => {
-    if (course?.title) {
-      axios.get("http://localhost:5000/api/courses/get")
-        .then((res) => {
-          console.log("API Response:", res.data);
-
-          const courseData = res.data.find(c => c.course_name === course.title);
-          if (courseData && courseData.dates.length > 0) {
-            console.log("Course Data:", courseData.date);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            const formattedDates = courseData.dates
-              .map(dateStr => {
-                const date = new Date(dateStr);
-                console.log("Converted Date:", date);
-                return date;
-              })
-              .filter(date => date >= today);
-
-            setAllowedDates(formattedDates);
-          }
-        })
-        .catch((err) => console.error("Error fetching courses:", err.message));
-    }
-  }, [course]);
+  
   console.log(selectedDate)
 
   return (
@@ -236,7 +210,7 @@ useEffect(() => {
             className="w-full px-3 text-black py-2 border border-gray-200 rounded-md cursor-not-allowed"
           />
         </div>
-
+{/* 
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">Available Slots</label>
           <input
@@ -248,7 +222,7 @@ useEffect(() => {
             disabled
             className="w-full px-3 text-black py-2 border border-gray-200 rounded-md cursor-not-allowed"
           />
-        </div>
+        </div> */}
 
         <div className="flex gap-2">
           {/* Modality Field */}
@@ -270,11 +244,15 @@ useEffect(() => {
           <div className="w-1/2">
             <label className="block text-xs font-medium text-gray-700 mb-1">Select Date</label>
             <DatePicker
-              selected={selectedDate}
+            name='date'
+              selected={allowedDates}  // set nyo to to new Date if nahihirapan kayo maghanap ng date di kasi lumalabas sa valid date if later than today yung date kaya di maselect, set nyo na lang sa set date para sa testing 
               onChange={(date) => setSelectedDate(date)}
               includeDates={allowedDates}
               minDate={new Date()}
-              dateFormat="yyyy-MM-dd"
+              // dateFormat="yyyy-MM-dd"
+              // showMonthDropdown
+              // showYearDropdown
+              // dropdownMode="select" // Allows selecting from a dropdown
               className="w-full px-3 text-black py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
             />
           </div>
