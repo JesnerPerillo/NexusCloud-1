@@ -9,6 +9,7 @@ import courseRouter from "./routes/courses.route.js";
 import enrolleeRouter from "./routes/enrollee.route.js";
 import getenrolleesRouter from "./routes/getenrollees.route.js";
 import getadminRouter from "./routes/getadmin.route.js";
+import salesRouter from "./routes/sales.route.js";
 
 const app = express();
 const limiter = rateLimit({
@@ -27,5 +28,6 @@ app.use("/api/enrollees", enrolleeRouter);
 app.use("/api/getenrollees", getenrolleesRouter);
 app.use("/api/getadmin", getadminRouter);
 app.use("/api/loginadmin", userRouter); 
+app.use("/api/sales", salesRouter);
 
 app.listen(5000, () => console.log("Server running on port 5000"));
