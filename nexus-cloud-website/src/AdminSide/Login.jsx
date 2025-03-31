@@ -15,7 +15,7 @@ export default function Login() {
     username: '',
     password: '',
   });
-  const [remainingAttempts, setRemainingAttempts] = useState(5);
+  const [remainingAttempts, setRemainingAttempts] = useState(4); // gianwa kong 5 since counted na yung isang entry na mali
   const [accountLocked, setAccountLocked] = useState(false);
   const [lockoutMessage, setLockoutMessage] = useState('');
 
@@ -57,7 +57,8 @@ export default function Login() {
         setLockoutMessage(error.response.data.error);
       } else if (error.response?.data?.error === "Incorrect password") {
         setIncorrectPassword(true);
-        setRemainingAttempts(5 - (error.response.data.failed_attempts || 0));
+        // setRemainingAttempts(5 - (error.response.data.failed_attempts || 0));
+        setRemainingAttempts((prev) => Math.max(prev - 1, 0)); // para macount yung maling entry/attempts
         setLockoutMessage(`Incorrect password! ${remainingAttempts} attempts remaining.`);
       }
   
