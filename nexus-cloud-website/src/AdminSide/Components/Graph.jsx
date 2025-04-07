@@ -71,10 +71,10 @@ export default function Graph({ data }) {
       {data && data.length > 0 ? (
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={formattedData}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="5 5" />
             <XAxis dataKey="label" stroke="#000" />
             <YAxis allowDecimals={false} stroke="#000" />
-            <Tooltip />
+            <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#ccc' }} />
             <Line
               type="monotone"
               dataKey="approvedCount"

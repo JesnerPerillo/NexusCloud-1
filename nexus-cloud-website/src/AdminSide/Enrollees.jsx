@@ -130,9 +130,11 @@ export default function Enrollees() {
                   <th className="px-4 py-1 font-medium">Email</th>
                   <th className="px-4 py-1 font-medium w-40">Phone Number</th>
                   <th className="px-4 py-1 font-medium">Course</th>
-                  <th className="px-4 py-1 font-medium w-30">Date</th>
+                  <th className="px-4 py-1 font-medium w-30">Date Applied</th>
                   <th className="px-4 py-1 font-medium">Modality</th>
                   <th className="px-4 py-1 font-medium">Payment Method</th>
+                  <th className="px-4 py-1 font-medium">Status</th>
+                  <th className="px-4 py-1 font-medium">Date Approved</th>
                   <th className="px-4 py-1 font-medium">Action</th>
                 </tr>
               </thead>
@@ -149,9 +151,28 @@ export default function Enrollees() {
                     <td className="px-4 py-1">{enrollee.email}</td>
                     <td className="px-4 py-1">{enrollee.phone_number}</td>
                     <td className="px-4 py-1">{enrollee.course}</td>
-                    <td className="px-4 py-1">{enrollee.date}</td>
-                    <td className="px-4 py-1">{enrollee.modality}</td>
+                    {/* <td className="px-4 py-1">{enrollee.date}</td> */}
+                    {/* para "Mar 24, 2025" ang display format */}
+                    <td className="px-4 py-1">
+                      {new Date(enrollee.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </td>
+                    <td className="px-4 py-1">{enrollee.modality}</td>      
                     <td className="px-4 py-1">{enrollee.payment_method}</td>
+                    <td className="px-4 py-1">{enrollee.status}</td>
+                    {/* para "Mar 24, 2025" ang display format at madefine yung "Pending approval" if wala pang date sa date_approved*/}
+                    <td className="px-4 py-1">
+                      {enrollee.date_approved
+                        ? new Date(enrollee.date_approved).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })
+                        : "Pending Approval"}
+                    </td>
                     <td className="flex justify-evenly p-3 items-center">
                       <MdEdit size={18} className="text-green-500 cursor-pointer" />
                       <MdDelete size={18} className="text-red-600 cursor-pointer" />
