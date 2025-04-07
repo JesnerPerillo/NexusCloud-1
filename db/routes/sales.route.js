@@ -20,4 +20,24 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/approved-enrollees", (req, res) => {
+  const query = `
+    SELECT 
+      DATE_FORMAT(date_approved, '%Y-%m') AS month,
+      COUNT(*) AS approvedCount
+    FROM enrollees
+    WHERE status = 'Paid' AND date_approved IS NOT NULL
+    GROUP BY month
+    ORDER BY month ASC
+  `;
+
+  conn.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching approved enrollees:", err);
+      return res.status(500).json({ error: "Database query failed" });
+    }
+    res.json(results);
+  });
+});
+
 export default router;

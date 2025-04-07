@@ -6,12 +6,18 @@ import { useEffect, useState } from 'react';
 export default function Dashboard() {
 
   const [sales, setSales] = useState({ totalSales: 0, monthlySales: 0 });
+  const [approvedData, setApprovedData] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/sales")
       .then((res) => res.json())
       .then((data) => setSales(data))
       .catch((err) => console.error("Error fetching sales:", err));
+
+      fetch("http://localhost:5000/api/sales/approved-enrollees")
+      .then((res) => res.json())
+      .then((data) => setApprovedData(data))
+      .catch((err) => console.error("Error fetching approved enrollees:", err));
   }, []);
 
   return (
@@ -36,8 +42,8 @@ export default function Dashboard() {
         <div className="w-1/2 mt-5">
         <div className="flex items-center justify-center p-4 drop-shadow-3xl">
           <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-xl">
-            <h2 className="text-2xl font-bold text-black text-center mb-4">Sample Data Graph</h2>
-            <Graph />
+            <h2 className="text-2xl font-bold text-black text-center mb-4">Monthly Approved Enrollees</h2>
+            <Graph data={approvedData} />
           </div>
         </div>
       </div>
